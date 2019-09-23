@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4b6498ff6673444a96d62021cfc3e488" Name="Diagram1">
+        <EntityTypeShape EntityType="vatModel.AccountGroup" Width="1.5" PointX="21.5" PointY="29" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.AccountLedger" Width="1.5" PointX="23.75" PointY="27" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.AdditionalCost" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.AdvancePayment" Width="1.5" PointX="26" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.BankReconciliation" Width="1.5" PointX="28.25" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.Brand" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.Category" Width="1.5" PointX="0.75" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.Company" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.ContraDetail" Width="1.5" PointX="34.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.ContraMaster" Width="1.5" PointX="29" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.CreditNoteMaster" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.Customer" Width="1.5" PointX="11.25" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.Design" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.Employee" Width="1.5" PointX="23.75" PointY="34.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.FinancialYear" Width="1.5" PointX="23.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.Inventory" Width="1.5" PointX="5.25" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.JournalDetail" Width="1.5" PointX="26" PointY="28.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.JournalMaster" Width="1.5" PointX="26" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.LedgerPosting" Width="1.5" PointX="26" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.Location" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.PartyBalance" Width="1.5" PointX="32" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.PartyPaymentHistory" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.Picture" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.Product" Width="1.5" PointX="3" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.ReceiveDetail" Width="1.5" PointX="8.25" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.ReceiveMaster" Width="1.5" PointX="6" PointY="33" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.RoleWiseScreenPermission" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.SalaryPayment" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.SalesDelivery" Width="1.5" PointX="18.75" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.SalesDetail" Width="1.5" PointX="5.25" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.SalesMaster" Width="1.5" PointX="13.5" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.SalesOrder" Width="1.5" PointX="11.25" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.SalesReturn" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.Screen" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.Setting" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.StockIn" Width="1.5" PointX="5.25" PointY="27.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.StockOut" Width="1.5" PointX="8.25" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.Supplier" Width="1.5" PointX="6" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.sysdiagram" Width="1.5" PointX="2.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.Tax" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.TempSalesDetail" Width="1.5" PointX="21.75" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.TempSalesMaster" Width="1.5" PointX="16.5" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.Unit" Width="1.5" PointX="12.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.UserInfo" Width="1.5" PointX="23.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.UserRole" Width="1.5" PointX="21.5" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.VoucherType" Width="1.5" PointX="23.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.WareHouse" Width="1.5" PointX="6" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="vatModel.ProductInfo" Width="1.5" PointX="13.75" PointY="11.75" IsExpanded="true" />
+        <AssociationConnector Association="vatModel.FK_AccountLedger_AccountGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_AdvancePayment_Ledger" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_ContraDetails_Ledger" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_JournalDetails_Ladger" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_LedgerPosting_AccountLedger" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_PartyBalance_Ledger" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_AdvancePayment_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_AdvancePayment_VoucherType" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_AdvancePayment_Year" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_BankReconciliation_LadgerPosting" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_Product_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_ContraDetails_ContraMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_ContraMaster_Ledger" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_ContraMaster_User" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_ContraMaster_VoucherType" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_ContraMaster_Year" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_SalesDelivery_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_SalesMaster_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_SalesOrder_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_TempSalesMaster_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_JournalMaster_Year" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_LedgerPosting_Year" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_Inventory_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_Inventory_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_Inventory_WareHouse" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_JournalDetails_JournalMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_JournalMaster_User" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_JournalMaster_VoucherType" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_LedgerPosting_Voucher" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_PartyBalance_Voucher" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_ReceiveDetails_product" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_SalesDetails_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_SalesOrder_product" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_StockIn_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_StockOut_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_TempSalesDetails_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_ReceiveDetails_RecieveMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_ReceiveDetails_Warehouse" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_ReceiveMaster_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_RoleWiseScreenPermission_Screens" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_SalesDelivery_SalesMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_SalesDetails_SalesMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_SalesMaster_Salesorder" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_TempSalesMaster_SalesOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_StockIn_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_StockIn_Warehouse" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_StockOut_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_StockOut_Warehouse" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_TempSalesDetails_TempSalesMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_TempSalesMaster_TempSalesDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="vatModel.FK_UserInfo_UserInfo" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

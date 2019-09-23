@@ -1,0 +1,283 @@
+﻿
+<style>
+
+
+    /* Style the tab */
+    .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+    }
+
+        /* Style the buttons inside the tab */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+            /* Change background color of buttons on hover */
+            .tab button:hover {
+                background-color: #ddd;
+            }
+
+            /* Create an active/current tablink class */
+            .tab button.active {
+                background-color: #ccc;
+            }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+    }
+</style>
+<div class="card">
+    <div class="row">
+        <h2>Accounting Report</h2>
+        <div class="tab">
+            <button class="tablinks" onclick="openCity(event, 'daily')">Daily Expense</button>
+            <button class="tablinks" onclick="openCity(event, 'cashbook')">Cash Book</button>
+            <button class="tablinks" onclick="openCity(event, 'montly')">Monthly Summary</button>
+            <button class="tablinks" onclick="openCity(event, 'byLedger')">By Account Ledger</button>
+        </div>
+        <div>
+            <div class="row">
+                <div class="col-md-10">
+                    <label class="col-md-2">
+                        From Date:
+                    </label>
+                    <div class="col-md-3">
+                        <input type="date" id="txtFromDate"/>
+                    </div>
+                    <label class="col-md-2">
+                        To Date:
+                    </label>
+                    <div class="col-md-3">
+                        <input type="date" id="txtToDate" />
+                    </div>
+                    <div class="col-md-2">
+                        <button id="btnFilter" class="btn-primary" onclick="Filter();">Filter</button>
+                    </div>
+                </div>
+             </div>
+         </div>
+
+        <div id="daily" class="tabcontent">
+            <div class="ibox-content" id="divInfo">
+                <div class="form-group">
+                    <div class="col-md-12 table-responsive" id="div-expenseGroup">
+                    </div>
+                </div>
+                <script id="templateProductGroupModal" type="text/html">
+                    <table class="table table-bordered table-striped table-hover" id="expenseGroupTableModal">
+                        <thead>
+                        <th>Invoice No</th>
+                        <th>Ladger Date</th>
+                        <th>Narration</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                        </thead>
+                        <tbody>
+                            {{#expensesGroupSearch}}
+                            <tr>
+                                <td> {{InvoiceNo}}</td>
+                                <td> {{PostingDate}}</td>
+                                <td>{{Narration}}</td>
+                                <td>{{TotalAmount}}</td>
+                                <td class="action-sm">
+                                    <a class="btn btn-primary btn-xs" onclick="LoadForEdit('{{Id}}')"><i class="fa fa-edit"></i> Select</a>
+                                </td>
+                            </tr>
+                            {{/expensesGroupSearch}}
+                        </tbody>
+                    </table>
+                </script>
+            </div>
+        </div>
+        <div id="cashbook" class="tabcontent">
+            <div class="ibox-content" id="cashbook">
+
+                <div class="form-group">
+                    <div class="col-md-12 table-responsive" id="div-cashbookGroup">
+                    </div>
+                </div>
+                <script id="templatecashbbokModal" type="text/html">
+                    <table class="table table-bordered table-striped table-hover" id="cashbookTableModal">
+                        <thead>
+                            <th>Invoice No</th>
+                            <th>Ladger Date</th>
+                            <th>Voucher Type</th>
+                            <th>Ledger Name</th>
+                            <th>Narration</th>
+                            <th>Credit</th>
+                            <th>Debit</th>
+                        </thead>
+                        <tbody>
+                            {{#expensesGroupSearch}}
+                            <tr>
+                                <td> {{VoucherNo}}</td>
+                                <td> {{PostDate}}</td>
+                                <td>{{VoucherTypeName}}</td>
+                                <td>{{LedgerName}}</td>
+                                <td>{{Extra1}}</td>
+                                <td>{{Credit}}</td>
+                                <td>{{Debit}}</td>
+                            </tr>
+                            {{/expensesGroupSearch}}                          
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    Total:
+                                </td>
+                                <td>
+                                    {{totalCredit}}
+                                </td>
+                                <td>
+                                    {{totalDebit}}
+                                </td>
+                            </tr>
+
+                        </tfoot>
+                    </table>
+                </script>
+            </div>
+        </div>
+        <div id="montly" class="tabcontent">
+            <h3>Comming soon...</h3>
+
+        </div>
+
+        <div id="byLedger" class="tabcontent">
+            <h3>Comming soon...</h3>
+
+        </div>
+        </div>
+    </div>
+    <script>
+        function openCity(evt, name) {
+            if (name == "cashbook")
+            {
+                GetCashBook();
+            }
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(name).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        $(document).ready(function () {
+            var now = new Date();
+
+            var day = ("0" + now.getDate()).slice(-2);
+            var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+            var today = now.getFullYear() + "-" + (month) + "-" + (day);
+
+            $('#txtFromDate').val(today);
+            $('#txtToDate').val(today);
+
+
+            document.getElementById("daily").style.display = "block";
+            GetAllExpense();
+        });
+
+        function Filter() {
+            var daily = document.getElementById("daily").style.display
+            var cashbook = document.getElementById("cashbook").style.display
+
+            if(daily=="block")
+            {
+                GetAllExpense();
+            }
+            if(cashbook=="block")
+            {
+                GetCashBook();
+            }
+
+        }
+
+        function GetAllExpense() {
+            var url = '/LedgerPosting/GetExpenses';
+            var fromDate = $("#txtFromDate").val();
+            var toDate = $("#txtToDate").val();
+            $.ajax({
+                url: url,
+                data: { fromDate: fromDate, toDate: toDate },
+                method: 'GET',
+                success: function (res) {
+                    var data = res;
+                    var TotalAmount = 0;
+                    var totalCredit = 0;
+                    var totalDebit = 0;
+                    $.each(data, function (index, value) {
+                        var credit = parseInt(value.Credit, 10);
+                        var debit = parseInt(value.Debit, 10);
+                        totalCredit += credit;
+                        totalDebit += debit;
+                        data[index].totalCredit = totalCredit;
+                        data[index].totalDebit = totalDebit;
+
+                    });
+                    var templateWithData = Mustache.to_html($("#templateProductGroupModal").html(), { expensesGroupSearch: res });
+                    $("#div-expenseGroup").empty().html(templateWithData);
+                    MakePagination('expenseGroupTableModal');
+                },
+                error: function () {
+                }
+            });
+        }
+
+
+        function GetCashBook() {
+            var url = '/LedgerPosting/CashBook';
+            var fromDate = $("#txtFromDate").val();
+            var toDate = $("#txtToDate").val();
+            $.ajax({
+                url: url,
+                data: { fromDate: fromDate, toDate: toDate },
+                method: 'GET',
+                success: function (res) {
+                    var data = res;
+                    var totalCredit = 0;
+                    var totalDebit = 0;
+                    $.each(data, function (index, value) {
+                        var credit = parseInt(value.Credit, 10);
+                        var debit = parseInt(value.Debit, 10);
+                        totalCredit += credit;
+                        totalDebit += debit;
+                        data[index].totalCredit = totalCredit;
+                        data[index].totalDebit = totalDebit;
+
+                    });
+                    var templateWithData = Mustache.to_html($("#templatecashbbokModal").html(), { expensesGroupSearch: data, totalCredit: totalCredit, totalDebit: totalDebit });
+                    $("#div-cashbookGroup").empty().html(templateWithData);
+                    MakePagination('cashbookTableModal');
+                },
+                error: function () {
+                }
+            });
+        }
+
+
+    </script>
+

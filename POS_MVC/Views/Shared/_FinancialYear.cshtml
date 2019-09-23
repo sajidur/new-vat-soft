@@ -1,0 +1,24 @@
+﻿@using RiceMill_MVC.ViewModel;
+
+@model FinancialYearView
+@Html.Label("Select Year")
+@Html.DropDownListFor(
+    x => x.SelectedYearId,
+    Model.FinancialYears, new { @disabled = "disabled" }
+)
+
+<script>
+    $('#SelectedYearId').change(function () {
+        var newYear = 2;// $("#SelectedYearId").val();
+        var url = '/FinancialYear/ChangeFinancialYear?newYearId=' + newYear + '';
+        $.ajax({
+            url: url,
+            method: 'POST',
+            success: function (res) {
+                console.log(res);
+            },
+            error: function () {
+            }
+        });
+    });
+</script>

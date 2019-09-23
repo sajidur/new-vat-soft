@@ -1,0 +1,197 @@
+﻿<div class="row">
+    <label>Purchase</label>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="well bs-component" >
+                        <form class="form-horizontal">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-md-2">
+                                        Invoice No:
+                                    </label>
+                                    <div class="col-md-3">
+                                        <input type="text" value="" readonly id="txtPoNo" name="txtPoNo" class="form-control" style="height:35px" />
+                                    </div>
+                                    <label class="col-md-2">
+                                        Supplier:
+                                    </label>
+                                    <div class="col-md-3">
+                                        <select class="form-control" id="ddlSupplier" name="ddlSupplier" style="height:35px"></select>
+                                    </div>
+                                    <label class="col-md-1 control-label">
+                                        VAT Chalan:
+                                    </label>
+                                    <div class="col-md-1">
+                                        <input type="text" id="txtDescriptions" name="txtDescriptions" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">
+                                        Dates:
+                                    </label>
+                                    <div class="col-md-3">
+                                        <input type="date" id="txtDates" name="txtDates" required class="form-control" style="height:35px"/>
+                                    </div>
+                                    <label class="col-md-2 control-label">
+                                        Purchase Type:
+                                    </label>
+                                    <div class="col-md-3">
+                                        <select class="form-control" id="ddlSupplier" name="ddlSupplier" style="height:35px">
+                                            <option value="1">Local</option>
+                                            <option value="1">Imported</option>
+                                            <option value="1">Sheba</option>
+                                            <option value="1">Exampted</option>
+                                            <option value="1">Tariff</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">
+                                        BOE/Ref. Date:
+                                    </label>
+                                    <div class="col-md-3">
+                                        <input type="date" id="txtDates" name="txtDates" required class="form-control" style="height:35px" />
+                                    </div>
+                                    <label class="col-md-2 control-label">
+                                        Notes:
+                                    </label>
+                                    <div class="col-md-3">
+                                        <input type="text" id="txtDescriptions" name="txtDescriptions" class="form-control" style="height:35px" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">
+                                        Product Type:
+                                    </label>
+                                    <div class="col-md-3">
+                                        <select class="form-control" id="ddlSupplier" name="ddlSupplier" style="height:35px">
+                                            <option value="1">Raw</option>
+                                            <option value="2">Finished</option>   
+                                            <option value="3">Packing</option>
+                                            <option value="4">Service</option>                                       
+                                        </select>                                  
+                                      </div>
+                                </div>
+                                <div class="ibox-content" id="divInfo">
+                                    <div class="form-group">
+                                        <div class="col-md-12 table-responsive" id="div-productGroup">
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div>
+                        <table id="myTable" class="table order-list">
+                            <thead>
+                                <tr>
+                                    <td>Product</td>
+                                    <td>Quantity</td>
+                                    <td>Rate</td>                               
+                                    <td>Total Amount </td>
+                                    <td>Godown</td>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="col-sm-2">
+                                        <select id="ddlItem" class="form-control">
+                                            <option value="0">পছন্দ করুন</option>
+                                        </select>
+                                    </td>
+                                    <td class="col-sm-1">
+                                        <input type="number" name="txtTotalQty" id="txtTotalQty" class="form-control" style="height:35px"/>
+                                    </td>
+
+                                    <td class="col-sm-1">
+                                        <input type="number" name="txtAmount" id="txtAmount" value="0" class="form-control" style="height:35px" />
+                                    </td>
+                                    <td class="col-sm-2">
+                                        <input type="number" readonly name="txtTotalAmount" id="txtTotalAmount" class="form-control" style="height:35px"/>
+                                    </td>
+                                    <td class="col-md-2">
+                                        <select class="form-control" id="ddlWareHouse" name="ddlWareHouse"></select>
+                                    </td>
+                                    <td class="col-md-2">
+                                        <button class="btn btn-w-m btn-info" data-style="expand-left" id="btnAdd" type="button"><i class="fa fa-save"></i>Add</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            @*<tfoot>
+                                <tr><td></td></tr>
+                            </tfoot>*@
+                        </table>  
+                        <div class="ibox-content" id="divInfo">
+                            <div class="form-group">
+                                <h4>Added Product</h4>
+                                <div class="col-md-12 table-responsive" id="div-product-add">
+                                </div>
+                            </div>
+                        </div>          
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-md-8">
+                        </div>
+                        <div class="col-md-4">
+                            <p>Total Qty:<label id="lblTotalQty">0</label></p>
+                            <p>Total Amount:<label id="lblTotalAmount">0</label></p>
+                        </div>
+                    </div>
+                      
+                    <div class="form-actions">
+                            <div class="col-md-12">
+                                <button class="btn btn-w-m btn-info" data-style="expand-left" id="btnSave" type="button" onclick="Save()"><i class="fa fa-save"></i>&nbsp; Save</button>
+                                <button class="btn btn-w-m btn-success" type="button" id="btnReset" onclick="ResetForm()"><i class="fa fa-refresh"></i>&nbsp;Reset</button>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="templateProductModalAdd" type="text/html">
+    <table class="table table-bordered table-striped table-hover" id="productTableModal">
+        <thead>
+        <th> </th>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Rate</th>
+        <th>Tax </th>
+        <th>SD </th>
+        <th>Total Amount</th>
+        <th>Action </th>
+        </thead>
+        <tbody>
+        {{#ProductSearchAdd}}
+        <tr>
+                <td>{{countAddedProductCount}}</td>
+                <td>{{Item}}</td>
+                <td> {{Quantity}}</td>              
+                <td> {{Amount}}</td>
+                <td> {{TaxRate}}</td>
+                <td> {{SDRate}}</td>              
+                <td> {{TotalAmount}}</td>
+                <td>
+                    <a class="btn btn-danger" onclick="OnDeleteProduct('{{countAddedProductCount}}')"><i class="fa fa-trash-o"></i></a>
+                </td>
+            </tr>
+            {{/ProductSearchAdd}}
+        </tbody>
+    </table>
+</script>
+<script>
+    function calculateGrandTotal() {
+        var grandTotal = 0;
+        $("table.order-list").find('input[name^="price"]').each(function () {
+            grandTotal += +$(this).val();
+        });
+        $("#grandtotal").text(grandTotal.toFixed(2));
+    }
+</script>
+<script src="~/Scripts/app/CommonLoader.js"></script>
+<script src="~/Scripts/app/Purchase.js"></script>
+<script src="~/Scripts/app/Accounts.js"></script>

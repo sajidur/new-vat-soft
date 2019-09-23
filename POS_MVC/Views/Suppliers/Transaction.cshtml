@@ -1,0 +1,152 @@
+﻿@{
+    ViewBag.Title = "Supplier Due";
+
+}
+<div class="row">
+    <label>Supplier Transaction</label>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="well bs-component">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-md-1 control-label">
+                                        From Date:
+                                    </label>
+                                    <div class="col-md-3">
+                                        <input type="date" id="txtFromDate" name="txtDate" />
+                                    </div>
+                                    <label class="col-md-1 control-label">
+                                        To Date:
+                                    </label>                                 
+
+                                    <div class="col-md-3">
+                                        <input type="date" id="txtToDate" name="txtDate"/>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button id="btnFilter" class="btn-primary">Filter</button>
+                                    </div>
+                                    <label class="col-md-1 control-label">
+                                        Supplier:
+                                    </label>
+                                    <div class="col-md-2">
+                                        <select class="form-control" id="ddlSupplier" name="ddlSupplier" onchange="GetLedger()"></select>
+                                    </div>
+                                </div>
+                                <div class="ibox-content" id="divInfo">
+                                    <div class="form-group">
+                                        <div class="col-md-12 table-responsive" id="div-productGroup">
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                    </div>
+                    
+                     <div>
+                        <div class="ibox-content" id="divInfo">
+                            <div class="form-group">
+                                <div class="col-md-12 table-responsive" id="div-inventoryPaddyGroup">
+                                    <table class="table table-striped table-bordered table-hover order-column"
+                                           id="PaymentReportTableModal">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Party</th>
+                                                <th>Particular</th>
+                                                 <th>Debit</th>
+                                                 <th>Credit</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <fieldset>
+                        <div class="form-actions">
+                            <div class="col-md-12">
+                                <button class="btn btn-w-m btn-info" data-style="expand-left" id="btnSave" type="button" onclick="Save()"><i class="fa fa-save"></i>&nbsp; Save</button>
+                                <button class="btn btn-w-m btn-success" type="button" id="btnReset" onclick="ResetForm()"><i class="fa fa-refresh"></i>&nbsp;Reset</button>                               
+                                <a class="btn btn-primary btn-xs" id="link" href="" onclick="UpdateLink()">Report</a>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/app/CommonLoader.js"></script>
+<script src="~/Scripts/app/Transaction.js"></script>
+<script>
+    $(document).ready(function () {
+        var now = new Date();
+        var day = ("0" + now.getDate()).slice(-2);
+        var month = ("0" + (now.getMonth() + 1)).slice(-2);
+        var today = now.getFullYear() + "-" + (month) + "-" + (day);
+        $('#txtFromDate').val(today);
+        $('#txtToDate').val(today);
+
+        var fromDate = new Date($('#txtFromDate').val());
+       // var toDate = new Date($('#txtToDate').val()).toISOString();
+        LoadSupplierCombo("ddlSupplier");
+        GetPayment(today, today);
+    });
+    $("#btnFilter").click(function () {
+        var fromDate = new Date($('#txtFromDate').val());
+        var now = new Date(fromDate);
+        var day = ("0" + now.getDate()).slice(-2);
+        var month = ("0" + (now.getMonth() + 1)).slice(-2);
+        var from = now.getFullYear() + "-" + (month) + "-" + (day);
+
+        var toDate = new Date($('#txtToDate').val());
+        var now = new Date(toDate);
+        var day = ("0" + now.getDate()).slice(-2);
+        var month = ("0" + (now.getMonth() + 1)).slice(-2);
+        var to = now.getFullYear() + "-" + (month) + "-" + (day);
+       // var toDate = new Date($('#txtToDate').val()).toISOString();
+        GetPayment(from, to);
+    });
+function GetLedger() {
+    // window.location.href = 
+    var ledgerid = 0;
+    window.open(
+          '/Report/Viewer/ReportViewer.aspx?ReportName=LedgerReport&type=2&ledgerId=' + ledgerId,
+          '_blank' // <- This is what makes it open in a new window.
+        );
+
+}
+
+</script>
+<script>
+function UpdateLink()
+{
+    document.getElementById("link").href = "/Report/Viewer/ReportViewer.aspx?ReportName=SuplierTransaction&type=2";
+}
+
+function deleteLedger(id) {
+    $.ajax({
+        type: 'POST',
+        url: '/LedgerPosting/PaymentDelete',
+        dataType: 'json',
+        data: {
+            Id: id
+        },
+        async: false,
+        success: function (data) {
+            if (data.result == false) {
+                $("#lblMessage").html(data.Error);
+            }
+            //alert('Delete Successfully.');
+            ShowNotification("1", "Ledger Deleted!!");
+            GetPayment();
+            LoadCustomerList();
+        },
+        error: function (err) {
+            alert('An error occured try again later'+err);
+        }
+    });
+}
+</script>

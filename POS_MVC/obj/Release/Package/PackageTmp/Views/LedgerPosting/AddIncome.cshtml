@@ -1,0 +1,316 @@
+﻿<div class="row">
+    <label>Add Income</label>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="well bs-component">
+                        <form class="form-horizontal">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">
+                                        Voucher No/ভাউচার নং:
+                                    </label>
+                                    <div class="col-md-2" style="width:13%">
+                                        <input type="text" value="001" readonly id="txtPoNo" name="txtPoNo" class="form-control" />
+                                    </div>
+                                    <div class="col-md-2" style="width:10%">
+                                        <label class="control-label">
+                                            Cost Head:
+                                        </label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <select id="ddlBankCash" class="form-control">
+                                            <option value="0">পছন্দ করুন</option>
+                                            <option value="27">Cash</option>
+                                            <option value="28">Bank</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <select id="ddlBankCashLedger" class="form-control">
+                                            <option value="0">পছন্দ করুন</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        <label class="col-md-1control-label" style="float:right">
+                                            Date:
+                                        </label>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <input type="date" id="txtDate" required class="form-control" style="width:200px; height:40px; align-content:center" />
+                                    </div>
+                                </div>
+                                <div class="ibox-content" id="divInfo">
+                                    <div class="form-group">
+                                        <div class="col-md-12 table-responsive" id="div-productGroup">
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div>
+                        <table id="myTable" class="table order-list">
+                            <thead>
+                                <tr>
+                                    @*<td>Account Group</td>*@
+                                    <td>Account Ledger</td>
+                                    @*<td>Cheque/TT No</td>*@
+                                    <td>Descriptions</td>
+                                    <td>Amount</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="col-md-3">
+                                        <select id="ddlAccountLedger" class="form-control"></select>
+                                    </td>
+                                    <td class="col-md-3">
+                                        <textarea id="txtDescriptions" class="form-control"> </textarea>
+                                    </td>
+
+                                    <td class="col-md-2">
+                                        <input type="number" id="txtAmount" value="0" class="form-control" />
+                                    </td>
+
+                                    <td class="col-md-1">
+                                        <input type="button" class="btn btn-primary " id="btnAdd" value="Add" />
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr></tr>
+                                <tr></tr>
+                            </tfoot>
+                        </table>
+                        <div class="ibox-content" id="divInfo">
+                            <div class="form-group">
+                                <div class="col-md-12 table-responsive" id="div-product">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-8">
+
+                            </div>
+                            <div class="col-md-4">
+                                <p>Total Amount/মোট টাকা:<label id="lblTotalAmount">0</label></p>
+                            </div>
+                        </div>
+                    </div>
+                    <fieldset>
+                        <div class="form-actions">
+                            <div class="col-md-12">
+                                @*<label><input type="checkbox" id="chkSendSMS" checked="checked">Send SMS</label>*@
+                                <button class="btn btn-w-m btn-info" data-style="expand-left" id="btnSave" type="button" onclick="Save()"><i class="fa fa-save"></i>&nbsp; Save</button>
+                                <button class="btn btn-w-m btn-success" type="button" id="btnReset" onclick="ResetForm()"><i class="fa fa-refresh"></i>&nbsp;Reset</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="templateProductModal" type="text/html">
+    <table class="table table-bordered table-striped table-hover" id="productTableModal">
+        <thead>
+        <th>SI</th>
+        <th>Ledger</th>
+        <th>Descriptions</th>
+        <th>Amount</th>
+        <th>Action</th>
+        </thead>
+        <tbody>
+            {{#ProductSearch}}
+            <tr>
+                <td>{{count}}</td>
+                <td> {{LedgerName}}</td>
+                <td> {{Extra1}}</td>
+                <td> {{Credit}}</td>
+                <td class="action-sm">
+                    <a class="btn btn-danger" onclick="OnDelete('{{count}}')"><i class="fa fa-trash-o"></i></a>
+                </td>
+            </tr>
+            {{/ProductSearch}}
+        </tbody>
+    </table>
+</script>
+
+<script src="~/Scripts/app/CommonLoader.js"></script>
+<script src="~/Scripts/app/Accounts.js"></script>
+
+<script>
+    var details = [];
+
+    $(document).ready(function () {
+        //LoadCustomerCombo('ddlSupplier');
+        GetBankCashLedgerList('ddlBankCash');
+        $("#ddlBankCash").change(function () {
+            var selectedVal = this.value;
+            GetBankCashLedgerList("ddlBankCashLedger", selectedVal);
+        });
+
+     //   var dllvalue2 = "ddlAccountLedger";
+        // GetDrCrLedgerList("Dr", dllvalue2);
+        GetIncomeLedger("ddlAccountLedger");
+        LoadInvoiceNo("txtPoNo");
+    });
+
+    var count = 1;
+    $("#btnAdd").click(function () {
+        var AccountGroup = $("#ddlUnder option:selected").text();
+        var AccountGroupId = $("#ddlUnder option:selected").val();
+        var AccountLedger = $("#ddlAccountLedger option:selected").text();
+        var AccountLedgerId = $("#ddlAccountLedger option:selected").val();
+        var chkno = $("#chkNo").val();
+        var notes = $("#txtDescriptions").val();
+
+        var PostingDate = $("#txtDate").val();
+        var amount = parseFloat($("#txtAmount").val());
+        if (amount == "0") {
+            ShowNotification("3", "Amount Empty!!");
+            return;
+        }
+        if (AccountLedgerId <= 0) {
+            ShowNotification("3", "Choose any Ledger!!");
+            return;
+        }
+        //var object = {Id:Id, Item: item, BaleQty: BaleQty, QtyPerBale: QtyPerBale, UnitStyle: UnitStyle, Amount: Amount, TotalKg: TotalKg, TotalQty: TotalQty, TotalAmount: TotalAmount };
+        var object = { count: count, GroupId: AccountGroupId, GroupName: AccountGroup, LedgerId: AccountLedgerId, LedgerName: AccountLedger, ChequeNo: chkno, ChequeDate: PostingDate, Credit: amount, Extra1: notes };
+        console.log(object);
+        details.push(object);
+        var templateWithData = Mustache.to_html($("#templateProductModal").html(), { ProductSearch: details });
+        $("#div-product").empty().html(templateWithData);
+        CalculateSum();
+        count++;
+        Clear();
+    });
+
+    function Clear() {
+        $("#txtDescriptions").val('');
+        $("#txtAmount").val('0');
+    }
+    function Save() {
+        var voucherNo = $("#txtPoNo").val();
+        var CostHeadId = $("#ddlBankCashLedger option:selected").val();
+        var ChequeNo = $("#chkNo").val();
+        var voucherDate = $("#txtDate").val();
+        var notes = $("#txtDescriptions").val();
+        var TotalAmount = parseFloat($("#lblTotalAmount").text());
+        var url = '/LedgerPosting/AddExpenseJournalSave';
+        if (CostHeadId <= 0) {
+            ShowNotification("3", "Choose Cash/Bank!!");
+            return;
+        }
+        if (voucherDate == "") {
+            ShowNotification("3", "Select a Date!!");
+            return;
+        }
+        if (details.length <= 0) {
+            ShowNotification("3", "Not added any Item!!");
+            return;
+        }
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: {
+                voucherNo: voucherNo,
+                CostHeadId: CostHeadId,
+                voucherDate: voucherDate,
+                notes: notes,
+                journalDetails: details,
+                TotalAmount: TotalAmount,
+                ChkNo: ChequeNo
+
+            },
+            success: function (d) {
+                console.log("ajax");
+                setTimeout(location.reload.bind(location), 10000);
+                ShowNotification("1", "Saved!!");
+                details = [];
+                var templateWithData = Mustache.to_html($("#templateProductModal").html(), { ProductSearch: details });
+                $("#div-product").empty().html(templateWithData);
+                LoadInvoiceNo("txtPoNo");
+                location.reload();
+            },
+            error: function () {
+                console.log("asdasd");
+            }
+        });
+
+    }
+
+    function LoadInvoiceNo(controlId) {
+        var url = "/LedgerPosting/GetInvoiceNumber";
+        $.ajax({
+            url: url,
+            method: "POST",
+            success: function (res) {
+                var data = res;
+                console.log(data);
+                $("#" + controlId).val(data);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+    function OnDelete(Id) {
+        console.log(Id);
+        for (var i = 0; i < details.length; i++) {
+            if (details[i].count == Id) {
+                details.splice(i, 1);
+            }
+        }
+        var templateWithData = Mustache.to_html($("#templateProductModal").html(), { ProductSearch: details });
+        $("#div-product").empty().html(templateWithData);
+        CalculateSum();
+        count--;
+    }
+    function CalculateSum() {
+        var TotalAmount = 0.0;
+        try {
+
+            for (var i = 0; i < details.length; i++) {
+                console.log(details[i].Credit);
+                TotalAmount += parseFloat(details[i].Credit);
+
+            }
+            $("#lblTotalAmount").html(TotalAmount.toFixed(2));
+
+        } catch (e) {
+            console.log(e);
+
+        }
+    }
+
+    function GetIncomeLedger(value) {
+        var url = '/AccountLedger/GetIncomeLedger';
+        console.log(value);
+        $.ajax({
+            url: url,
+            method: 'GET',
+            success: function (res) {
+                var controlId = value;
+                var data = res;
+                //alert('Success');
+                $("#" + controlId).empty();
+                $("#" + controlId).get(0).options.length = 0;
+                if (data != null) {
+                    $.each(data, function (index, item) {
+                        $("#" + controlId).get(0).options[$("#" + controlId).get(0).options.length] = new Option(item.LedgerName, item.Id);
+                    });
+                }
+            },
+            error: function () {
+            }
+        });
+    }
+
+</script>

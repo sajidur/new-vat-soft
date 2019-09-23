@@ -1,0 +1,134 @@
+﻿@{
+    ViewBag.Title = "Daily Transaction";
+
+}
+<div class="row">
+    <label>Truck Rent report</label>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="well bs-component">
+                        <form class="form-horizontal">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">
+                                        To Date:
+                                    </label>
+                                    <div class="col-md-3">
+                                        <input type="date" id="txtFromDate" name="txtDate" />
+                                    </div>
+                                    <label class="col-md-2 control-label">
+                                        From Date:
+                                    </label>
+                                    <div class="col-md-3">
+                                        <input type="date" id="txtToDate" name="txtDate" />
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button id="btnFilter" type="button" class="btn-primary" onclick="filter();">Filter</button>
+                                    </div>
+                                </div>
+                                <div class="ibox-content" id="divInfo">
+                                    <div class="form-group">
+                                        <div class="col-md-12 table-responsive" id="div-productGroup">
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+
+                    <div>
+                        <div class="ibox-content" id="divInfo">
+                            <div class="form-group">
+                                <div class="col-md-12 table-responsive" id="div-inventoryPaddyGroup">
+                                    <table class="display compact table-bordered table-hover order-column"
+                                           id="PaymentReportTableModal">
+                                        <thead>
+                                            <tr>
+                                                <th width="100px;">Invoice No</th>
+                                                <th>Date</th>
+                                                <th>Customer</th>
+                                                <th>Truck No</th>
+                                                <th>Driver</th>
+                                                <th>Mobile</th>
+                                                <th>Rent</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <fieldset>
+                        <div class="form-actions">
+                            <div class="col-md-12">
+                                @*<a class="btn btn-primary btn-xs" id="link" href="" onclick="UpdateLink()">Report</a>*@
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/app/Transaction.js"></script>
+<script>
+    $(document).ready(function () {
+        var now = new Date();
+        var day = ("0" + now.getDate()).slice(-2);
+        var month = ("0" + (now.getMonth() + 1)).slice(-2);
+        var today = now.getFullYear() + "-" + (month) + "-" + (day);
+        $('#txtToDate').val(today);
+        $('#txtFromDate').val(today);
+        GetAllSales(today, today);
+});
+
+</script>
+<script>
+function UpdateLink()
+{
+    document.getElementById("link").href = "/Report/Viewer/ReportViewer.aspx?ReportName=SuplierTransaction&type=2";
+}
+
+function filter() {
+   var fromDate= $('#txtToDate').val();
+    var todate=$('#txtFromDate').val();
+    GetAllSales(todate, fromDate);
+
+}
+function GetAllSales(fromDate, toDate) {
+    $('#PaymentReportTableModal').DataTable({
+        "pageLength": 100,
+        "ajax": {
+            "dataType": 'json',
+            "contentType": "application/json; charset=utf-8",
+            "type": "GET",
+            "url": "/report/GetTruckRentReport",
+            "data": { 'fromDate': fromDate, 'toDate': toDate },
+            "dataSrc": function (json) {
+                return json;
+            }
+        },
+        "columns": [
+            { "data": "SalesInvoice" },
+            { "data": "PostDate" },
+            { "data": "Customer.Name" },
+            { "data": "TransportType" },
+            { "data": "DriverName" },
+            { "data": "TransportNo" },
+            { "data": "RentAmount" }
+        ],
+
+        "bDestroy": true,
+        "colReorder": true,
+        "dom": 'Bfrtip',
+        "buttons": [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
+}
+
+
+</script>

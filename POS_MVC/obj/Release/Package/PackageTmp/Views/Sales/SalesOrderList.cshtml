@@ -1,0 +1,246 @@
+﻿<style>
+    td, th {
+    padding: 0;
+    width: 30px;
+}
+</style>  
+<div class="row">
+    <label>Sales order List</label>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="row">
+                <form class="form-horizontal">
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">
+                               From:
+                            </label>
+                            <div class="col-md-2">
+                                <input type="date" id="txtFromDate" />
+                            </div>
+                            <label class="col-md-1 control-label">
+                                To:
+                            </label>
+                            <div class="col-md-2">
+                                <input type="date" id="txtToDate" />
+                            </div>
+                            <label class="col-md-2">
+                                Customer/ক্রেতা:
+                            </label>
+                            <div class="col-md-3">
+                                <select class="form-control" id="ddlCustomer" name="ddlCustomer" onchange="LoadAllSalesOrder()"></select>
+                            </div>
+                            <div class="col-md-1">
+                                <button onclick="LoadAllSalesOrder()" type="button" class="primary">Filter</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+                </div>
+            <div class="row">
+                <div class="ibox-content" id="divInfo2">
+                    <div class="form-group">
+                        <div class="col-md-12 table-responsive" id="div-salesOrderGroup">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div>
+                                <div class="ibox-content" id="divInfo2">
+                                    <br /><br />
+                                    <div class="form-group">
+                                        <div class="col-md-12 table-responsive" id="div-salesOrderDetailsGroup">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8 col-lg-offset-1">
+                <form class="bs-component">
+                    <script id="templateSalesOrderDetailsGroupModal" type="text/html">
+                        <table class="table table-bordered table-striped table-hover" id="salesOrderGroupTableModal">
+                            <thead>
+                            <th>Id</th>
+                            <th>SId</th>
+                            <th>আইটেম</th>
+                            <th width="10px;">বস্তা(অর্ডার)</th>
+                            <th width="10px;">কেজি/বস্তা</th>
+                            <th>দাম/বস্তা</th>
+                            <th>Total</th>
+                            </thead>
+                            <tbody>
+                                {{#SalesOrderDetailsGroupSearch}}
+                                <tr>
+                                    <td>{{Id}}</td>
+                                    <td> {{SalesOrderId}}</td>
+                                    <td> {{Product.ProductName}}</td>
+                                    <td> {{BaleQty}}</td>
+                                    <td> {{BaleWeight}}</td>
+                                    <td> {{Rate}}</td>
+                                    <td> {{Amount}}</td>
+                                </tr>
+
+                                {{/SalesOrderDetailsGroupSearch}}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Total Amount:</td>
+                                    <td>{{TotalOrderAmount}}</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </script>
+                </form>
+            </div>
+          </div>
+     </div>               
+ </div>
+            <script id="templateSalesOrderGroupModal" type="text/html">
+                <table class="table table-bordered table-striped table-hover" id="salesOrderDetailsTableModal">
+                    <thead>
+                    <th>SId</th>
+                    <th>Customer</th>
+                    <th>Order Date</th>
+                    <th>আইটেম</th>
+                    <th>Total Amount</th>
+                    <th>X</th>
+                    </thead>
+                    <tbody>
+                        {{#SalesOrderGroupSearch}}
+                        <tr>
+                            <td><button class="btn-link" onclick="Details('{{SalesOrderId}}')" id="btnAddFromOrders" type="button" data-toggle="modal" data-target="#myModal">{{SalesOrderId}}</button></td>
+                            <td> {{Customer.Name}}</td>
+                            <td> {{PostDate}}</td>
+                            <td> {{Notes}}</td>
+                            <td>{{Amount}}</td>
+                            <td><input type="button" value="X" onclick="DeleteOrder('{{Id}}')" /></td>
+                        </tr>
+                        {{/SalesOrderGroupSearch}}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Total Amount:</td>
+                            <td>{{TotalAmounts}}</td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </script>
+            <script src="~/Scripts/app/CommonLoader.js"></script>
+            <script>
+
+                $(document).ready(function () {
+                    var now = new Date();
+                    var day = ("0" + now.getDate()).slice(-2);
+                    var month = ("0" + (now.getMonth() + 1)).slice(-2);
+                    var today = now.getFullYear() + "-" + (month) + "-" + (day);
+                    $('#txtFromDate').val(today);
+                    $('#txtToDate').val(today);
+
+                    LoadCustomerCombo("ddlCustomer");
+                    LoadAllSalesOrder();
+
+                });
+                function LoadAllSalesOrder() {
+                    var CustomerID = 0;
+                    var fromDate = new Date($('#txtFromDate').val()).toISOString();
+                    var toDate = new Date($('#txtToDate').val()).toISOString();
+                    var customerDropdown = document.getElementById("ddlCustomer");
+                    console.log(customerDropdown.selectedIndex)
+                    if (customerDropdown.selectedIndex == -1 || customerDropdown.selectedIndex == 0) {
+                        CustomerID = 0;
+                    }
+                    else {
+                        var customerId = customerDropdown.options[customerDropdown.selectedIndex].value;
+                        CustomerID = customerId;
+                    }
+
+                    var url = '/Sales/GetSaleOrdersSummary';
+                    $.ajax({
+                        url: url,
+                        method: 'GET',
+                        data: { 'CustomerID': CustomerID, 'fromDate': fromDate, 'toDate': toDate },
+                        success: function (res) {
+                            var data = res;
+                            var TotalAmount = 0;
+                            $.each(data, function (index, value) {
+                                var amount = parseInt(value.Amount);
+                                TotalAmount += amount;
+                                data[index].TotalAmount = TotalAmount;
+                            });
+                            var templateWithData = Mustache.to_html($("#templateSalesOrderGroupModal").html(), { SalesOrderGroupSearch: res, TotalAmounts: TotalAmount });
+                            $("#div-salesOrderGroup").empty().html(templateWithData);
+
+                            MakePagination('salesOrderGroupTableModal');
+                        },
+                        error: function (error, r) {
+                            ShowNotification("3", "Something Wrong!!");
+                        }
+                    });
+                }
+
+                function Details(salesOrderId) {
+                    var url = '/Sales/GetSaleOrders';
+                    $.ajax({
+                        url: url,
+                        method: 'GET',
+                        data: { 'salesOrderId': salesOrderId},
+                        success: function (res) {
+                            var data = res;
+                            var TotalAmount = 0;
+                            $.each(data, function (index, value) {
+                                var amount = parseInt(value.Amount);
+                                TotalAmount += amount;
+                                data[index].TotalAmount = TotalAmount;
+                            });
+                            var templateWithData = Mustache.to_html($("#templateSalesOrderDetailsGroupModal").html(), { SalesOrderDetailsGroupSearch: data, TotalOrderAmount: TotalAmount});
+                            $("#div-salesOrderDetailsGroup").empty().html(templateWithData);
+
+                            MakePagination('salesOrderDetailsTableModal');
+                        },
+                        error: function (error, r) {
+                            ShowNotification("3", "Something Wrong!!");
+                        }
+                    });
+                }
+
+                function DeleteOrder(id) {
+                    var url = '/Sales/DeleteSalesOrder';
+                    $.ajax({
+                        url: url,
+                        method: 'POST',
+                        data:{id:id},
+                        success: function (res) {
+                            ShowNotification("1", "Order delete!!");
+                            setTimeout(location.reload.bind(location), 5000);
+
+                        },
+                        error: function (error, r) {
+                            ShowNotification("3", "Sales Exists with this order!!");
+                        }
+                    });
+                }
+
+            </script>

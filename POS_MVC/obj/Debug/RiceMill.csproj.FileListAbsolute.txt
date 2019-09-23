@@ -1,0 +1,230 @@
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\Report\RPT\rptStockOutForProcessing.rdlc
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\RiceMill_MVC.dll.config
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\RiceMill_MVC.dll
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\RiceMill_MVC.pdb
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\Antlr3.Runtime.dll
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\AutoMapper.dll
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\EntityFramework.dll
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\EntityFramework.SqlServer.dll
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\Microsoft.AspNet.Identity.Core.dll
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\Microsoft.AspNet.SignalR.Core.dll
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\Microsoft.Owin.dll
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\Microsoft.Owin.Security.dll
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\Microsoft.ReportViewer.Common.dll
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\Microsoft.ReportViewer.ProcessingObjectModel.DLL
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\Microsoft.ReportViewer.WebForms.DLL
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\Microsoft.Web.Infrastructure.dll
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\Newtonsoft.Json.dll
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\Owin.dll
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\System.Net.Http.Formatting.dll
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\System.Web.Helpers.dll
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\System.Web.Http.dll
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\System.Web.Http.WebHost.dll
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\System.Web.Mvc.dll
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\System.Web.Optimization.dll
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\System.Web.Razor.dll
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\System.Web.WebPages.Deployment.dll
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\System.Web.WebPages.dll
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\System.Web.WebPages.Razor.dll
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\WebGrease.dll
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\Antlr3.Runtime.pdb
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\AutoMapper.xml
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\EntityFramework.xml
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\EntityFramework.SqlServer.xml
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\Microsoft.AspNet.Identity.Core.xml
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\Microsoft.AspNet.SignalR.Core.xml
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\Microsoft.Owin.xml
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\Microsoft.Owin.Security.xml
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\Newtonsoft.Json.xml
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\System.Net.Http.Formatting.xml
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\System.Web.Helpers.xml
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\System.Web.Http.xml
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\System.Web.Http.WebHost.xml
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\System.Web.Mvc.xml
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\System.Web.Optimization.xml
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\System.Web.Razor.xml
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\System.Web.WebPages.xml
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\System.Web.WebPages.Deployment.xml
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\bin\System.Web.WebPages.Razor.xml
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\obj\Debug\RiceMill_MVC.dll
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\obj\Debug\RiceMill_MVC.pdb
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\obj\Debug\RdlCompile.cache
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\obj\Debug\RdlCompile.compiled
+E:\Google Drive\Rex Systems\Project\Rice Milling Software\Rice Mill\POS_MVC\obj\Debug\RiceMill.csprojResolveAssemblyReference.cache
+E:\Rice Mill\POS_MVC\bin\Report\RPT\rptStockOutForProcessing.rdlc
+E:\Rice Mill\POS_MVC\bin\RiceMill_MVC.dll.config
+E:\Rice Mill\POS_MVC\bin\RiceMill_MVC.dll
+E:\Rice Mill\POS_MVC\bin\RiceMill_MVC.pdb
+E:\Rice Mill\POS_MVC\bin\Antlr3.Runtime.dll
+E:\Rice Mill\POS_MVC\bin\AutoMapper.dll
+E:\Rice Mill\POS_MVC\bin\EntityFramework.dll
+E:\Rice Mill\POS_MVC\bin\EntityFramework.SqlServer.dll
+E:\Rice Mill\POS_MVC\bin\Microsoft.AspNet.Identity.Core.dll
+E:\Rice Mill\POS_MVC\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\Rice Mill\POS_MVC\bin\Microsoft.AspNet.SignalR.Core.dll
+E:\Rice Mill\POS_MVC\bin\Microsoft.Owin.dll
+E:\Rice Mill\POS_MVC\bin\Microsoft.Owin.Security.dll
+E:\Rice Mill\POS_MVC\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+E:\Rice Mill\POS_MVC\bin\Microsoft.ReportViewer.Common.dll
+E:\Rice Mill\POS_MVC\bin\Microsoft.ReportViewer.ProcessingObjectModel.DLL
+E:\Rice Mill\POS_MVC\bin\Microsoft.ReportViewer.WebForms.DLL
+E:\Rice Mill\POS_MVC\bin\Microsoft.Web.Infrastructure.dll
+E:\Rice Mill\POS_MVC\bin\Newtonsoft.Json.dll
+E:\Rice Mill\POS_MVC\bin\Owin.dll
+E:\Rice Mill\POS_MVC\bin\System.Net.Http.Formatting.dll
+E:\Rice Mill\POS_MVC\bin\System.Web.Helpers.dll
+E:\Rice Mill\POS_MVC\bin\System.Web.Http.dll
+E:\Rice Mill\POS_MVC\bin\System.Web.Http.WebHost.dll
+E:\Rice Mill\POS_MVC\bin\System.Web.Mvc.dll
+E:\Rice Mill\POS_MVC\bin\System.Web.Optimization.dll
+E:\Rice Mill\POS_MVC\bin\System.Web.Razor.dll
+E:\Rice Mill\POS_MVC\bin\System.Web.WebPages.Deployment.dll
+E:\Rice Mill\POS_MVC\bin\System.Web.WebPages.dll
+E:\Rice Mill\POS_MVC\bin\System.Web.WebPages.Razor.dll
+E:\Rice Mill\POS_MVC\bin\WebGrease.dll
+E:\Rice Mill\POS_MVC\bin\Antlr3.Runtime.pdb
+E:\Rice Mill\POS_MVC\bin\AutoMapper.xml
+E:\Rice Mill\POS_MVC\bin\EntityFramework.xml
+E:\Rice Mill\POS_MVC\bin\EntityFramework.SqlServer.xml
+E:\Rice Mill\POS_MVC\bin\Microsoft.AspNet.Identity.Core.xml
+E:\Rice Mill\POS_MVC\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\Rice Mill\POS_MVC\bin\Microsoft.AspNet.SignalR.Core.xml
+E:\Rice Mill\POS_MVC\bin\Microsoft.Owin.xml
+E:\Rice Mill\POS_MVC\bin\Microsoft.Owin.Security.xml
+E:\Rice Mill\POS_MVC\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+E:\Rice Mill\POS_MVC\bin\Newtonsoft.Json.xml
+E:\Rice Mill\POS_MVC\bin\System.Net.Http.Formatting.xml
+E:\Rice Mill\POS_MVC\bin\System.Web.Helpers.xml
+E:\Rice Mill\POS_MVC\bin\System.Web.Http.xml
+E:\Rice Mill\POS_MVC\bin\System.Web.Http.WebHost.xml
+E:\Rice Mill\POS_MVC\bin\System.Web.Mvc.xml
+E:\Rice Mill\POS_MVC\bin\System.Web.Optimization.xml
+E:\Rice Mill\POS_MVC\bin\System.Web.Razor.xml
+E:\Rice Mill\POS_MVC\bin\System.Web.WebPages.xml
+E:\Rice Mill\POS_MVC\bin\System.Web.WebPages.Deployment.xml
+E:\Rice Mill\POS_MVC\bin\System.Web.WebPages.Razor.xml
+E:\Rice Mill\POS_MVC\obj\Debug\RdlCompile.cache
+E:\Rice Mill\POS_MVC\obj\Debug\RdlCompile.compiled
+E:\Rice Mill\POS_MVC\obj\Debug\RiceMill_MVC.dll
+E:\Rice Mill\POS_MVC\obj\Debug\RiceMill_MVC.pdb
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\Report\RPT\rptStockOutForProcessing.rdlc
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\RiceMill_MVC.dll.config
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\RiceMill_MVC.dll
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\RiceMill_MVC.pdb
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\Antlr3.Runtime.dll
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\AutoMapper.dll
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\EntityFramework.dll
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\EntityFramework.SqlServer.dll
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\Microsoft.AspNet.Identity.Core.dll
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\Microsoft.AspNet.SignalR.Core.dll
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\Microsoft.Owin.dll
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\Microsoft.Owin.Security.dll
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\Microsoft.ReportViewer.Common.dll
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\Microsoft.ReportViewer.ProcessingObjectModel.DLL
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\Microsoft.ReportViewer.WebForms.DLL
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\Microsoft.Web.Infrastructure.dll
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\Newtonsoft.Json.dll
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\Owin.dll
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\System.Net.Http.Formatting.dll
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\System.Web.Helpers.dll
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\System.Web.Http.dll
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\System.Web.Http.WebHost.dll
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\System.Web.Mvc.dll
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\System.Web.Optimization.dll
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\System.Web.Razor.dll
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\System.Web.WebPages.Deployment.dll
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\System.Web.WebPages.dll
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\System.Web.WebPages.Razor.dll
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\WebGrease.dll
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\Antlr3.Runtime.pdb
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\AutoMapper.xml
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\EntityFramework.xml
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\EntityFramework.SqlServer.xml
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\Microsoft.AspNet.Identity.Core.xml
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\Microsoft.AspNet.SignalR.Core.xml
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\Microsoft.Owin.xml
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\Microsoft.Owin.Security.xml
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\Newtonsoft.Json.xml
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\System.Net.Http.Formatting.xml
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\System.Web.Helpers.xml
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\System.Web.Http.xml
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\System.Web.Http.WebHost.xml
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\System.Web.Mvc.xml
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\System.Web.Optimization.xml
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\System.Web.Razor.xml
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\System.Web.WebPages.xml
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\System.Web.WebPages.Deployment.xml
+D:\My Folder\ricemill\ricemill\POS_MVC\bin\System.Web.WebPages.Razor.xml
+D:\My Folder\ricemill\ricemill\POS_MVC\obj\Debug\RiceMill_MVC.dll
+D:\My Folder\ricemill\ricemill\POS_MVC\obj\Debug\RiceMill_MVC.pdb
+D:\My Folder\ricemill\ricemill\POS_MVC\obj\Debug\RiceMill.csprojResolveAssemblyReference.cache
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\SqlServerTypes\x64\msvcr120.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\SqlServerTypes\x64\SqlServerSpatial140.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\SqlServerTypes\x86\msvcr120.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\SqlServerTypes\x86\SqlServerSpatial140.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\Report\RPT\rptStockOutForProcessing.rdlc
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\RiceMill_MVC.dll.config
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\RiceMill_MVC.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\RiceMill_MVC.pdb
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\Antlr3.Runtime.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\AutoMapper.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\EntityFramework.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\EntityFramework.SqlServer.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\Microsoft.Owin.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\Microsoft.Owin.Security.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\Microsoft.ReportViewer.Common.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\Microsoft.ReportViewer.ProcessingObjectModel.DLL
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\Microsoft.ReportViewer.WebForms.DLL
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\Microsoft.SqlServer.Types.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\Newtonsoft.Json.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\Owin.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\System.Net.Http.Formatting.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\System.Web.Helpers.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\System.Web.Http.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\System.Web.Http.WebHost.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\System.Web.Mvc.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\System.Web.Optimization.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\System.Web.Razor.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\System.Web.WebPages.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\System.Web.WebPages.Razor.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\WebGrease.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\Antlr3.Runtime.pdb
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\AutoMapper.xml
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\EntityFramework.xml
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\EntityFramework.SqlServer.xml
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\Microsoft.Owin.xml
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\Microsoft.Owin.Security.xml
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\Newtonsoft.Json.xml
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\System.Net.Http.Formatting.xml
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\System.Web.Helpers.xml
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\System.Web.Http.xml
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\System.Web.Http.WebHost.xml
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\System.Web.Mvc.xml
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\System.Web.Optimization.xml
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\System.Web.Razor.xml
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\System.Web.WebPages.xml
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\bin\System.Web.WebPages.Razor.xml
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\obj\Debug\RdlCompile.cache
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\obj\Debug\RdlCompile.compiled
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\obj\Debug\RiceMill_MVC.dll
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\obj\Debug\RiceMill_MVC.pdb
+C:\Users\Mobashwir Hasan\Documents\GitHub\ricemill\POS_MVC\obj\Debug\RiceMill.csprojResolveAssemblyReference.cache

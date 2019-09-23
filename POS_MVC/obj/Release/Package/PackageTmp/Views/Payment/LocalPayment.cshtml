@@ -1,0 +1,304 @@
+﻿<div class="row">
+    <label>Local Payment(পেমেন্ট)</label>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="well bs-component">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-md-1 control-label">
+                                       From Date:
+                                    </label>
+                                    <div class="col-md-3">
+                                        <input type="date" id="txtFromDate" name="txtFromDate" class="form-control" style="height:40px"/>
+                                    </div>
+                                    <label class="col-md-1 control-label">
+                                       To Date:
+                                    </label>
+                                    <div class="col-md-3">
+                                        <input type="date" id="txtToDate" name="txtToDate" class="form-control" style="height:40px"/>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button class="btn-primary form-control" value="Search" id="btnSearch">Search</button>
+                                    </div>
+                                </div>
+                                <div class="ibox-content">
+                                    <div class="form-group">
+                                        <div class="col-md-12 table-responsive" id="div-productGroup">
+                                        </div>
+                                    </div>
+                                </div>                                
+                                <div class="ibox-content">
+                                    <div class="form-group">
+                                        <div class="col-md-12 table-responsive" id="div-productGroup-added">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-top:10px">
+                                    <div class="form-group">
+                                        <div class="col-md-7"></div>
+                                        <div class="col-md-3">
+                                            <p>Cash Total:</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label id="lblTotalCashAmount">0.0</label>
+                                        </div>                                                                 
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-7"></div>
+                                        <div class="col-md-3">
+                                            <p>Cheque Amount Total:</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label id="lblTotalChequeAmount">0.0</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-7"></div>
+                                        <div class="col-md-3">
+                                            <p>Total Amount:
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label id="lblTotalCashAchequeAmount">0.0</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        <h4>Payment from </h4>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <select id="ddlBankCash" class="form-control">
+                                            <option value="0">পছন্দ করুন</option>
+                                            <option value="27">Cash</option>
+                                            <option value="28">Bank</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select id="ddlItem" class="form-control">
+                                            <option value="0">পছন্দ করুন</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" id="txtChequeNo" placeholder="Check No" />
+
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="date" class="form-control" id="txtChequeDate" placeholder="Check Date" style="height:40px"/>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button class="btn-primary form-control" value="Add" id="btnAddPayment">Add</button>
+                                    </div>
+                                </div>
+                                <div class="ibox-content">
+                                    <div class="form-group">
+                                        <div class="col-md-12 table-responsive" id="div-Payment-added">
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                    </div>
+
+                    <div class="row">   
+                        <div class="ibox-content">
+                            <div class="form-group">
+                                <div class="col-md-12 table-responsive">
+                                    <script id="templateProductGroupModal" type="text/html">
+                                        <table class="table table-bordered table-striped table-hover" id="productGroupTableModal">
+                                            <thead>
+                                                <th style="width:120px">Date</th>
+                                                <th style="width:120px">Party</th>
+                                                <th style="width:120px">Invoice No</th>
+                                                <th style="width:120px">Total Amount</th>
+                                                <th style="width:120px">Total Paid</th>
+                                                <th style="width:120px">Due</th>
+                                                <th>Cash Amount</th>
+                                                <th>Cheque Amount</th>
+                                                <th style="width:100px">Action</th>
+                                                <th style="visibility:hidden"></th>
+                                            </thead>
+                                            <tbody>
+                                                {{#ProductGroupSearch}}
+                                                <tr>                                                   
+                                                    <td>{{PostingDate}}</td>
+                                                    <td><a onclick="ShowPartyHistory('{{Party}}')">{{Party}}</a></td>
+                                                    <td><a onclick="ShowInvoiceHistory('{{InvoiceNo}}')">{{InvoiceNo}}</a></td>
+                                                    <td>{{TotalAmount}}</td>
+                                                    <td>{{PaidAmount}}</td>
+                                                    <td>{{RestAmount}}</td>
+                                                    <td class="form-group">
+                                                        <input type="number" id="txtCashAmount" placeholder="Cash Amount" value="0"/>
+                                                    </td>
+                                                    <td class="action-sm">
+                                                        <input type="number" id="txtCheque" placeholder="Check Amount" value="0"/>
+                                                    </td>
+                                                    <td>
+                                                        <button id="btnAddOrder" class="btn btn-primary" onclick="LoadForAddOrder('{{InvoiceNo}}')"><i class="fa fa-edit"></i> Add</button>
+                                                    </td>
+                                                    <td style="visibility:hidden">{{LedgerId}}</td>
+                                                </tr>
+
+                                                {{/ProductGroupSearch}}
+                                            </tbody>
+                                        </table>
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal" id="exibirPais" data-backdrop="static">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                            <label class="control-label">Exibir</label>
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body" id="Body">
+                                        @*  Body where the  partial view will be rendered using AJAX*@
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger">Fechar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="row">
+                        <div class="ibox-content">
+                            <div class="form-group">
+                                <div class="col-md-12 table-responsive">
+                                    <script id="templateProductGroupModal_added" type="text/html">
+                                        <table class="table table-bordered table-striped table-hover" id="productGroupTableModal_added">
+                                            <thead>
+                                             <th>Id</th>
+                                            <th>Date</th>
+                                            <th>Party</th>
+                                            <th>Invoice No</th>
+                                            <th>Cash Amount</th>
+                                            <th>Cheque Amount</th>
+                                            </thead>
+                                            <tbody>
+                                                {{#ProductGroupSearch_added}}
+                                                <tr>
+                                                    <td>{{countCount}}</td>
+                                                    <td> {{PostingDate}}</td>
+                                                    <td> {{Party}}</td>
+                                                    <td>{{InvoiceNo}}</td>
+                                                    <td>{{Debit}}</td>
+                                                    <td>{{Credit}}</td>
+                                                    <td>
+                                                        <a class="datatable-submit-delete" id="btnDelete" onclick="Delete('{{countCount}}')"><i class="fa fa-edit"></i> Delete</a>
+                                                    </td>
+                                                </tr>
+
+                                                {{/ProductGroupSearch_added}}
+                                            </tbody>
+                                        </table>
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="ibox-content">
+                            <div class="form-group">
+                                <div class="col-md-12 table-responsive">
+                                    <script id="templatePaymentModal" type="text/html">
+                                        <table class="table table-bordered table-striped table-hover" id="templatePaymentModal">
+                                            <thead>
+                                            <th>Group</th>
+                                            <th>Bank/Cash</th>
+                                            <th>Cheque No</th>
+                                            <th>Cheque Date</th>
+                                            <th>Cheque Amount</th>
+                                            </thead>
+                                            <tbody>
+                                                {{#PaymentSearch}}
+                                                <tr>
+                                                    <td>{{GroupName}}</td>
+                                                    <td>{{LedgerName}}</td>
+                                                    <td>{{ChequeNo}}</td>
+                                                    <td>{{ChequeDate}}</td>
+                                                    <td>{{Credit}}</td>
+                                                    <td>
+                                                        <a class="datatable-submit-delete" id="btnPaymentDelete" onclick="PaymentDelete('{{count}}')"><i class="fa fa-edit"></i> Delete</a>
+                                                    </td>
+                                                </tr>
+                                                {{/PaymentSearch}}
+                                            </tbody>
+                                        </table>
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <fieldset>
+                        <div class="form-actions">
+                            <div class="col-md-12">
+                                <button class="btn btn-w-m btn-info" data-style="expand-left" id="btnSave" type="button" onclick="Save()"><i class="fa fa-save"></i>&nbsp; Save</button>
+                                <button class="btn btn-w-m btn-success" type="button" id="btnReset" onclick="ResetForm()"><i class="fa fa-refresh"></i>&nbsp;Reset</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div id="History" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Sale Orders</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <div class="ibox-content" id="divInfo2">
+                                <br /><br />
+                                <div class="form-group">
+                                    <div class="col-md-12 table-responsive" id="div-salesOrderGroup">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+    @*payment form*@
+    
+</div>
+<script src="~/Scripts/app/CommonLoader.js"></script>
+<script src="~/Scripts/app/LocalPayment.js"></script>
+<script src="~/Scripts/app/Accounts.js"></script>
+<script>
+    
+    $(document).ready(function () {
+        //  LoadSupplierCombo("ddlSupplier");
+        // LoadAllWareHouse("ddlWarehouse");
+        //LoadAllLocalPayment();
+        $("#ddlBankCash").change(function () {
+            var selectedVal = this.value;
+            GetBankCashLedgerList("ddlItem", selectedVal);
+        });
+    });
+    $("#btnSearch").click(function () {
+        //  LoadSupplierCombo("ddlSupplier");
+        // LoadAllWareHouse("ddlWarehouse");
+        LoadAllLocalPayment();
+
+    });
+
+</script>
+
+

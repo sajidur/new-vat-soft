@@ -1,0 +1,185 @@
+﻿
+@{
+    ViewBag.Title = "Sales Details";
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="row">
+                        <form class="form-horizontal">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-md-1 control-label">
+                                        From:
+                                    </label>
+                                    <div class="col-md-2">
+                                        <input type="date" id="txtFromDate" />
+                                    </div>
+                                    <label class="col-md-1 control-label">
+                                        To:
+                                    </label>
+                                    <div class="col-md-2">
+                                        <input type="date" id="txtToDate" />
+                                    </div>
+                                    <label class="col-md-1 control-label">
+                                        Customer:
+                                    </label>
+                                    <div class="col-md-3">
+                                        <select class="form-control" id="ddlCustomer" name="ddlCustomer"></select>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button onclick="LoadSales()" type="button" class="primary">Filter</button>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <a href="/sales/TruckRentReport" class="primary">Track Rent Report</a>
+                                    </div>
+                                </div>
+
+                                <div class="ibox-title">
+                                    <h3>Sales Invoices</h3>
+                                </div>
+                                <div class="ibox-content" id="divInfo">
+
+                                    <div class="form-group">
+                                        <div class="col-md-12 table-responsive" id="div-product">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </fieldset>
+                        </form>
+                       
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-lg-offset-1">
+                    <form class="bs-component">
+                        <fieldset></fieldset>
+                    </form>
+                </div>
+            </div>
+</div>
+<script id="templateProductModal" type="text/html">
+    <table class="table table-bordered table-striped table-hover" id="productTableModal">
+        <thead>
+        <th>Invoice Id</th>
+        <th>Sales Date</th>
+
+        <th>Customer</th>
+        <th>Total Amount</th>
+        <th>Additional Cost</th>
+        <th>Discount</th>
+        <th>Grand Total</th>
+        <th>Notes</th>
+        </thead>
+        <tbody>
+            {{#ProductSearch}}
+            <tr>
+                <td>
+                   <a class="btn btn-primary btn-xs" href="/Report/Viewer/ReportViewerCR.aspx?ReportName=SalesInvoice&invoiceId={{SalesInvoice}}&customerid={{CustomerID}}">{{SalesInvoice}}</a>
+                </td>
+                <td>{{PostDate}}</td>
+                <td> {{Customer.Name}}</td>
+                <td> {{TotalAmount}}</td>
+                <td> {{AdditionalCost}}</td>
+                <td> {{Discount}}</td>
+                <td> {{GrandTotal}}</td>
+                <th>{{Notes}}</th>
+                <td>
+                    <a class="btn btn-danger" href="/Sales/Delete?id={{Id}}">X</a>
+                </td>
+            </tr>
+            {{/ProductSearch}}
+        </tbody>
+    </table>
+</script>
+<script id="templateProductModalAdd" type="text/html">
+    <table class="table table-bordered table-striped table-hover" id="productTableModalAdd">
+        <thead>
+        <th>ItemInfo</th>
+        <th>Barcode</th>
+        <th>Sales price</th>
+        <th>WholeSalesPrice</th>
+        <th>Qty</th>
+        <th>Action</th>
+        </thead>
+        <tbody>
+            {{#ProductSearchAdd}}
+            <tr>
+                <td> {{ItemInfo}}</td>
+                <td> {{Barcode1}}</td>
+                <td> {{RetailPrice}}</td>
+                <td> {{WholeSalesPrice}}</td>
+                <td>
+                    {{Quantity}}
+                </td>
+                <td class="action-sm">
+                    <a class="btn btn-primary btn-xs" onclick="OnSelectProduct('{{Id}}')"><i class="fa fa-Add"></i> Delete</a>
+                </td>
+            </tr>
+            {{/ProductSearchAdd}}
+        </tbody>
+    </table>
+</script>
+<script src="~/Scripts/app/CommonLoader.js"></script>
+<script>
+    $(document).ready(function () {
+        var now = new Date();
+        var day = ("0" + now.getDate()).slice(-2);
+        var month = ("0" + (now.getMonth() + 1)).slice(-2);
+        var today = now.getFullYear() + "-" + (month) + "-" + (day);
+        $('#txtToDate').val(today);
+        $('#txtFromDate').val(today);
+
+        LoadSales();
+        LoadCustomerCombo("ddlCustomer");
+      //  LoadAllProduct(2, "ddlItem");
+    });
+    function LoadSales() {
+        var CustomerID = 0;
+        var fromDate = new Date($('#txtFromDate').val()).toISOString();
+        var toDate = new Date($('#txtToDate').val()).toISOString();
+        var customerDropdown = document.getElementById("ddlCustomer");
+        console.log(customerDropdown.selectedIndex)
+        if (customerDropdown.selectedIndex == -1 || customerDropdown.selectedIndex == 0) {
+            CustomerID = 0;
+        }
+        else {
+            var customerId = customerDropdown.options[customerDropdown.selectedIndex].value;
+            CustomerID = customerId;
+        }
+        var url = '/Sales/GetAllSales';
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: { 'CustomerID': CustomerID, 'fromDate': fromDate, 'toDate': toDate },
+            success: function (res) {
+                console.log(res);
+                var templateWithData = Mustache.to_html($("#templateProductModal").html(), { ProductSearch: res });
+                $("#div-product").empty().html(templateWithData);
+                MakePagination('productTableModal');
+            },
+            error: function () {
+            }
+        });
+    }
+
+    $('#myModal').on('show.bs.modal', function (e) {
+      
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,332 @@
+﻿<div class="row">
+    <label>Journal</label>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="well bs-component">
+                        <form class="form-horizontal">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">
+                                        Voucher No/ভাউচার নং:
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" value="001" readonly id="txtPoNo" name="txtPoNo" class="form-control" />
+                                    </div>
+                                    @*<div class="col-md-2" style="width:10%">
+                                        <label class="control-label">
+                                            Cost Head:
+                                        </label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <select id="ddlBankCash" class="form-control">
+                                            <option value="0">Cash/Bank</option>
+                                            <option value="27">Cash</option>
+                                            <option value="28">Bank</option>
+                                        </select>
+                                    </div>*@
+                                    @*<div class="col-md-2">
+                                        <select id="ddlItem" class="form-control">
+                                            <option value="0">Bank</option>
+                                        </select>
+                                    </div>*@
+                                    <label class="col-md-1 control-label">
+                                        Date:
+                                    </label>
+                                    <div class="col-md-2">
+                                        <input type="date" id="txtDate" class="form-control" style="height:40px"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">
+                                        Notes/মন্তব্য:
+                                    </label>
+                                    <div class="col-md-6">
+                                        <input type="text" id="txtDescriptions" name="txtDescriptions" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="ibox-content" id="divInfo">
+                                    <div class="form-group">
+                                        <div class="col-md-12 table-responsive" id="div-productGroup">
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div>
+                        <table id="myTable" class="table order-list">
+                            <thead>
+                                <tr>
+                                    <td>Account Group</td>
+                                    <td>Account Ledger</td>
+                                    <td>Cheque/TT No</td>
+                                    <td>Cheque Date</td>
+                                    <td>Amount</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="col-sm-2">
+                                        <select id="ddlUnder" class="form-control"></select>
+                                    </td>
+                                    <td class="col-sm-2">
+                                        <select id="ddlAccountLedger" class="form-control"></select>
+                                    </td>
+                                    <td class="col-sm-1">
+                                        <input type="text" id="chkNo" class="form-control" />
+                                    <td class="col-sm-2">
+                                        <input type="date" id="chkDate" name="chkDate" class="form-control" style="height:40px"/>
+                                    </td>
+                                    <td class="col-sm-1">
+                                        <input type="number" id="txtAmount" value="0" class="form-control" />
+                                    </td>
+                                    <td class="col-sm-1">
+                                        <input type="button" class="btn btn-primary " id="btnAdd" value="Add" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr></tr>
+                                <tr></tr>
+                            </tfoot>
+                        </table>
+                        <div class="ibox-content" id="divInfo">
+                            <div class="form-group">
+                                <div class="col-md-12 table-responsive" id="div-product">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-8">
+
+                            </div>
+                            <div class="col-md-4">
+                                <p>Debit Total:<label id="lblDebit">0</label></p><br />
+                                <p>Credit Total:<label id="lblCredit">0</label></p>
+                            </div>
+                        </div>
+                    </div>
+                    <fieldset>
+                        <div class="form-actions">
+                            <div class="col-md-12">
+                                
+                                <button class="btn btn-w-m btn-info" data-style="expand-left" id="btnSave" type="button" onclick="Save()"><i class="fa fa-save"></i>&nbsp; Save</button>
+                                <button class="btn btn-w-m btn-success" type="button" id="btnReset" onclick="ResetForm()"><i class="fa fa-refresh"></i>&nbsp;Reset</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="templateProductModal" type="text/html">
+    <table class="table table-bordered table-striped table-hover" id="productTableModal">
+        <thead>
+        <th>SI</th>
+        <th>Account Ledger</th>
+        <th>Cheque/TT No</th>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Action</th>
+        </thead>
+        <tbody>
+            {{#ProductSearch}}
+            <tr>
+                <td>{{count}}</td>
+                <td> {{LedgerName}}</td>
+                <td> {{ChequeNo}} </td>
+                <td> {{ChequeDate}}</td>
+                <td> {{Credit}}</td>
+                <td class="action-sm">
+                    <a class="btn btn-danger" onclick="OnDelete('{{count}}')"><i class="fa fa-trash-o"></i></a>
+                </td>
+            </tr>
+            {{/ProductSearch}}
+        </tbody>
+    </table>
+</script>
+
+<script src="~/Scripts/app/CommonLoader.js"></script>
+<script src="~/Scripts/app/Accounts.js"></script>
+
+<script>
+    var details = [];
+
+    $(document).ready(function () {
+        //LoadCustomerCombo('ddlSupplier');
+        //GetBankCashLedgerList('ddlBankCash');
+        //$("#ddlBankCash").change(function () {
+        //    var selectedVal = this.value;
+        //    GetDrCrLedgerList("Dr");
+        //});
+        //GetDrCrLedgerList("Dr");
+        LoadInvoiceNo("txtPoNo");
+        LoadAccountGroup();
+        LoadAccountLedger("ddlAccountLedger");
+        $("#ddlUnder").change(function () {
+            var selectedVal1 = this.value;
+            GetBankCashLedgerList("ddlAccountLedger", selectedVal1);
+        });
+    });
+
+    var count = 1;
+    $("#btnAdd").click(function () {
+        var AccountGroup = $("#ddlUnder option:selected").text();
+        var AccountGroupId = $("#ddlUnder option:selected").val();
+        var AccountLedger = $("#ddlAccountLedger option:selected").text();
+        var AccountLedgerId = $("#ddlAccountLedger option:selected").val();
+        var chkno = $("#chkNo").val();
+        var PostingDate = $("#chkDate").val();
+        var amount = parseFloat($("#txtAmount").val());
+        if (amount == "0") {
+            ShowNotification("3", "Amount Empty!!");
+            return;
+        }
+        if (AccountLedgerId <= 0) {
+            ShowNotification("3", "Choose any Ledger!!");
+            return;
+        }
+        //var object = {Id:Id, Item: item, BaleQty: BaleQty, QtyPerBale: QtyPerBale, UnitStyle: UnitStyle, Amount: Amount, TotalKg: TotalKg, TotalQty: TotalQty, TotalAmount: TotalAmount };
+        var object = { count: count, GroupId: AccountGroupId, GroupName: AccountGroup, LedgerId: AccountLedgerId, LedgerName: AccountLedger, ChequeNo: chkno, ChequeDate: PostingDate, Credit: amount };
+        console.log(object);
+        details.push(object);
+        var templateWithData = Mustache.to_html($("#templateProductModal").html(), { ProductSearch: details });
+        $("#div-product").empty().html(templateWithData);
+        //CalculateSum();
+        DrCrCalculation();
+        $("#chkNo").val("");
+        $("#chkDate").val("");
+        $("#txtAmount").text("");
+        count++;
+    });
+
+
+    function Save() {
+        var voucherNo = $("#txtPoNo").val();
+        //var CostHeadId = $("#ddlItem").val();
+        var voucherDate = $("#txtDate").val();
+        var notes = $("#txtDescriptions").val();
+        //var TotalAmount = $("#lblTotalAmount").val();
+        var Dr = parseFloat($("#lblDebit").text());
+        var Cr = parseFloat($("#lblCredit").text());
+        //console.log("adasdasdjasodjasjd");
+        var url = '/LedgerPosting/JournalSave';
+        console.log(voucherDate);
+        //console.log(CostHeadId);
+
+        if (Dr != Cr) {
+            ShowNotification("3", "Debit and Credit are not equal!!");
+            return;
+        }
+        //if (CostHeadId <= 0) {
+        //    ShowNotification("3", "Choose any Supplier!!");
+        //    return;
+        //}
+        if (voucherDate == "") {
+            ShowNotification("3", "Select a Date!!");
+            return;
+        }
+        if (details.length <= 0) {
+            ShowNotification("3", "Not added any Item!!");
+            return;
+        }
+        $.ajax({
+
+            url: url,
+            method: 'POST',
+            data: {
+                voucherNo: voucherNo,
+                //CostHeadId: CostHeadId,
+                voucherDate: voucherDate,
+                notes: notes,
+                ledgerPostion: details
+                //TotalAmount: TotalAmount
+
+            },
+            success: function (data) {
+                console.log("ajax");
+                setTimeout(location.reload.bind(location), 10000);
+                ShowNotification("1", "Saved!!");
+                details = [];
+                var templateWithData = Mustache.to_html($("#templateProductModal").html(), { ProductSearch: details });
+                $("#div-product").empty().html(templateWithData);
+                LoadInvoiceNo("txtPoNo");
+                location.reload();
+            },
+            error: function () {
+                console.log("asdasd");
+            }
+        });
+
+    }
+
+    function DrCrCalculation()
+    {
+        var Debit = 0.0;
+        var Credit = 0.0;
+        try {
+
+            for (var i = 0; i < details.length; i++) {
+                var a = details[i].LedgerId;
+                if (a == 1 || a == 2 || a == 4 || a == 7 || a == 8 || a == 11 || a == 15 || a == 17 || a == 21 || a == 23) {
+                    Debit += parseFloat(details[i].Credit);
+                }
+                else {
+                    Credit += parseFloat(details[i].Credit);
+                }
+            }
+            $("#lblDebit").html(Debit.toFixed(2));
+            $("#lblCredit").html(Credit.toFixed(2));
+        } catch (e) {
+            console.log(e);
+
+        }
+    }
+    function LoadInvoiceNo(controlId) {
+        var url = "/LedgerPosting/GetContraInvoiceNo";
+        $.ajax({
+            url: url,
+            method: "POST",
+            success: function (res) {
+                var data = res;
+                console.log(data);
+                $("#" + controlId).val(data);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+    function OnDelete(Id) {
+        console.log(Id);
+        for (var i = 0; i < details.length; i++) {
+            if (details[i].count == Id) {
+                details.splice(i, 1);
+            }
+        }
+        var templateWithData = Mustache.to_html($("#templateProductModal").html(), { ProductSearch: details });
+        $("#div-product").empty().html(templateWithData);
+        DrCrCalculation();
+        count--;
+    }
+    function CalculateSum() {
+        var TotalAmount = 0.0;
+        try {
+
+            for (var i = 0; i < details.length; i++) {
+                console.log(details[i].Credit);
+                TotalAmount += parseFloat(details[i].Credit);
+
+            }
+            $("#lblTotalAmount").html(TotalAmount.toFixed(2));
+
+        } catch (e) {
+            console.log(e);
+
+        }
+    }
+
+</script>

@@ -1,0 +1,72 @@
+﻿<title>
+    :Sales Page
+</title>
+<div class="row">
+    <label>SMS</label>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="well bs-component">
+                        <form class="form-horizontal">
+                            <fieldset>
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        <label><input name="chkCustomer" id="chkCustomer" type="checkbox">All Customer</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label><input name="chkSupplier" id="chkSupplier" type="checkbox">All Supplier</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label><input name="chkEmployee" id="chkEmployee" type="checkbox">All Employee</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" id="txtNumber" name="txtNumber" class="form-control" style="width:200px; height:35px" placeholder="Comma seperated number" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">
+                                        SMS/Text:
+                                    </label>
+                                    <div class="col-md-2">
+                                        <input type="text" id="txtDescriptions" name="txtDescriptions" class="form-control" style="width:200px; height:35px" placeholder="SMS Text" />
+                                        <input type="button" class="btn-primary" value="Send SMS" id="btnSendSMS" />
+
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    $("#btnFilter").click(function () {
+        try {
+            var fromDate = $('#txtFromDate').val();
+            var toDate = $('#txtToDate').val();
+            var AccountLedgerId = $("#ddlSupplier option:selected").val();
+            var url = '/LedgerPosting/GetAllLedgerPosting';
+            $.ajax({
+                url: url,
+                method: 'POST',
+                data: { 'fromDate': fromDate, 'toDate': toDate, 'id': AccountLedgerId, 'VoucherTypeId': 4 },
+                success: function (res) {
+                    var templateWithData = Mustache.to_html($("#templateProductGroupModal").html(), { ProductGroupSearch: res });
+                    $("#div-LedgerPosting").empty().html(templateWithData);
+                    //MakePagination('salesOrderGroupTableModal');
+                },
+                error: function (error, r) {
+                    ShowNotification("3", "Something Wrong!!");
+                }
+            });
+        } catch (ex) {
+            console.log(ex);
+        }
+    });
+</script>

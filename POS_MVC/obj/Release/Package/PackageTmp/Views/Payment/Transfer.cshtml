@@ -1,0 +1,245 @@
+﻿-<div class="row">
+    <label>Daily  Recive</label>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="well bs-component">
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">
+                                From Date:
+                            </label>
+                            <div class="col-md-2">
+                                <input type="date" id="txtFromDate" name="txtDate" class="input-group" />
+                            </div>
+                            <label class="col-md-1 control-label">
+                                To Date:
+                            </label>
+                            <div class="col-md-2">
+                                <input type="date" id="txtToDate" name="txtDate" class="input-group date" />
+                            </div>
+                            <label class="col-md-1 control-label">
+                                Supplier:
+                            </label>
+                            <div class="col-md-3">
+                                <select id="ddlSupplier" name="ddlSupplier" class="form-control">
+                                    <option value="0">পছন্দ করুন</option>
+                                </select>
+                            </div>
+                            <div class="col-md-1">
+                                <button id="btnFilter">Filter</button>
+
+                            </div>
+                        </div>
+                        <div class="ibox-content" id="divInfo">
+                            <div class="form-group">
+                                <div class="col-md-12 table-responsive" id="div-LedgerPosting">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="ibox-content" id="divInfo">
+                            <form class="bs-component">
+                                <script id="templateProductGroupModal" type="text/html">
+                                    <table class="table table-bordered table-striped table-hover" id="productGroupTableModal">
+                                        <thead>
+                                            <th>Id</th>
+                                            <th>VoucherNo</th>
+                                            <th>Date</th>
+                                            <th>Notes</th>
+                                            <th>Debit</th>
+                                            <th>Credit</th>
+                                            <th>Transfer</th>
+                                            <th>X</th>
+                                        </thead>
+                                        <tbody>
+                                            {{#ProductGroupSearch}}
+                                            <tr>
+                                                <td> {{Id}}</td>
+                                                <td> {{VoucherNo}}</td>
+                                                <td class="date">{{PostDate}}</td>
+                                                <td>{{Extra1}}</td>
+                                                <td>{{Credit}}</td>
+                                                <td>{{Debit}}</td>
+                                                <td class="action-sm">
+                                                        <button class="btn btn-primary btn-xs" onclick="Details('{{VoucherNo}}','{{Credit}}',{{Id}})" id="btnAddFromOrders" type="button" data-toggle="modal" data-target="#myModal">Transfer</button>
+                                                    </td>
+                                                <td class="action-sm">
+                                                    <a class="btn btn-danger btn-xs" onclick="Delete('{{Id}}')"><i class="fa fa-trash-o"></i> X</a>
+                                                </td>
+                                            </tr>
+                                            {{/ProductGroupSearch}}
+                                        </tbody>
+                                    </table>
+                                </script>
+                            </form>
+                        </div>
+                    </div>
+                    <fieldset>
+                        <div class="form-actions">
+                            <div class="col-md-12">
+                                <button class="btn btn-w-m btn-info" data-style="expand-left" id="btnSave" type="button" onclick="Save()"><i class="fa fa-save"></i>&nbsp; Save</button>
+                                <button class="btn btn-w-m btn-success" type="button" id="btnReset" onclick="ResetForm()"><i class="fa fa-refresh"></i>&nbsp;Reset</button>
+                                <a class="btn btn-primary btn-xs" id="link" href="" onclick="UpdateLink()">Report</a>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-5">
+                        From Supplier:
+                        <label id="lblSupplier">
+                        </label>
+                    </div>
+                    <div class="col-md-5">
+                        <label>
+                            VoucherNo:
+                        </label>
+                        <label id="lblVoucherNo">
+                        </label>
+                        <input type="hidden" id="postingId">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        Amount:
+                        <label id="lblamount">
+                        </label>
+                    </div>
+
+                    <div class="col-md-5">
+                        Transfer To Supplier:
+                        <select id="ddlTransferSupplier">
+                            <option value="0">পছন্দ করুন</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-default" id="btnTransfer" onclick="Transfer();">Transfer</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/app/CommonLoader.js"></script>
+<script src="~/Scripts/app/PaymentTransfer.js"></script>
+
+<script>
+    var postingId;
+
+    $('document').ready(function () {
+        var now = new Date();
+        var day = ("0" + now.getDate()).slice(-2);
+        var month = ("0" + (now.getMonth() + 1)).slice(-2);
+        var today = now.getFullYear() + "-" + (month) + "-" + (day);
+        $('#txtFromDate').val(today);
+        $('#txtToDate').val(today);
+        LoadSupplierComboByLedgerId("ddlSupplier");
+    });
+    function Delete(id)
+    {
+        var result = confirm("Want to delete?");
+        if (result) {
+            $.ajax({
+                url: '/LedgerPosting/PaymentDelete',
+                method: 'POST',
+                data: {'id': id },
+                success: function (res) {
+                    ShowNotification("1", "Delete sucess!!");
+                },
+                error: function (error, r) {
+                    ShowNotification("3", "Something Wrong!!");
+                }
+            });
+        }
+    }
+
+    function Transfer() {
+        postingId = $("#postingId").val();
+
+        var result = confirm("Are you sure, Want to Transfer?");
+        if (result) {
+            var ledgerId = $("#ddlTransferSupplier option:selected").val();
+            $.ajax({
+                url: '/Receipt/Transfer',
+                method: 'POST',
+                data: { 'ledgerPostingId': postingId, "toLedgerId": ledgerId },
+                success: function (res) {
+                    ShowNotification("1", res);
+                },
+                error: function (error, r) {
+                    ShowNotification("3", "Something Wrong!!");
+                }
+            });
+        }
+    }
+
+    function Details(voucherNo, debit, id) {
+        $("#postingId").val(id);
+        postingId = id;
+        $("#lblVoucherNo").html(voucherNo);
+        $("#postingId").val(id);
+        postingId = id;
+        $("#lblVoucherNo").html(voucherNo);
+        $("#lblSupplier").html($("#ddlSupplier option:selected").text());
+
+        $("#lblamount").html(debit);
+        // LoadCustomerComboByLedgerId("ddlTransferSupplier");
+        //$.ajax({
+        //    url: '/LedgerPosting/ReceiptDelete',
+        //    method: 'POST',
+        //    data: { 'id': id },
+        //    success: function (res) {
+        //        ShowNotification("1", "Delete sucess!!");
+        //    },
+        //    error: function (error, r) {
+        //        ShowNotification("3", "Something Wrong!!");
+        //    }
+        //});
+    }
+
+    $('#myModal').on('shown.bs.modal', function () {
+        var controlId = 'ddlTransferSupplier';
+        var url = '/Suppliers/GetAll';
+        $.ajax({
+            url: url,
+            method: 'POST',
+            success: function (res) {
+                var data = res;
+                //alert('Success');
+                $("#" + controlId).empty();
+                $("#" + controlId).get(0).options.length = 0;
+                if (true) {
+                    $("#" + controlId).get(0).options[0] = new Option("-পছন্দ করুন-", "");
+                }
+                if (data != null) {
+                    $.each(data, function (index, item) {
+                        $("#" + controlId).get(0).options[$("#" + controlId).get(0).options.length] = new Option('' + item.Code + '-' + item.Name, item.LedgerId);
+                    });
+                }
+                $("#" + controlId).chosen({ no_results_text: "Oops, nothing found!", search_contains: true });
+            },
+            error: function () {
+            }
+        });
+    });
+
+
+
+
+</script>

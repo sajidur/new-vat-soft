@@ -1,0 +1,172 @@
+﻿<div class="row">
+    <label>Journal Posting</label>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="well bs-component">
+                        <form class="form-horizontal">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">
+                                        Invoice No/চালান নং:
+                                    </label>
+                                    <div class="col-md-2">
+                                        <input type="text" value="001" readonly id="txtPoNo" name="txtPoNo" class="form-control" />
+                                    </div>
+                                    <label class="col-md-1 control-label">
+                                        Dates:
+                                    </label>
+                                    <div class="col-md-3">
+                                        <input type="date" id="txtDates" name="txtDates" class="form-control" style="width:200px; height:40px"/>
+                                    </div>
+                                    <label class="col-md-1 control-label">
+                                        Notes/মন্তব্য:
+                                    </label>
+                                    <div class="col-md-2">
+                                        <input type="text" id="txtDescriptions" name="txtDescriptions" class="form-control" style="width:200px" />
+                                    </div>
+                                </div>
+                                <div class="ibox-content" id="divInfo">
+                                    <div class="form-group">
+                                        <div class="col-md-12 table-responsive" id="div-productGroup">
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div>
+                        <table id="myTable" class="table order-list">
+                            <thead>
+                                <tr>
+                                    <td>Ledger</td>
+                                    <td>Dr/Cr</td>
+                                    <td>Against Invoice </td>
+                                    <td>Amount</td>
+                                    <td>Cheque No</td>
+                                    <td>Cheque Date</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="col-sm-2">
+                                        <select id="ddlLedger" class="form-control">
+                                            <option value="0">পছন্দ করুন</option>
+                                        </select>
+                                    </td>
+                                    <td class="col-sm-1">
+                                        <select id="ddlItem" class="form-control">
+                                            <option value="Dr">Dr</option>
+                                            <option value="Cr">Cr</option>
+                                        </select>
+                                    </td>
+                                    <td class="col-sm-1">
+                                            <button type="button" name="btnInvoice" id="btnInvoice" class="form-control">Against</button>
+                                    </td>
+                                    <td class="col-sm-1">
+                                        <input type="number" name="txtAmount" id="txtAmount" class="form-control" />
+                                    </td>
+                                    <td class="col-sm-1">
+                                        <input type="text" name="txtChequeNo" id="txtChequeNo" value="1" class="form-control" />
+                                    </td>
+                                    <td class="col-sm-1">
+                                        <input type="date" name="txtChequeDate" id="txtChequeDate" class="form-control" style="width:200px; height:40px"/>
+                                    </td>
+                                    <td class="col-sm-1">
+                                        <a class="datatable-submit-button" id="btnAdd" onclick="AddJournalToGrid('1')"><i class="fa fa-edit"></i>Add</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr><td></td></tr>
+                            </tfoot>
+                        </table>
+
+                        <div class="ibox-content" id="divInfo">
+                            <div class="form-group">
+                                <h4>Added Ledger</h4>
+                                <div class="col-md-12 table-responsive" id="div-product-add">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-8">
+                        </div>
+                        <div class="col-md-4">
+                            <p>Total Qty:<label id="lblTotalQty">0</label></p>
+                            <p>Total Amount:<label id="lblTotalAmount">0</label></p>
+                        </div>
+                    </div>                    
+                    <div class="form-actions">
+                        <div class="col-md-12">
+                            <button class="btn btn-w-m btn-info" data-style="expand-left" id="btnSave" type="button" onclick="SaveForLocalMarket()"><i class="fa fa-save"></i>&nbsp; Save</button>
+                            <button class="btn btn-w-m btn-success" type="button" id="btnReset" onclick="ResetForm()"><i class="fa fa-refresh"></i>&nbsp;Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="templateProductModalAdd" type="text/html">
+    <table class="table table-bordered table-striped table-hover" id="productTableModal">
+        <thead>
+            <th>SI </th>
+            <th>Ledger</th>
+            <th>Dr/Cr</th>
+            <th>Against Invoice </th>
+            <th>Cheque No</th>
+            <th>Cheque Date</th>
+            <th>Amount</th>
+            <th>Action </th>
+        </thead>
+        <tbody>
+            {{#ProductSearchAdd}}
+            <tr>
+                <td>{{Id}}</td>
+                <td>{{LedgerName}}</td>
+                <td> {{DrOrCr}}</td>
+                <td>{{InvoiceNo}}</td>
+                <td> {{ChequeNo}}</td>
+                <td> {{ChequeDate}}</td>
+                <td> {{Amount}}</td>
+                <td>
+                    <a class="btn btn-danger" onclick="OnDeleteProduct('{{Id}}')"><i class="fa fa-trash-o"></i></a>
+                </td>
+            </tr>
+            {{/ProductSearchAdd}}
+        </tbody>
+    </table>
+</script>
+<script>
+     function calculateRow(row) {
+         var price = +row.find('input[name^="price"]').val();
+     }
+     function calculateGrandTotal() {
+         var grandTotal = 0;
+         $("table.order-list").find('input[name^="price"]').each(function () {
+             grandTotal += +$(this).val();
+         });
+         $("#grandtotal").text(grandTotal.toFixed(2));
+     }
+     $(document).ready(function () {
+         LoadAccountLedger("ddlLedger");
+     });
+</script>
+<script src="~/Scripts/app/CommonLoader.js"></script>
+<script src="~/Scripts/app/Accounts.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+

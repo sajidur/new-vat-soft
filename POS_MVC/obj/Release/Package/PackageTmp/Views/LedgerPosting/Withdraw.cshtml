@@ -1,0 +1,484 @@
+﻿<div class="row">
+    <label>Add Expense</label>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="well bs-component">
+                        <form class="form-horizontal">
+                            <fieldset>
+                                <div class="form-group">
+                                   
+                                    <label class="col-md-1 control-label">
+                                        Name:
+                                    </label>
+                                    <div class="col-md-3">
+                                        <input type="text" id="txtName"  class="form-control" style="height:45px"/>
+                                    </div>
+                                    
+                                    <div class="col-md-2" style="padding:6px">
+                                        <button class="btn btn-w-m btn-success" type="button" id="btnSearch" onclick="LoadEmployeeListByDate()"></i>&nbsp;Search</button>
+                                    </div>
+                                </div>
+                                <label class="col-md-1 control-label">
+                                    Date:
+                                </label>
+                                <div class="col-md-3">
+                                    <input type="date" id="MainDate" name="Date" class="form-control" style="height:40px" />
+                                </div>
+
+                                <div class="ibox-content" id="divInfo">
+                                    <div class="form-group">
+                                        <div class="col-md-12 table-responsive" id="div-productGroup">
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="ibox-content" id="divInfo">
+                        <div class="form-group">
+                            <div class="col-md-12 table-responsive" id="div-EmpSalary">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ibox-content" id="divInfo">
+                        <div class="form-group">
+                            <div class="col-md-12 table-responsive" id="div-AddSalary">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <table id="myTable" class="table order-list">
+                            <thead>
+                                <tr>
+                                    <td>Account Group</td>
+                                    <td>Account Ledger</td>
+                                    <td>Cheque/TT No</td>
+                                    <td>Cheque Date</td>
+                                    <td>Amount</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="col-sm-2">
+                                        <select id="ddlBankCash" class="form-control">
+                                            <option value="0">Cash/Bank</option>
+                                            <option value="27">Cash</option>
+                                            <option value="28">Bank</option>
+                                        </select>
+                                    </td>
+                                    <td class="col-sm-2">
+                                        <select id="ddlItem" class="form-control">
+                                            <option value="0">Bank</option>
+                                        </select>
+                                    </td>
+                                    <td class="col-sm-1">
+                                        <input type="text" id="chkNo" class="form-control" />
+                                    <td class="col-sm-2">
+                                        <input type="date" id="chkDate" name="chkDate" class="form-control" style="height:40px"/>
+                                    </td>
+                                    <td class="col-sm-1">
+                                        <input type="number" id="txtAmount" value="0" class="form-control" />
+                                    </td>
+                                    <td class="col-sm-1">
+                                        <input type="button" class="btn btn-primary " id="btnAdd" value="Add" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr></tr>
+                                <tr></tr>
+                            </tfoot>
+                        </table>
+                        <div class="ibox-content" id="divInfo">
+                            <div class="form-group">
+                                <div class="col-md-12 table-responsive" id="div-product">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="col-md-8">
+
+                            </div>
+                            <div class="col-md-4">
+                                <p>Total Amount/মোট দাম:<label id="lblTotalAmount">0</label></p>
+                            </div>
+                        </div>
+                    </div>
+                    <fieldset>
+                        <div class="form-actions">
+                            <div class="col-md-12">
+                                
+                                <button class="btn btn-w-m btn-info" data-style="expand-left" id="btnSave" type="button" onclick="Save()"><i class="fa fa-save"></i>&nbsp; Save</button>
+                                <button class="btn btn-w-m btn-success" type="button" id="btnReset" onclick="ResetForm()"><i class="fa fa-refresh"></i>&nbsp;Reset</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="templateProductModal" type="text/html">
+    <table class="table table-bordered table-striped table-hover" id="productTableModal">
+        <thead>
+        <th>SI</th>
+        <th>Account Ledger</th>
+        <th>Cheque/TT No</th>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Action</th>
+        </thead>
+        <tbody>
+            {{#ProductSearch}}
+            <tr>
+                <td>{{count}}</td>
+                <td> {{LedgerName}}</td>
+                <td> {{ChequeNo}} </td>
+                <td> {{ChequeDate}}</td>
+                <td> {{Credit}}</td>
+                <td class="action-sm">
+                    <a class="btn btn-danger" onclick="OnDelete('{{count}}')"><i class="fa fa-trash-o"></i></a>
+                </td>
+            </tr>
+            {{/ProductSearch}}
+        </tbody>
+    </table>
+</script>
+<script id="templateSalarytModal" type="text/html">
+    <table class="table table-bordered table-striped table-hover" id="SalaryTableModal">
+        <thead>
+        <th style="width:60px">Id</th>
+        <th style="width:140px">Name</th>
+        <th style="width:150px">Designation</th>
+        <th style="width:100px">Salary</th>
+        <th style="width:140px">Net Amount</th>
+        <th style="width:160px">Date</th>
+        <th style="width:160px">Month</th>
+        </thead>
+        <tbody>
+            {{#SalarySearch}}
+            <tr>
+                <td>{{Id}}</td>
+                <td>{{FirstName}}</td>
+                <td> {{Designation}}</td>
+                <td> {{Salary}} </td>
+                <td><input type="text" id="txtNetPay" class="form-control" value="{{Salary}}" style="width:130px"/></td>
+                <td><select id="ddlMonth" class="form-control">
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">Epril</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">Agust</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select></td>
+                <td class="action-sm">
+                    <input type="button" class="btn btn-primary " id="btnAddSalary" onclick="LoadForAddSalary({{Id}})" value="Add" />
+                </td>
+            </tr>
+            {{/SalarySearch}}
+        </tbody>
+    </table>
+</script>
+
+<script id="templateAddSalaryModal" type="text/html">
+    <table class="table table-bordered table-striped table-hover" id="AddSalaryTableModal">
+        <thead>
+        <th style="width:60px">Id</th>
+        <th>Name</th>
+        <th>Designation</th>
+        <th>Salary</th>
+        <th>Net Amount</th>
+ @*       <th style="width:160px">Month</th>*@
+        </thead>
+        <tbody>
+            {{#AddSalary}}
+            <tr>
+                <td>{{Id}}</td>
+                <td>{{FirstName}}</td>
+                <td> {{Designation}}</td>
+                <td> {{Salary}} </td>
+                <td>{{TotalAmount}}</td>
+                @*<td>
+                    {{Month}}
+                </td>*@
+                <td class="action-sm">
+                    <a class="btn btn-danger" onclick="OnDeleteSalary('{{Id}}')"><i class="fa fa-trash-o"></i></a>
+                </td>
+            </tr>
+            {{/AddSalary}}
+        </tbody>
+    </table>
+</script>
+
+<script src="~/Scripts/app/CommonLoader.js"></script>
+<script src="~/Scripts/app/Accounts.js"></script>
+
+<script>
+    var details = [];
+    var LedgerDet = [];
+
+    $(document).ready(function () {
+        LoadEmployeeList();
+        //GetBankCashLedgerList('ddlBankCash');
+        ////$("#ddlBankCash").change(function () {
+        ////    var selectedVal = this.value;
+        ////    GetDrCrLedgerList("Dr");
+        ////});
+        //GetDrCrLedgerList("Dr");
+        //LoadInvoiceNo("txtPoNo");
+        //LoadAccountGroupListByNature("Cr");
+        $("#ddlBankCash").change(function () {
+            var selectedVal1 = this.value;
+            GetBankCashLedgerList("ddlItem", selectedVal1);
+        });
+    });
+
+    var count = 1;
+    function LoadForAddSalary(parameters) {
+        var countCNT = count++;
+        var Id;
+        var FirstName;
+        var Designation;
+        var Salary;
+        var TotalAmount;
+        var Month;
+        var Date = $('#MainDate').val();
+        console.log("asdc");
+        $('#SalaryTableModal tr').each(function (i) {
+            if (parseFloat($(this).find('td').eq(0).html()) == parameters){
+            Id = $(this).find('td').eq(0).html();
+            FirstName = $(this).find('td').eq(1).html();
+            Designation = $(this).find('td').eq(2).html();
+            SalaryAmount = parseFloat($(this).find('td').eq(3).html());
+            TotalAmount = parseFloat($(this).find('td').eq(4).find('input').val());
+            Month = $(this).find('td').eq(5).find('select').val();
+            console.log(Id);
+            console.log(FirstName);
+            console.log(Designation);
+            console.log(SalaryAmount);
+            console.log(Month);
+            console.log(Date);
+
+            }
+        });
+            if (TotalAmount == "0") {
+                ShowNotification("3", "Amount Empty!!");
+                return;
+            }
+            if (Id <= 0) {
+                ShowNotification("3", "Choose any Ledger!!");
+                return;
+            }
+            //var object = {Id:Id, Item: item, BaleQty: BaleQty, QtyPerBale: QtyPerBale, UnitStyle: UnitStyle, Amount: Amount, TotalKg: TotalKg, TotalQty: TotalQty, TotalAmount: TotalAmount };
+            var object = { Count: countCNT, EmployeeId: Id, FirstName: FirstName, Designation: Designation, SalaryAmount: SalaryAmount, TotalAmount: TotalAmount, Month: Month, Date: Date };
+            console.log(object);
+            details.push(object);
+            var templateWithData = Mustache.to_html($("#templateAddSalaryModal").html(), { AddSalary: details });
+            $("#div-AddSalary").empty().html(templateWithData);
+            
+        
+    }
+
+    var cnt = 1;
+    $("#btnAdd").click(function () {
+        var AccountGroup = $("#ddlBankCashr option:selected").text();
+        var AccountGroupId = $("#ddlBankCash option:selected").val();
+        var AccountLedger = $("#ddlItem option:selected").text();
+        var AccountLedgerId = $("#ddlItem option:selected").val();
+        var chkno = $("#chkNo").val();
+        var PostingDate = $("#chkDate").val();
+        var amount = parseFloat($("#txtAmount").val());
+        if (amount == "0") {
+            ShowNotification("3", "Amount Empty!!");
+            return;
+        }
+        if (AccountLedgerId <= 0) {
+            ShowNotification("3", "Choose any Ledger!!");
+            return;
+        }
+        //var object = {Id:Id, Item: item, BaleQty: BaleQty, QtyPerBale: QtyPerBale, UnitStyle: UnitStyle, Amount: Amount, TotalKg: TotalKg, TotalQty: TotalQty, TotalAmount: TotalAmount };
+        var object = { count: cnt, GroupId: AccountGroupId, GroupName: AccountGroup, LedgerId: AccountLedgerId, LedgerName: AccountLedger, ChequeNo: chkno, ChequeDate: PostingDate, Credit: amount };
+        console.log(object);
+        LedgerDet.push(object);
+        var templateWithData = Mustache.to_html($("#templateProductModal").html(), { ProductSearch: LedgerDet });
+        $("#div-product").empty().html(templateWithData);
+        CalculateSum();
+        //DrCrCalculation();
+        $("#chkNo").val("");
+        $("#chkDate").val("");
+        $("#txtAmount").text("");
+        cnt++;
+    });
+
+    function LoadEmployeeList() {
+        var url = '/Employee/GetAll';
+
+        $.ajax({
+            url: url,
+            method: 'POST',
+            success: function (res) {
+                console.log(res);
+                var templateWithData = Mustache.to_html($("#templateSalarytModal").html(), { SalarySearch: res });
+                $("#div-EmpSalary").empty().html(templateWithData);
+                //MakePagination('SalarySearch');
+            },
+            error: function () {
+            }
+        });
+    }
+
+    function LoadEmployeeListByDate() {
+        var name = $('#txtName').val();
+        
+        console.log(name);
+        
+        var url = '/Employee/GetAllByName';
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: {
+                Name: name
+                
+            },
+            success: function (res) {
+                console.log(res);
+                var templateWithData = Mustache.to_html($("#templateSalarytModal").html(), { SalarySearch: res });
+                $("#div-EmpSalary").empty().html(templateWithData);
+                //MakePagination('SalarySearch');
+            },
+            error: function () {
+            }
+        });
+    }
+    
+    function Save() {
+        //var Id;
+        //var FirstName;
+        //var Designation;
+        //var Salary;
+        //var TotalAmount;
+       
+        //var Month;
+        //console.log("asdc");
+        //$('#SalaryTableModal tr').each(function (i) {
+        //    if (parseFloat($(this).find('td').eq(0).html()) == parameters) {
+        //        Id = parseFloat($(this).find('td').eq(0).html());
+        //        FirstName = $(this).find('td').eq(1).html();
+        //        Designation = $(this).find('td').eq(2).html();
+        //        Salary = parseFloat($(this).find('td').eq(3).html());
+        //        TotalAmount = parseFloat($(this).find('td').eq(4).find('input').val());
+        //        Month = parseFloat($(this).find('td').eq(5).val());
+        //        console.log(Id);
+        //        console.log(FirstName);
+        //        console.log(Designation);
+        //        console.log(Salary);
+        //        console.log(Month);
+
+        //    }
+        //});
+
+        //if (CostHeadId <= 0) {
+        //    ShowNotification("3", "Choose any Supplier!!");
+        //    return;
+        //}
+        //if (voucherDate == "") {
+        //    ShowNotification("3", "Select a Date!!");
+        //    return;
+        //}
+        //if (details.length <= 0) {
+        //    ShowNotification("3", "Not added any Item!!");
+        //    return;
+        //}
+        $.ajax({
+
+            url: '/Employee/EmpSalarySave',
+            method: 'POST',
+            data: {
+                salaryPayment: details,
+                ledgerPosting: LedgerDet
+
+            },
+            success: function (data) {
+                console.log("ajax");
+                setTimeout(location.reload.bind(location), 10000);
+                ShowNotification("1", "Saved!!");
+                details = [];
+                var templateWithData = Mustache.to_html($("#templateProductModal").html(), { ProductSearch: details });
+                $("#div-product").empty().html(templateWithData);
+                //LoadInvoiceNo("txtPoNo");
+                location.reload();
+            },
+            error: function () {
+                console.log("asdasd");
+            }
+        });
+
+    }
+
+    //function LoadInvoiceNo(controlId) {
+    //    var url = "/LedgerPosting/GetInvoiceNumber";
+    //    $.ajax({
+    //        url: url,
+    //        method: "POST",
+    //        success: function (res) {
+    //            var data = res;
+    //            console.log(data);
+    //            $("#" + controlId).val(data);
+    //        },
+    //        error: function (err) {
+    //            console.log(err);
+    //        }
+    //    });
+    //}
+    function OnDelete(Id) {
+        console.log(Id);
+        for (var i = 0; i < LedgerDet.length; i++) {
+            if (LedgerDet[i].count == Id) {
+                LedgerDet.splice(i, 1);
+            }
+        }
+        var templateWithData = Mustache.to_html($("#templateProductModal").html(), { ProductSearch: LedgerDet });
+        $("#div-product").empty().html(templateWithData);
+        CalculateSum();
+        count--;
+    }
+    function OnDeleteSalary(Id) {
+        console.log(Id);
+        for (var i = 0; i < details.length; i++) {
+            if (details[i].Id == Id) {
+                details.splice(i, 1);
+            }
+        }
+        var templateWithData = Mustache.to_html($("#templateAddSalaryModal").html(), { AddSalary: details });
+        $("#div-AddSalary").empty().html(templateWithData);
+
+        count--;
+    }
+    function CalculateSum() {
+        var TotalAmount = 0.0;
+        try {
+
+            for (var i = 0; i < LedgerDet.length; i++) {
+                console.log(LedgerDet[i].Credit);
+                TotalAmount += parseFloat(LedgerDet[i].Credit);
+
+            }
+            $("#lblTotalAmount").html(TotalAmount.toFixed(2));
+
+        } catch (e) {
+            console.log(e);
+
+        }
+    }
+
+</script>

@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "Income Statement";
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="well bs-component">
+                        <form class="form-horizontal">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">
+                                        From data :
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="date" id="dateFromDate" name="txtFromDate" />
+                                    </div>
+
+                                    <label class="col-md-2 control-label">
+                                        To data :
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="date" id="dateToDate" name="txtToDate" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="button" class="btn btn-primary" id="btnIncomeStatement" name="btnIncomeStatement" value="Get Report" />
+                                    </div>
+
+                                </div>
+                                <div class="ibox-content" id="divInfo">
+
+                                    <div class="form-group">
+                                        <div class="col-md-12 table-responsive" id="div-product">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/app/CommonLoader.js"></script>
+<script>
+    $("#btnIncomeStatement").click(function () {
+        var fromDate = $("#dateFromDate").val();
+        var todate = $("#dateToDate").val();
+        window.location.href = "/Report/Viewer/ReportViewer.aspx?ReportName=IncomeStatement&fromDate=" + $("#dateFromDate").val() + "&toDate="+$("#dateToDate").val();
+    });
+   
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

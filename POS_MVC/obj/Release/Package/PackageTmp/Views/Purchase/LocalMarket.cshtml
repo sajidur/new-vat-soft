@@ -1,0 +1,302 @@
+﻿<div class="row">
+    <label>Rice Buy/চাল ক্রয়</label>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="well bs-component">
+                        <form class="form-horizontal" style="height:90px">
+                            <fieldset style="height:90px">
+                                <div class="form-group">
+                                    <label class="col-md-2">
+                                        Invoice No/চালান নং:
+                                    </label>
+                                    <div class="col-md-3">
+                                        <input type="text" value="" readonly id="txtPoNo" name="txtPoNo" class="form-control"  style="height:35px"/>
+                                    </div>
+                                    <label class="col-md-2">
+                                        Supplier/পার্টি:
+                                    </label>
+                                    <div class="col-md-3">
+                                        <select class="form-control" id="ddlSupplier" name="ddlSupplier"  style="height:35px"></select>
+                                    </div>
+                                    <label class="col-md-1">
+                                        চৌথা:
+                                    </label>
+                                    <div class="col-md-1">
+                                        <input type="text" id="txtDescriptions" name="txtDescriptions" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">
+                                        Dates:
+                                    </label>
+                                    <div class="col-md-3">
+                                        <input type="date" id="txtDates" name="txtDates" required class="form-control"  style="height:35px"/>
+                                    </div>
+                                    <label class="col-md-2 control-label">
+                                        Notes/মন্তব্য:
+                                    </label>
+                                    <div class="col-md-3">
+                                        <input type="text" id="txtDescriptions" name="txtDescriptions" class="form-control"  style="height:35px"/>
+                                    </div>
+                                </div>
+                                <br />
+
+                                <div class="ibox-content" id="divInfo">
+                                    <div class="form-group">
+                                        <div class="col-md-12 table-responsive" id="div-productGroup">
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div>
+                        <table id="myTable" class="table order-list">
+                            <thead>
+                                <tr>
+                                    <td>আইটেম</td>
+                                    <td>বস্তা</td>
+                                    <td>পরিমাণ/বস্তা </td>
+                                    <td>কেজি</td>
+                                    <td>ধরণ</td>
+                                    <td>মণ</td>
+                                    <td>মূল্য</td>
+                                    <td>মোট দাম </td>
+                                    <td>গোডাউন</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="col-sm-2">
+                                        <select id="ddlItem" class="form-control">
+                                            <option value="0">পছন্দ করুন</option>
+                                        </select>
+                                    </td>
+                                    <td class="col-sm-1">
+                                        <input type="number" name="txtBaleQty" value="0" id="txtBaleQty" class="form-control"  style="height:35px"/>
+                                    </td>
+                                    <td class="col-sm-1">
+                                        <input type="number" name="txtQtyPerBale" id="txtQtyPerBale" value="0" class="form-control"  style="height:35px"/>
+                                    </td>
+                                    <td class="col-sm-1">
+                                        <input type="number" readonly name="txtTotalinKG" id="txtTotalinKG" class="form-control"  style="height:35px"/>
+                                    </td>
+                                    <td class="col-sm-1">
+                                        <input type="number" name="txtUnitStyle" id="txtUnitStyle" value="40" class="form-control"  style="height:35px"/>
+                                    </td>
+                                    <td class="col-sm-1">
+                                        <input type="number" readonly name="txtTotalQty" id="txtTotalQty" class="form-control"  style="height:35px"/>
+                                    </td>
+
+                                    <td class="col-sm-1">
+                                        <input type="number" name="txtAmount" id="txtAmount" value="0" class="form-control"  style="height:35px"/>
+                                    </td>
+                                    <td class="col-sm-2">
+                                        <input type="number" readonly name="txtTotalAmount" id="txtTotalAmount" class="form-control"  style="height:35px"/>
+                                    </td>
+                                    <td class="col-md-2">
+                                        <select class="form-control" id="ddlWareHouse" name="ddlWareHouse"></select>
+                                    </td>
+                                    <td class="col-sm-1">
+                                        <input type="button" class="btn btn-primary " id="btnAdd" name="btnAdd" value="Add" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                            @*<tfoot>
+                                <tr><td></td></tr>
+                            </tfoot>*@
+                        </table>
+
+                        <div class="ibox-content" id="divInfo">
+                            <div class="form-group">
+                                <h4>Added Product</h4>
+                                <div class="col-md-12 table-responsive" id="div-product-add">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-8">
+
+                        </div>
+                        <div class="col-md-4">
+                            <p>Total Qty:<label id="lblTotalQty">0</label></p>
+                            <p>Total Amount:<label id="lblTotalAmount">0</label></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-group">
+                            <h4>অন্যান্য ব্যায়</h4>
+                            <table id="myTable" class="table order-list">
+                                <thead>
+                                    <tr>
+                                        <td>ব্যায় খাত</td>
+                                        <td>Qty/পরিমান</td>
+                                        <td>Rate/দাম</td>
+                                        <td>মোট খরচ </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="col-sm-2">
+                                            <select id="ddlExpenseHead" class="form-control"  style="height:35px">
+                                                <option value="বস্তা ক্রয়">বস্তা ক্রয়</option>
+                                                <option value="ম্যানেজার খরচ">ম্যানেজার খরচ</option>
+                                                <option value="লেবার খরচ">লেবার খরচ</option>
+                                                <option value="সুতলি খরচ">সুতলি খরচ</option>
+                                                <option value="খাজনা খরচ">খাজনা খরচ</option>
+                                                <option value="কমিশন খরচ">কমিশন খরচ</option>
+                                                <option value="মোকাম খরচ">মোকাম খরচ</option>
+                                                <option value="ভ্যান ভাড়া">ভ্যান ভাড়া</option>
+                                                <option value="গাড়ি ভাড়া">গাড়ি ভাড়া</option>
+                                                <option value="বিবিধ খরচ">বিবিধ খরচ</option>
+                                            </select>
+                                        </td>
+                      
+                                        <td class="col-sm-1">
+                                            <input type="number" name="txtExpenseAmount" id="txtExpenseAmount" class="form-control"  style="height:35px" />
+                                        </td>
+                                        <td class="col-sm-1">
+                                            <input type="number" name="txtExpenseRate" id="txtExpenseRate" class="form-control"  style="height:35px"/>
+                                        </td>
+                                        <td class="col-sm-1">
+                                            <input type="number" readonly name="txtExpenseTotalAmount" id="txtExpenseTotalAmount" class="form-control"  style="height:35px"/>
+                                        </td>
+                                        <td class="col-sm-1">
+                                            <input type="button" class="btn btn-primary" id="btnAddExpense" value="ADD" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                </tfoot>
+                            </table>
+                        </div>
+
+                        <div class="ibox-content" id="divExpenseInfo">
+                            <div class="form-group">
+                                <h4>Added Expense</h4>
+                                <div class="col-md-12 table-responsive" id="div-expense-add">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-8">
+                            </div>
+                            <div class="col-md-4">
+
+                                <p>Total Expense Amount/মোট অন্যান্য খরচ:<label id="lblTotalExpenseAmount">0</label></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-8">
+                            </div>
+                            <div class="col-md-4">
+
+                                <h5><b>Grand Total/মোট খরচ:</b><label id="lblGrandTotal">0</label></h5>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="form-actions">
+                            <div class="col-md-12">
+                                <button class="btn btn-w-m btn-info" data-style="expand-left" id="btnSave" type="button" onclick="SaveForLocalMarket()"><i class="fa fa-save"></i>&nbsp; Save</button>
+                                <button class="btn btn-w-m btn-success" type="button" id="btnReset" onclick="ResetForm()"><i class="fa fa-refresh"></i>&nbsp;Reset</button>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="templateProductModalAdd" type="text/html">
+    <table class="table table-bordered table-striped table-hover" id="productTableModal">
+        <thead>
+        <th> </th>
+        <th>আইটেম</th>
+        <th>বস্তা</th>
+        <th>পরিমাণ/বস্তা </th>
+        <th>কেজি</th>
+        <th>ধরণ</th>
+        <th>মণ</th>
+        <th>মূল্য</th>
+        <th>মোট দাম </th>
+        <th>Action </th>
+        </thead>
+        <tbody>
+        {{#ProductSearchAdd}}
+        <tr>
+            <td>{{countAddedProductCount}}</td>
+                <td>{{Item}}</td>
+                <td> {{TotalBale}}</td>
+                <td> {{QtyInBale}}</td>
+                <td> {{WeightInKG}}</td>
+                <td> {{WeightType}}</td>
+                <td> {{WeightInMon}}</td>
+                <td> {{Amount}}</td>
+                <td> {{TotalAmount}}</td>
+                <td>
+                    <a class="btn btn-danger" onclick="OnDeleteProduct('{{countAddedProductCount}}')"><i class="fa fa-trash-o"></i></a>
+                </td>
+            </tr>
+            {{/ProductSearchAdd}}
+        </tbody>
+    </table>
+</script>
+<script id="templateExpenseModalAdd" type="text/html">
+    <table class="table table-bordered table-striped table-hover" id="ExpenseTableModal">
+        <thead>
+        <th> </th>
+        <th>ব্যয় খাত</th>
+        <th>দাম</th>
+        <th>পরিমাণ</th>
+        <th>মোট খরচ</th>
+        <th>Action </th>
+        </thead>
+        <tbody>
+        {{#ExpenseSearchAdd}}
+        <tr>
+            <td>{{countAddedExpenseCount}}</td>
+                <td>{{Item}}</td>
+                <td> {{ExpenseRate}}</td>
+                <td> {{ExpenseAmount}}</td>
+                <td> {{TotalAmount}}</td>
+                <td>
+                    <a class="btn btn-danger" onclick="OnDeleteExpense('{{countAddedExpenseCount}}')"><i class="fa fa-trash-o"></i></a>
+                </td>
+            </tr>
+            {{/ExpenseSearchAdd}}
+        </tbody>
+    </table>
+</script>
+<script>
+     function calculateRow(row) {
+         var price = +row.find('input[name^="price"]').val();
+     }
+     function calculateGrandTotal() {
+         var grandTotal = 0;
+         $("table.order-list").find('input[name^="price"]').each(function () {
+             grandTotal += +$(this).val();
+         });
+         $("#grandtotal").text(grandTotal.toFixed(2));
+     }
+     $(document).ready(function () {
+         LoadAccountLedgerList(13, "ddlExpenseHead");
+     });
+</script>
+<script src="~/Scripts/app/CommonLoader.js"></script>
+<script src="~/Scripts/app/GoodReceiveLocalMarket.js"></script>
+<script src="~/Scripts/app/Accounts.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+

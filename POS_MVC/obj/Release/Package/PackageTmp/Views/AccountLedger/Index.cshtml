@@ -1,0 +1,188 @@
+﻿@model RiceMill_MVC.Models.AccountGroup
+@{
+    ViewBag.Title = "Account Ledger Setup";
+}
+
+<link rel="icon" type="img/x-icon" href="~/Content/Images/bill.jpg" />
+
+<style type="text/css">
+    fieldset {
+        margin: 4px;
+        border: 1px solid silver;
+        padding: 4px;
+        border-radius: 2px;
+        border-color: lightgray;
+    }
+
+    legend {
+        padding: 2px;
+        font-size: 14px;
+        font-weight: bolder;
+        color: grey;
+    }
+</style>
+
+<div class="page-title">
+    <div>
+        <h1><i class="fa fa-edit"></i>Account Ledger</h1>
+
+    </div>
+    <div>
+        <ul class="breadcrumb">
+            <li><i class="fa fa-home fa-lg"></i></li>
+            <li>Forms</li>
+            <li><a href="#">Account Ledger</a></li>
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="well bs-component">
+                        <form class="form-horizontal">
+                            <div class="col-md-8">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <input type="hidden" id="hdId" />
+                                        <label class="col-md-2 control-label">
+                                            Ledger Name:
+                                        </label>
+                                        <div class="col-md-4">
+                                            <input type="text" id="txtLedgerName" name="txtLedgerName" class="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">
+                                            Group/Head:
+                                        </label>
+                                        <div class="col-md-4">
+                                            <select class="form-control" id="ddlUnder" name="ddlUnder" onchange="ChangeLedgerGroup()"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">
+                                            Opening Balance:
+                                        </label>
+                                        <div class="col-md-4">
+                                            <input type="number" id="txtOpeningBalance" name="txtOpeningBalance" class="form-control" />
+                                        </div>
+                                        <div class="col-md-2">
+                                            <select class="form-control" id="ddlNature" name="ddlNature">
+                                                <option value="Dr">Dr</option>
+                                                <option value="Cr">Cr</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">
+                                            Narration (বর্ণনা):
+                                        </label>
+                                        <div class="col-md-4">
+                                            <textarea id="txtDescription" name="txtDescription" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <fieldset>
+                                        <div class="form-actions">
+                                            <div class="col-md-12">
+                                                <button class="btn btn-w-m btn-info" data-style="expand-left" id="btnSave" type="button" onclick="SaveLedger()"><i class="fa fa-save"></i>&nbsp; Save</button>
+                                                <button class="btn btn-w-m btn-primary" data-style="expand-left" id="btnUpdate" type="button" onclick="Update()"><i class="fa fa-save"></i>&nbsp; Update</button>
+                                                <button class="btn btn-danger" data-style="expand-left" id="btnDelete" type="button" onclick="Delete()"><i class="fa fa-minus"></i>&nbsp; Delete</button>
+                                                <button class="btn btn-w-m btn-success" type="button" id="btnReset" onclick="ResetForm()"><i class="fa fa-refresh"></i>&nbsp;Reset</button>
+
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                    <div class="ibox-title">
+                                    </div>
+                                    <br />
+                                    <div class="ibox-content" id="divInfo">
+                                        <div class="form-group">
+                                            <div class="col-md-12 table-responsive" id="div-productGroup">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-4" id="divBank" style="display:none;">
+                              <h4>
+                                  Bank Information
+                                </h4> 
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">
+                                        Bank Name:
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" id="txtBankName" class="form-control" />
+                                    </div>                                    
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">
+                                        Branch Name:
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" id="txtBranchName" class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">
+                                        Account Number:
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" id="txtAccountNumber" class="form-control text-primary"/>
+                                    </div>
+                                </div>
+                            
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-lg-offset-1">
+                    <form class="bs-component">
+                        <script id="templateProductGroupModal" type="text/html">
+                            <table class="table table-bordered table-striped table-hover" id="productGroupTableModal">
+                                <thead>
+                                <th>ID</th>
+                                <th>Group Name</th>
+                                <th>Under</th>
+                                <th>Nature</th>
+                                <th>Narration</th>
+                                <th>Action</th>
+                                </thead>
+                                <tbody>
+                                    {{#ProductGroupSearch}}
+                                    <tr>
+                                        <td> {{Id}}</td>
+                                        <td> {{LedgerName}}</td>
+                                        <td>{{AccountGroup.AccountGroupName}}</td>
+                                        <td>{{CrOrDr}}</td>
+                                        <td>{{Narration}}</td>
+                                        <td class="action-sm">
+                                            <a class="btn btn-primary btn-xs" onclick="LoadForEdit('{{Id}}')"><i class="fa fa-edit"></i> Select</a>
+                                        </td>
+                                    </tr>
+                                    {{/ProductGroupSearch}}
+                                </tbody>
+                            </table>
+                        </script>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/app/Accounts.js"></script>
+<script>
+    $(document).ready(function () {
+        LoadAccountLedgerList();
+        LoadAccountGroup();
+    });
+
+
+</script>

@@ -1,0 +1,209 @@
+﻿<div class="row">
+    <label>Sales Autorization</label>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="row">
+                <div class="ibox-content" id="divInfo">
+                    <div class="form-group">
+                        <div class="col-md-12 table-responsive" id="div-productGroup">
+                        </div>
+                    </div>
+                    <div>
+                        <label><input type="checkbox" id="chkSendSMS" checked="checked">Send SMS</label>
+                    </div>
+                </div>
+
+            </div>
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    Invoice No: <label id="lblPONo"></label>
+                                </div>
+                                <div class="col-md-4">
+                                    Date: <label id="txtPostDate"></label>
+                                </div>
+                                <div class="col-md-4">
+                                    Invoice No: <label id="lblPONo"></label>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="ibox-content" id="divInfo2">
+                                    <br /><br />
+                                    <div class="form-group">
+                                        <div class="col-md-12 table-responsive" id="div-salesOrderGroup">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script id="templateProductGroup" type="text/html">
+                <table class="table table-bordered table-striped table-hover" id="productGroupTable">
+                    <thead>
+                    <th>Id</th>
+                    <th>Order No</th>
+                    <th>আইটেম</th>
+                    <th>বস্তা (অর্ডার)</th>
+                    <th>কেজি /বস্তা</th>
+                    <th>দাম /বস্তা</th>
+                    <th>দাম (মোট)</th>
+                    <th style="display:none">ProductId</th>
+                    </thead>
+                    <tbody>
+                        {{#ProductGroupSearch}}
+                        <tr>
+                            <td>{{Id}}</td>
+                            <td> {{SalesOrderId}}</td>
+                            <td> {{Product.ProductName}}</td>
+                            <td> {{BaleQty}}</td>
+                            <td> {{BaleWeight}}</td>
+                            <td> {{Rate}}</td>
+                            <td> {{Amount}}</td>
+
+                            <td style="display:none;"> {{ProductId}}</td>
+                        </tr>
+                        {{/ProductGroupSearch}}
+                    </tbody>
+                </table>
+            </script>
+            <script id="templateProductGroupModal" type="text/html">
+                <table class="table table-bordered table-striped table-hover" id="productGroupTableModal">
+                    <thead>
+                    <th>ID</th>
+                    <th>Date </th>
+                    <th>Invoice No</th>
+                    <th>Customer Name</th>
+                    <th>Product</th>
+                    <th>Total Amount</th>
+                    <th>Details</th>
+                    <th>Truck</th>
+                    <th>Driver</th>
+                    <th>Rent</th>
+
+                    <th>Authorized</th>
+                    <th>Delete</th>
+                    </thead>
+                    <tbody>
+                        {{#ProductGroupSearch}}
+                        <tr>
+                            <td> {{Id}}</td>
+                            <td> {{PostDate}}</td>
+                            <td> {{SalesInvoice}}</td>
+                            <td>{{Customer.Code}}-{{Customer.Name}}</td>
+                            <td> {{ProductName}}</td>
+                            <td> {{TotalAmount}}</td>
+
+                            <td class="action-sm">
+                                <button class="btn btn-primary" id="btnAddFromOrders" type="button" data-toggle="modal" data-target="#myModal" onclick="Details('{{Id}}')">Details</button>
+                            </td>
+                            <td> {{TransportType}}</td>
+                            <td> {{DriverName}}</td>
+                            <td> {{RentAmount}}</td>
+
+                            <td class="action-sm">
+                                <a class="btn btn-primary btn-xs" onclick="Authorized('{{Id}}')"><i class="fa fa-edit"></i> Authorized</a>
+                            </td>
+                            <td class="action-sm">
+                                <a class="btn btn-primary btn-xs" onclick="Delete('{{Id}}')"><i class="fa fa-edit"></i> Delete</a>
+                            </td>
+                        </tr>
+
+                        {{/ProductGroupSearch}}
+                    </tbody>
+                </table>
+            </script>
+        </div>
+        </div>
+</div>
+<script>
+    $(document).ready(function () {
+        LoadListData();
+    });
+
+    function LoadListData() {
+        var url = '/Sales/UnAutorizedSales';
+        $.ajax({
+            url: url,
+            method: 'POST',
+            success: function (res) {
+                console.log(res)
+                var templateWithData = Mustache.to_html($("#templateProductGroupModal").html(), { ProductGroupSearch: res });
+                $("#div-productGroup").empty().html(templateWithData);
+                MakePagination('productGroupTableModal');
+            },
+            error: function (error, r) {
+                console.log(error);
+                console.log(r.responseText);
+                ShowNotification("3", "Something Wrong!!");
+            }
+        });
+    }
+
+    function Authorized(id) {
+        var url = '/Sales/Authorize';
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: { id: id, isSendSMS: $('#chkSendSMS').is(':checked') },
+            success: function (res) {
+                console.log(res);
+                ShowNotification("1", "Order Authrozed!!");
+                window.open("/Report/Viewer/ReportViewer.aspx?ReportName=SalesInvoice&customerid=" + res.CustomerID + "&invoiceId=" + res.SalesInvoice, "_blank");
+                setTimeout(location.reload.bind(location), 5000);
+
+            },
+            error: function (error, r) {
+                ShowNotification("3", "Something Wrong!!" + error);
+            }
+        });
+    }
+    function Delete(id) {
+        var url = '/Sales/TempSalesDelete';
+        $.ajax({
+            url: url,
+            method: 'GET',
+            data: { id: id, isSendSMS: $('#chkSendSMS').is(':checked') },
+            success: function (res) {
+                console.log(res);
+                ShowNotification("1", "Sales Deleted!!");
+                setTimeout(location.reload.bind(location), 5000);
+
+            },
+            error: function (error, r) {
+                ShowNotification("3", "Something Wrong!!" + error);
+            }
+        });
+    }
+    function Details(id) {
+        var url = '/Sales/GetUnAutorizedSales';
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: { id: id },
+            success: function (res) {
+                console.log(res);
+                var invoice = $("#txtPoNo").val();
+                $("#lblPONo").html(res.SalesInvoice);
+                $("#txtPostDate").html(res.PostDate);
+                var templateWithData = Mustache.to_html($("#templateProductGroup").html(), { ProductGroupSearch: res.TempSalesDetails });
+                $("#div-salesOrderGroup").empty().html(templateWithData);
+                MakePagination('productGroupTable');
+            },
+            error: function (error, r) {
+                ShowNotification("3", "Something Wrong!!" + error);
+            }
+        });
+    }
+
+
+</script>

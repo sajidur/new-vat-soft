@@ -1,0 +1,265 @@
+﻿<div class="row">
+    <label>Receive(রিসিভ)</label>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="well bs-component">
+                        <form class="form-horizontal">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">
+                                        Voucher No/ভাউচার নং:
+                                    </label>
+                                    <div class="col-md-2">
+                                        <input type="text" value="001" readonly id="txtPoNo" name="txtPoNo" class="form-control" style="width:200px"/>
+                                    </div>
+                                    <label class="col-md-2 control-label">
+                                        Customer/ক্রেতা:
+                                    </label>
+                                    <div class="col-md-3">
+                                        <select class="form-control" id="ddlSupplier" name="ddlSupplier" style="width:200px"></select>
+                                    </div>
+                                   
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">
+                                        Notes/মন্তব্য:
+                                    </label>
+                                    <div class="col-md-3">
+                                        <input type="text" id="txtDescriptions" name="txtDescriptions" class="form-control" style="width:200px"/>
+                                    </div>
+                                    <label class="col-md-1 control-label">
+                                        Date:
+                                    </label>
+                                    <div class="col-md-2">
+                                        <input type="date" id="txtDate" required class="form-control" style="width:200px; height:40px" />
+                                    </div>
+                                </div>
+                                <div class="ibox-content" id="divInfo">
+                                    <div class="form-group">
+                                        <div class="col-md-12 table-responsive" id="div-productGroup">
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div>
+                        <table id="myTable" class="table order-list">
+                            <thead>
+                                <tr>
+                                    <td>Cash/Bank</td>
+                                    <td>Bank</td>
+                                    <td>Amount</td>
+                                    <td style="display:none;">Cheque/TT No</td>
+                                    <td style="display:none;">Cheque Date</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="col-sm-2">
+                                        <select id="ddlBankCash" class="form-control">
+                                            <option value="0">পছন্দ করুন</option>
+                                            <option value="27">Cash</option>
+                                            <option value="28">Bank</option>
+                                        </select>
+                                    </td>
+                                    <td class="col-sm-2">
+                                        <select id="ddlItem" class="form-control">
+                                            <option value="0">পছন্দ করুন</option>
+                                        </select>
+                                    </td>
+                                    <td class="col-sm-1">
+                                        <input type="number" id="txtAmount" value="0" style="float:left;" class="form-control" />
+                                    </td>
+                                    <td class="col-sm-1">
+                                        <input type="button" class="btn btn-primary " id="btnAdd" value="Add" />
+                                    </td>
+                                    <td class="col-sm-1">
+                                        <input type="text" style="display:none;" id="chkNo" class="form-control" />
+                                    <td class="col-sm-2">
+                                        <input type="date" style="display:none;" id="chkDate" name="chkDate" class="form-control" style="height:40px"/>
+                                    </td>
+                         
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr></tr>
+                                <tr></tr>
+                            </tfoot>
+                        </table>
+                        <div class="ibox-content" id="divInfo">
+                            <div class="form-group">
+                                <div class="col-md-12 table-responsive" id="div-product">
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+                    <fieldset>
+                        <div class="form-actions">
+                            <div class="col-md-12">
+                                <label><input type="checkbox" id="chkSendSMS" checked="checked">Send SMS</label>
+                                <button class="btn btn-w-m btn-info" data-style="expand-left" id="btnSave" type="button" onclick="Save()"><i class="fa fa-save"></i>&nbsp; Save</button>
+                                <button class="btn btn-w-m btn-success" type="button" id="btnReset" onclick="ResetForm()"><i class="fa fa-refresh"></i>&nbsp;Reset</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="templateProductModal" type="text/html">
+    <table class="table table-bordered table-striped table-hover" id="productTableModal">
+        <thead>
+            <th>SI</th>
+            <th>Ledger</th>
+            <th style="display:none;">Check No</th>
+            <th style="display:none;">Date</th>
+            <th>Amount</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            {{#ProductSearch}}
+            <tr>
+                <td>{{count}}</td>
+                <td>{{ldgerName}}</td>
+                <td style="display:none;"> {{ChequeNo}}</td>
+                <td style="display:none;"> {{PostingDate}}</td>
+                <td> {{Credit}}</td>
+                <td class="action-sm">
+                    <a class="btn btn-danger" onclick="OnDelete('{{count}}')"><i class="fa fa-trash-o"></i></a>
+                </td>
+            </tr>
+            {{/ProductSearch}}
+        </tbody>
+    </table>
+</script>
+
+<script>
+     function calculateRow(row) {
+         var price = +row.find('input[name^="price"]').val();
+     }
+
+     function calculateGrandTotal() {
+         var grandTotal = 0;
+         $("table.order-list").find('input[name^="price"]').each(function () {
+             grandTotal += +$(this).val();
+         });
+         $("#grandtotal").text(grandTotal.toFixed(2));
+     }
+</script>
+<script src="~/Scripts/app/CommonLoader.js"></script>
+<script src="~/Scripts/app/Accounts.js"></script>
+<script>
+    var details = [];
+    $(document).ready(function () {
+        LoadCustomerCombo('ddlSupplier');
+        GetBankCashLedgerList('ddlBankCash');
+        $("#ddlBankCash").change(function () {
+            var selectedVal = this.value;
+            GetBankCashLedgerList("ddlItem", selectedVal);
+        });
+        LoadInvoiceNo("txtPoNo");
+    });
+    var count=1;
+    $("#btnAdd").click(function () {
+        var ldgerName = $("#ddlItem option:selected").text();
+        var LedgerId = $("#ddlItem option:selected").val();
+        var chkno = $("#chkNo").val();
+        var PostingDate = $("#chkDate").val();
+        var amount = parseFloat($("#txtAmount").val());
+        if (amount=="0") {
+            ShowNotification("3", "Amount Empty!!");
+            return;
+        }
+        if (LedgerId <= 0) {
+            ShowNotification("3", "Choose any Ledger!!");
+            return;
+        }
+        //var object = {Id:Id, Item: item, BaleQty: BaleQty, QtyPerBale: QtyPerBale, UnitStyle: UnitStyle, Amount: Amount, TotalKg: TotalKg, TotalQty: TotalQty, TotalAmount: TotalAmount };
+        var object = { count: count, LedgerId: LedgerId, ldgerName: ldgerName, ChequeNo: chkno, PostingDate: PostingDate, Credit: amount };
+        details.push(object);
+        var templateWithData = Mustache.to_html($("#templateProductModal").html(), { ProductSearch: details });
+        $("#div-product").empty().html(templateWithData);
+        $("#chkNo").val("");
+        $("#chkDate").val("");
+        $("#txtAmount").text("");
+        count++;
+    });
+
+    function Save()
+    {
+        var voucherNo = $("#txtPoNo").val();
+        var supplierId = $("#ddlSupplier option:selected").val();
+        var voucherDate = $("#txtDate").val();
+        var notes = $("#txtDescriptions").val();
+        var url = '/Receipt/ReceivePayment';
+        console.log(voucherDate);
+        if (supplierId <= 0) {
+            ShowNotification("3", "Choose any Supplier!!");
+            return;
+        }
+        if (voucherDate == "") {
+            ShowNotification("3", "Select a Date!!");
+            return;
+        }
+        if (details.length <= 0) {
+            ShowNotification("3", "Not added any Item!!");
+            return;
+        }
+        $("#btnSave").prop("disabled", true);
+
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: {
+                voucherNo: voucherNo,
+                supplierId: supplierId,
+                voucherDate: voucherDate,
+                notes:notes,
+                ledgerPosting: details,
+                isSendSMS: $('#chkSendSMS').is(':checked')
+            },
+            success: function (data) {
+                setTimeout(location.reload.bind(location), 10000);
+                ShowNotification("1", "Saved!!");
+                details = [];
+                var templateWithData = Mustache.to_html($("#templateProductModal").html(), { ProductSearch: details });
+                $("#div-product").empty().html(templateWithData);
+                LoadInvoiceNo("txtPoNo");
+                location.reload();
+            },
+            error: function () {
+            }
+        });
+
+    }
+
+    function LoadInvoiceNo(controlId) {
+        var url = "/Receipt/GetInvoiceNumber";
+        $.ajax({
+            url: url,
+            method: "POST",
+            success: function (res) {
+                var data = res;
+                console.log(data);
+                $("#" + controlId).val(data);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+    function OnDelete(Id) {
+        for (var i = 0; i < details.length; i++) {
+            if (details[i].count == Id) {
+                details.splice(i, 1);
+            }
+        }
+        var templateWithData = Mustache.to_html($("#templateProductModal").html(), { ProductSearch: details });
+        $("#div-product").empty().html(templateWithData);
+        count--;
+    }
+</script>

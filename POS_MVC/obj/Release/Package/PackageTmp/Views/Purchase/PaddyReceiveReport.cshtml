@@ -1,0 +1,135 @@
+﻿
+
+<div class="row">
+    <label>Paddy Receive Report/ ধান ক্রয় রিপোর্ট</label>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="well bs-component">
+                        <form class="form-horizontal">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-md-1 control-label">
+                                        From:
+                                    </label>
+                                    <div class="col-md-2">
+                                        <input type="date" id="txtFromDate" />
+                                    </div>
+                                    <label class="col-md-1 control-label">
+                                        To:
+                                    </label>
+                                    <div class="col-md-2">
+                                        <input type="date" id="txtToDate" />
+                                    </div>
+                                    <label class="col-md-1 control-label">
+                                        Supplier:
+                                    </label>
+                                    <div class="col-md-3">
+                                        <select class="form-control" id="ddlSupplier" name="ddlCustomer"></select>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button onclick="LoadPurchase()" type="button" class="primary">Filter</button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <br /><br />
+                    <div>
+                        <div class="ibox-content" id="divInfo">
+                            <div class="form-group">
+                                <div class="col-md-12 table-responsive" id="div-salesGroup">
+                                </div>
+
+                                <script id="templateProductModal" type="text/html">
+                                    <table class="table table-bordered table-striped table-hover" id="productTableModal">
+                                        <thead>
+                                            <th>Invoice</th>
+                                            <th>Invoice Date</th>
+                                            <th>Inv.on Paper</th>
+                                            <th>Supplier</th>
+                                            <th>Total Amount</th>
+                                            <th>Addi. Cost</th>
+                                            <th>Grand Total</th>
+                                            <th>Notes</th>
+                                            <th>Print</th>
+                                            <th>Delete</th>
+                                        </thead>
+                                        <tbody>
+                                            {{#ProductSearch}}
+                                            <tr>
+                                                <td>
+                                                    <a class="btn btn-link" href="/Report/Viewer/ReportViewer.aspx?ReportName=SalesInvoice&invoiceId={{InvoiceNo}}&customerid={{SupplierId}}">{{InvoiceNo}}</a>
+                                                </td>
+                                                <td>{{PostDate}}</td>
+                                                <td> {{InvoiceNoPaper}}</td>
+                                                <td> {{Supplier.Name}}</td>
+                                                <td> {{TotalAmount}}</td>
+                                                <td> {{AdditionalCost}}</td>
+                                                <td> {{GrandTotal}}</td>
+                                                <th>{{Notes}}</th>
+                                                <td>
+                                                    <a class="btn btn-info" href="/GoodsReceive/Print?id={{Id}}">Print</a>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-danger" href="/GoodsReceive/Delete?id={{Id}}">X</a>
+                                                </td>
+                                            </tr>
+                                            {{/ProductSearch}}
+                                        </tbody>
+                                    </table>
+                                </script>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Scripts/app/CommonLoader.js"></script>
+<script>
+    $(document).ready(function () {
+        var now = new Date();
+        var day = ("0" + now.getDate()).slice(-2);
+        var month = ("0" + (now.getMonth() + 1)).slice(-2);
+        var today = now.getFullYear() + "-" + (month) + "-" + (day);
+        $('#txtToDate').val(today);
+        $('#txtFromDate').val(today);
+        LoadPurchase();
+        LoadSupplierCombo("ddlSupplier");
+    });
+    function LoadPurchase() {
+        var supplierId = 0;
+        var fromDate = new Date($('#txtFromDate').val()).toISOString();
+        var toDate = new Date($('#txtToDate').val()).toISOString();
+        var customerDropdown = document.getElementById("ddlSupplier");
+        console.log(customerDropdown.selectedIndex)
+        if (customerDropdown.selectedIndex == -1 || customerDropdown.selectedIndex == 0) {
+            supplierId = 0;
+        }
+        else {
+            supplierId = customerDropdown.options[customerDropdown.selectedIndex].value;
+        }
+        var url = '/GoodsReceive/GetAllPaddyReceivesFilteredBySupplierAndDate';
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: { 'supplierId': supplierId, 'fromDate': fromDate, 'toDate': toDate },
+            success: function (res) {
+                console.log(res);
+                var templateWithData = Mustache.to_html($("#templateProductModal").html(), { ProductSearch: res });
+                $("#div-salesGroup").empty().html(templateWithData);
+                MakePagination('productTableModal');
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+
+</script>

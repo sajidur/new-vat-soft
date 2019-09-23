@@ -1,0 +1,332 @@
+﻿@model Int32
+
+<input type="hidden" name="hdLedger" id="hdLedger" value="0">
+<div class="row">
+    <p style="text-align:center"><label>Customer Ledger Name:</label>
+        <label id="lblCustomerName"></label>
+    </p>
+    <p style="text-align:center;margin: 0;
+padding: 0;">
+        <label>Address:</label>
+        <label id="lblAddress"></label>
+    </p>
+    <p style="text-align:center;margin: 0;
+padding: 0;"><label>Phone:</label><label id="lblPhone"></label></p>
+    <div class="form-group">
+        <label class="col-md-1 control-label">
+            To Date:
+        </label>
+        <div class="col-md-2">
+            <input type="date" id="txtFromDate" name="txtDate" />
+        </div>
+        <label class="col-md-1 control-label">
+            From Date:
+        </label>
+        <div class="col-md-2">
+            <input type="date" id="txtToDate" name="txtDate" />
+        </div>
+        <div class="col-md-1">
+            <button id="btnFilter" type="button" class="btn-primary">Filter</button>
+        </div>
+        <div class="col-md-1">
+            <a class="btn btn-primary btn-xs" id="link" href="" onclick="GetLedger()">Print Report</a>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div>
+                        <div class="ibox-content" id="divInfo">
+                            <div class="col-md-12 table-responsive" id="div-ledger">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div>
+                                <div class="ibox-content" id="divInfo2">
+                                    <br /><br />
+                                    <div class="form-group">
+                                        <div class="col-md-12 table-responsive" id="div-salesOrderGroup">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="templateLedgerModal" type="text/html">
+    <table class="table table-bordered table-striped table-hover" id="ledgerModal">
+        <thead>
+            <th>Posting Date</th>
+            <th>Voucher No</th>
+            <th>Narrations</th>
+            <th>Debit</th>
+            <th>Credit</th>
+            <th>Balance</th>
+        </thead>
+        <tbody>
+            {{#ledgerSearch}}
+            <tr>
+                <td> {{PostDate}}</td>
+                <td> {{}}
+                    <a class="btn btn-link" onclick="LoadDetails('{{VoucherNo}}')" data-toggle="modal" data-target="#myModal">{{VoucherNo}}</a>
+                </td>
+                <td>{{extra1}}</td>
+                <td>{{Debit}}</td>
+                <td>{{Credit}}</td>
+                <td>{{Balance}}</td>
+            </tr>
+            {{/ledgerSearch}}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    Total:
+                </td>
+                <td>
+                    {{totalCredit}}
+                </td>
+                <td>
+                    {{totalDebit}}
+                </td>
+                <td>
+                </td>
+
+            </tr>
+
+        </tfoot>
+
+    </table>
+</script>
+<script id="templateSalesDetailsModal" type="text/html">
+    <table class="table table-bordered table-striped table-hover" id="salesDetailsModal">
+        <thead>
+        <th>Voucher No</th>
+        <th>Product</th>
+        <th>Unit</th>
+        <th>Total</th>
+        <th>Rate</th>
+        <th>Amount</th>
+        </thead>
+        <tbody>
+            {{#ledgerSearch}}
+            <tr>
+                <td> {{SalesInvoice}}</td>
+                <td>{{Product.ProductName}}</td>
+                <td>{{BaleWeight}}</td>
+                <td>{{BaleQty}}</td>
+                <td>{{Rate}}</td>
+                <td>{{Amount}}</td>
+            </tr>
+            {{/ledgerSearch}}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                    Total Amount:
+                </td>
+                <td>
+                    <b> {{TotalAmount}}</b>
+                </td>
+
+            </tr>
+
+        </tfoot>
+
+    </table>
+</script>
+<script id="templateTransactionModal" type="text/html">
+    <table class="table table-bordered table-striped table-hover" id="transactionModal">
+        <thead>
+        <th>LedgerName</th>
+        <th>Account Number</th>
+        <th>BranchName</th>
+        <th>Posting Date</th>
+        <th>VoucherNo</th>
+        <th>Debit</th>
+        <th>Credit</th>
+        <th>Extra1</th>
+        <th>Extra2</th>
+        </thead>
+        <tbody>
+            {{#ledgerSearch}}
+            <tr>
+                <td>{{AccountLedger.LedgerName}}</td>
+                <td>{{AccountLedger.BankAccountNumber}}</td>
+                <td>{{AccountLedger.BranchName}}</td>
+                <td> {{PostDate}}</td>
+                <td>{{VoucherNo}}</td>
+                <td>{{Debit}}</td>
+                <td>{{Credit}}</td>
+                <td>{{Extra1}}</td>
+                <td>{{Extra2}}</td>
+            </tr>
+            {{/ledgerSearch}}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    Total Amount:
+                </td>
+                <td>
+                    <b> {{TotalAmount}}</b>
+                </td>
+
+            </tr>
+
+        </tfoot>
+
+    </table>
+</script>
+<script src="~/Scripts/app/CommonLoader.js"></script>
+<script>
+    $(document).ready(function () {
+        console.log(@Model);
+        var now = new Date();
+        var day = ("0" + now.getDate()).slice(-2);
+        var tomonth = ("0" + (now.getMonth()+1)).slice(-2);
+        var month = ("0" + (now.getMonth())).slice(-2);
+        var fromDate = now.getFullYear() + "-" + (month) + "-" + (day);
+        var todate = now.getFullYear() + "-" + (tomonth) + "-" + (day);
+        $('#txtToDate').val(todate);
+        $('#txtFromDate').val(fromDate);
+        GetAllLedger(@Model);
+
+    });
+    function GetLedger() {
+        var ledgerId = $("#hdLedger").val();
+        var fromDate = $('#txtFromDate').val();
+        var toDate = $('#txtToDate').val();
+       // window.location.href =
+        window.open(
+              '/Report/Viewer/ReportViewer.aspx?ReportName=LedgerReport&type=1&ledgerId=' + ledgerId + "&IsSupplier=0&fromDate="+fromDate+"&toDate="+toDate+"",
+              '_blank' // <- This is what makes it open in a new window.
+            );
+
+    }
+    $("#btnFilter").click(function () {
+       var ledgerid= $("#hdLedger").val();
+       GetAllLedger(ledgerid);
+    });
+</script>
+<script>
+function UpdateLink()
+{
+    document.getElementById("link").href = "/Report/Viewer/ReportViewer.aspx?ReportName=SuplierTransaction&type=1";
+}
+function LoadDetails(voucherNo) {
+    var url = '/Sales/GetSalesDetailsByVoucher';
+    $.ajax({
+        url: url,
+        data: { voucherNo: voucherNo },
+        method: 'GET',
+        success: function (res) {
+            var data = res;
+            var TotalAmount = 0;
+            var totalCredit = 0;
+            var totalDebit = 0;
+            if (voucherNo.includes("DR") || voucherNo.includes("dr") || voucherNo.includes("SO"))
+            {
+                $.each(data, function (index, value) {
+                    var amount = parseInt(value.Amount);
+                    // var debit = parseInt(value.Debit);
+
+                    TotalAmount += amount;
+                    data[index].TotalAmount = totalDebit;
+                });
+                var templateWithData = Mustache.to_html($("#templateSalesDetailsModal").html(), { ledgerSearch: data, TotalAmount: TotalAmount });
+                $("#div-salesOrderGroup").empty().html(templateWithData);
+                MakePagination('salesDetailsModal');
+            }
+            else {
+
+                $.each(data, function (index, value) {
+                    var amount = parseInt(value.Debit);
+                    // var debit = parseInt(value.Debit);
+
+                    TotalAmount += amount;
+                    data[index].TotalAmount = totalDebit;
+                });
+                var templateWithData = Mustache.to_html($("#templateTransactionModal").html(), { ledgerSearch: data, TotalAmount: TotalAmount });
+                $("#div-salesOrderGroup").empty().html(templateWithData);
+                MakePagination('transactionModal');
+            }
+
+        },
+        error: function () {
+        }
+    });
+}
+function GetAllLedger(ledgerId) {
+    $("#hdLedger").val(ledgerId);
+    var url = '/Customer/CustomerDueSummaryById';
+    $.ajax({
+        url: url,
+        data: { customerid: ledgerId,fromDate:$('#txtFromDate').val(),toDate: $('#txtToDate').val()},
+        method: 'GET',
+        success: function (res) {
+            var data = res;
+            var TotalAmount = 0;
+            var totalCredit = 0;
+            var totalDebit = 0;
+            $.each(data, function (index, value) {
+                $("#lblCustomerName").html(value.Name);
+                $("#lblAddress").html(value.Address);
+                $("#lblPhone").html(value.Phone);
+
+                var credit = parseInt(value.Credit);
+                var debit = parseInt(value.Debit);
+       //         var value = new Date
+       //                            (
+       //                                 parseInt(value.PostingDate.replace(/(^.*\()|([+-].*$)/g, ''))
+       //                            );
+       //         var dat = value.getMonth() +
+       //                  1 +
+       //                "-" +
+       //    value.getDate() +
+       //                "-" +
+       //value.getFullYear();
+
+                totalCredit += credit;
+                totalDebit += debit;
+               // data[index].PostDate = dat;
+                data[index].totalCredit = totalCredit;
+                data[index].totalDebit = totalDebit;
+            });
+            var templateWithData = Mustache.to_html($("#templateLedgerModal").html(), { ledgerSearch: data, totalCredit: totalCredit, totalDebit: totalDebit });
+            $("#div-ledger").empty().html(templateWithData);
+           // MakePagination('ledgerModal');
+        },
+        error: function () {
+        }
+    });
+}
+</script>
+

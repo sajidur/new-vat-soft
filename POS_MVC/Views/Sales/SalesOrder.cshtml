@@ -1,0 +1,166 @@
+﻿
+@{
+    ViewBag.Title = "Sales Order";
+}
+
+<div class="row">
+    <label>Sales Order</label>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="well bs-component">
+                        <form class="form-horizontal">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">
+                                        Order No:
+                                    </label>
+                                    <div class="col-md-2">
+                                        <input type="text" value="" readonly id="txtPoNo" name="txtPoNo" class="form-control" style="width:200px"/>
+                                    </div>
+                                    <label class="col-md-1 col-md-offset-2 control-label">
+                                        Customer/ক্রেতা:
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlCustomer" name="ddlCustomer" style="width:200px"></select>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">
+                                        Notes:
+                                    </label>
+                                    <div class="col-md-3">
+                                        <input type="text" id="txtDescriptions" name="txtDescriptions" class="form-control" style="width:200px"/>
+                                    </div>
+                                    <label class="col-md-2 control-label">
+                                        Date:
+                                    </label>
+                                    <div class="col-md-3">
+                                        <input type="date" id="txtDate" name="txtDate" class="form-control" style="width:200px; height:40px"/>
+                                    </div>
+                                </div>
+                                <br/><br/>
+                                <div class="ibox-content" id="divInfo">
+                                    <div class="form-group">
+                                        <div class="col-md-12 table-responsive" id="div-salesOrderGroup">
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div>
+
+                        <div class="ibox-content" id="divInfo">
+                            <div class="form-group">
+                                <h4>Added Sales Orders</h4>
+                                <div class="col-md-12 table-responsive" id="div-salesOrderGroupGrid">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6" style="width:80%">
+                        <form class="bs-component">
+                                <script id="templateSalesOrderGroupModal" type="text/html">
+                                    <table class="table table-bordered table-striped table-hover" id="salesOrderGroupTableModal" style="width:80%">
+                                        <thead>
+                                        <th>Id</th>
+                                        <th>Item</th>
+                                        <th>Qty</th>
+                                        <th>Unit</th>                                        
+                                        <th>Rate</th>
+                                        <th>Action</th>
+                                        </thead>
+                                        <tbody>
+                                        {{#SalesOrderGroupSearch}}
+                                        <tr>
+                                            <td class="col-md-1"> {{Id}}</td>
+                                            <td class="col-mid-2"> {{ProductName}}</td>
+                                            <td class="col-mid-1">
+                                                <input type="text" name="txtBaleQty" id="txtBaleQty" class="form-control" style="width:100px"/>
+                                            </td>
+                                            <td class="col-mid-1">
+                                                <input type="text" name="txtBaleWeight" id="txtBaleWeight" class="form-control" style="width:150px"/>
+                                            </td>
+                                            <td class="col-mid-1">
+                                                <input type="text" name="txtRate" id="txtRate" class="form-control" />
+                                            </td>
+                                            <td class="action-sm col-mid-1">
+                                                <a class="btn btn-primary btn-xs" id="btnAdd" onclick="LoadForAdd('{{Id}}')"><i class="fa fa-edit"></i> Add</a>
+
+                                            </td>
+                                        </tr>
+
+                                        {{/SalesOrderGroupSearch}}
+                                        </tbody>
+                                    </table>
+                                </script>
+
+
+                        </form>
+                    </div>
+                    <div>
+                        <div class="ibox-content" id="divInfo">
+                            <div class="form-group">
+                                <div class="col-md-8" id="div-salesOrderGridGroup">
+
+                                </div>
+                                <div class="col-md-4">
+                                    Total Qty:<label id="lblTotalQty">0.0</label><br />
+                                    Total Amount:<label id="lblTotalAmount">0.0</label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                        <div class="form-actions">
+                            <div class="col-md-12">
+                                <label><input type="checkbox" id="chkSendSMS" checked="checked">Send SMS</label>
+
+                                <button class="btn btn-w-m btn-info" data-style="expand-left" id="btnSave" type="button" onclick="Save()"><i class="fa fa-save"></i>&nbsp; Save</button>
+                                <button class="btn btn-w-m btn-success" type="button" id="btnReset" onclick="ResetForm()"><i class="fa fa-refresh"></i>&nbsp;Reset</button>
+                             </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="templateSalesOrderGroupModalGrid" type="text/html">
+    <table class="table table-bordered table-striped table-hover" id="salesOrderGroupTableModalGrid">
+        <thead>
+        <th> </th>
+        <th>Id</th>
+        <th>Item</th>
+        <th>Qty</th>
+        <th>Unit</th>
+        <th>Total Amount</th>
+        <th>Action</th>
+        </thead>
+        <tbody>
+        {{#SalesOrderGroupSearchGrid}}
+        <tr>
+            <td>{{countCount}}</td>
+                <td>{{Id}}</td>
+                <td>{{ProductName}}</td>
+                <td>{{BaleQty}}</td>
+                <td>{{Rate}}</td>
+                <td>{{Amount}}</td>
+                <td class="action-sm">
+                    <a class="btn btn-danger" onclick="OnDeleteSalesOrder('{{countCount}}')"><i class="fa fa-trash-o"></i></a>
+
+                </td>
+            </tr>
+
+            {{/SalesOrderGroupSearchGrid}}
+        </tbody>
+    </table>
+</script>
+
+<script src="~/Scripts/app/CommonLoader.js"></script>
+<script src="~/Scripts/app/SalesOrder.js"></script>

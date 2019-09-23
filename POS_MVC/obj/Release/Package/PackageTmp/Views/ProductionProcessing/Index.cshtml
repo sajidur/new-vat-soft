@@ -1,0 +1,160 @@
+﻿
+<div class="row">
+    <label>Stock In to Production</label>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="well bs-component">
+                        <form class="form-horizontal">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">
+                                        Invoice No/চালান নং:
+                                    </label>
+                                    <div class="col-md-2">
+                                        <input type="text" value="001" readonly id="txtPoNo" name="txtPoNo" class="form-control" style="width:200px"/>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                    <label class="col-md-2 control-label">
+                                        Stock out InvoiceNo/চালান নং:
+                                    </label>
+                                    <div class="col-md-3">
+                                        <select class="form-control" id="ddlStockOutInvoice" name="ddlStockOutInvoice" style="width:200px"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">
+                                        Notes/মন্তব্য:
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" id="txtDescriptions" name="txtDescriptions" class="form-control" style="width:200px" />
+                                    </div>
+                                    <label class="col-md-2 control-label">
+                                        Date:
+                                    </label>
+                                    <div class="col-md-3">
+                                        <input type="date" id="txtDate" name="txtDate" class="form-control" style="width:200px; height:40px "/>
+                                    </div>
+                                </div>
+                                <div class="ibox-content" id="divInfo">
+                                    <div class="form-group">
+                                        <div class="col-md-12 table-responsive" id="div-productGroup">
+                                        </div>
+                                    </div>
+                                </div>                                
+                            </fieldset>
+                        </form>
+                    </div>
+
+                    <div>
+                        <table id="myTable" class="table order-list">
+                            <thead>
+                                <th>আইটেম</th>
+                                <th>বস্তা</th>
+                                <th>বস্তা/কেজি</th>
+                                <th>মন/কেজি</th>
+                                <th>গোডাউন</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td> 
+                                        <select id="ddlItem" class="form-control">
+                                            <option value="0">পছন্দ করুন</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="txtBaleQty" id="txtBaleQty" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input type="text" name="txtBaleWeight" id="txtBaleWeight" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input type="text" name="txtWeightInMon" id="txtWeightInMon" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <select class="form-control" id="ddlWareHouse" name="ddlWareHouse">
+                                            @foreach (var item in Model)
+                                            {
+                                                <option value=@item.Id>@item.WareHouseName</option>
+                                            }
+                                        </select>
+                                    </td>
+                                    <td class="col-sm-1">
+                                        <input type="button" class="btn btn-primary " id="btnAdd" name="btnAdd" value="Add" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>  
+                        
+                        <div class="ibox-content">
+                            <div class="form-group">
+                                <h4>Added Product</h4>
+                                <div class="col-md-12 table-responsive" id="div-product-added">
+                                    
+                                </div>
+                            </div>
+                        </div>                     
+                    </div>     
+                                  
+                    <div class="form-actions">
+                            <div class="col-md-12">
+                                <button class="btn btn-w-m btn-info" data-style="expand-left" id="btnSave" type="button" onclick="Save()"><i class="fa fa-save"></i>&nbsp; Save</button>
+                                <button class="btn btn-w-m btn-success" type="button" id="btnReset" onclick="ResetForm()"><i class="fa fa-refresh"></i>&nbsp;Reset</button>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="templateProductModalAdded" type="text/html">
+    <table class="table table-bordered table-striped table-hover" id="productTableModal">
+        <thead>
+            <th> </th>
+            <th>আইটেম</th>
+            <th>বস্তা</th>
+            <th>পরিমাণ/বস্তা </th>
+            <th>কেজি</th>
+            <th>Godown</th>
+        </thead>
+        <tbody>
+            {{#ProductSearchAdded}}
+            <tr>
+                <td>{{datatableRowCount}}</td>
+                <td>{{Item}}</td>
+                <td> {{BaleQty}}</td>
+                <td> {{BaleWeight}}</td>
+                <td> {{WeightInMon}}</td>
+                <td> {{WarehouseName}}</td>
+                <td>
+                    <a class="btn btn-danger" onclick="OnDeleteProduct('{{datatableRowCount}}')"><i class="fa fa-trash-o"></i></a>
+                </td>
+            </tr>
+            {{/ProductSearchAdded}}
+        </tbody>
+    </table>
+</script>
+<script>
+    function calculateRow(row) {
+        var price = +row.find('input[name^="price"]').val();
+    }
+
+    function calculateGrandTotal() {
+        var grandTotal = 0;
+        $("table.order-list").find('input[name^="price"]').each(function () {
+            grandTotal += +$(this).val();
+        });
+        $("#grandtotal").text(grandTotal.toFixed(2));
+    }
+
+    $(document).ready(function () {
+        LoadInvoiceNo("txtPoNo");
+        LoadAllStockOutChallan();
+        LoadAllProduct(2,'ddlItem');
+        var templateWithData = Mustache.to_html($("#templateStockOutModal").html(), { StockTableAdd: detailsStockOut });
+        $("#div-stockOut-add").empty().html(templateWithData);
+    });
+</script>
+<script src="~/Scripts/app/CommonLoader.js"></script>
+<script src="~/Scripts/app/StockIn.js"></script>
