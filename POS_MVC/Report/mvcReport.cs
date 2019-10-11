@@ -1,4 +1,4 @@
-﻿namespace RiceMill_MVC.Report
+﻿namespace REX_MVC.Report
 {
 
 

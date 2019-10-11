@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace RiceMill_MVC.ViewModel
+namespace REX_MVC.ViewModel
 {
     public class FinancialYearView
     {

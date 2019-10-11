@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace RiceMill_MVC
+namespace REX_MVC
 {
     public class BundleConfig
     {

@@ -4,7 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace RiceMill_MVC.BAL
+namespace REX_MVC.BAL
 {
     public class SQLDAL
     {

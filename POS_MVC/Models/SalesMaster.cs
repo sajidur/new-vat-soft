@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RiceMill_MVC.Models
+namespace REX_MVC.Models
 {
     using System;
     using System.Collections.Generic;
@@ -49,8 +49,8 @@ namespace RiceMill_MVC.Models
         public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SalesDelivery> SalesDeliveries { get; set; }
+        public virtual SalesOrder SalesOrder { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SalesDetail> SalesDetails { get; set; }
-        public virtual SalesOrder SalesOrder { get; set; }
     }
 }

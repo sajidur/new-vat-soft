@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RiceMill_MVC.ViewModel
+namespace REX_MVC.ViewModel
 {
     public class JournalDetailsResponse
     {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RiceMill_MVC.ServiceReference1 {
+namespace REX_MVC.ServiceReference1 {
     using System.Runtime.Serialization;
     using System;
     
@@ -189,80 +189,80 @@ namespace RiceMill_MVC.ServiceReference1 {
         
         // CODEGEN: Generating message contract since element name messageHeader from namespace http://api.onnorokomsms.com/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://api.onnorokomsms.com/OneToOneBulk", ReplyAction="*")]
-        RiceMill_MVC.ServiceReference1.OneToOneBulkResponse OneToOneBulk(RiceMill_MVC.ServiceReference1.OneToOneBulkRequest request);
+        REX_MVC.ServiceReference1.OneToOneBulkResponse OneToOneBulk(REX_MVC.ServiceReference1.OneToOneBulkRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://api.onnorokomsms.com/OneToOneBulk", ReplyAction="*")]
-        System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.OneToOneBulkResponse> OneToOneBulkAsync(RiceMill_MVC.ServiceReference1.OneToOneBulkRequest request);
+        System.Threading.Tasks.Task<REX_MVC.ServiceReference1.OneToOneBulkResponse> OneToOneBulkAsync(REX_MVC.ServiceReference1.OneToOneBulkRequest request);
         
         // CODEGEN: Generating message contract since element name userName from namespace http://api.onnorokomsms.com/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://api.onnorokomsms.com/OneToOne", ReplyAction="*")]
-        RiceMill_MVC.ServiceReference1.OneToOneResponse OneToOne(RiceMill_MVC.ServiceReference1.OneToOneRequest request);
+        REX_MVC.ServiceReference1.OneToOneResponse OneToOne(REX_MVC.ServiceReference1.OneToOneRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://api.onnorokomsms.com/OneToOne", ReplyAction="*")]
-        System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.OneToOneResponse> OneToOneAsync(RiceMill_MVC.ServiceReference1.OneToOneRequest request);
+        System.Threading.Tasks.Task<REX_MVC.ServiceReference1.OneToOneResponse> OneToOneAsync(REX_MVC.ServiceReference1.OneToOneRequest request);
         
         // CODEGEN: Generating message contract since element name userName from namespace http://api.onnorokomsms.com/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://api.onnorokomsms.com/OneToMany", ReplyAction="*")]
-        RiceMill_MVC.ServiceReference1.OneToManyResponse OneToMany(RiceMill_MVC.ServiceReference1.OneToManyRequest request);
+        REX_MVC.ServiceReference1.OneToManyResponse OneToMany(REX_MVC.ServiceReference1.OneToManyRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://api.onnorokomsms.com/OneToMany", ReplyAction="*")]
-        System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.OneToManyResponse> OneToManyAsync(RiceMill_MVC.ServiceReference1.OneToManyRequest request);
+        System.Threading.Tasks.Task<REX_MVC.ServiceReference1.OneToManyResponse> OneToManyAsync(REX_MVC.ServiceReference1.OneToManyRequest request);
         
         // CODEGEN: Generating message contract since element name userName from namespace http://api.onnorokomsms.com/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://api.onnorokomsms.com/DeliveryStatus", ReplyAction="*")]
-        RiceMill_MVC.ServiceReference1.DeliveryStatusResponse DeliveryStatus(RiceMill_MVC.ServiceReference1.DeliveryStatusRequest request);
+        REX_MVC.ServiceReference1.DeliveryStatusResponse DeliveryStatus(REX_MVC.ServiceReference1.DeliveryStatusRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://api.onnorokomsms.com/DeliveryStatus", ReplyAction="*")]
-        System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.DeliveryStatusResponse> DeliveryStatusAsync(RiceMill_MVC.ServiceReference1.DeliveryStatusRequest request);
+        System.Threading.Tasks.Task<REX_MVC.ServiceReference1.DeliveryStatusResponse> DeliveryStatusAsync(REX_MVC.ServiceReference1.DeliveryStatusRequest request);
         
         // CODEGEN: Generating message contract since element name userName from namespace http://api.onnorokomsms.com/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://api.onnorokomsms.com/GetBalance", ReplyAction="*")]
-        RiceMill_MVC.ServiceReference1.GetBalanceResponse GetBalance(RiceMill_MVC.ServiceReference1.GetBalanceRequest request);
+        REX_MVC.ServiceReference1.GetBalanceResponse GetBalance(REX_MVC.ServiceReference1.GetBalanceRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://api.onnorokomsms.com/GetBalance", ReplyAction="*")]
-        System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.GetBalanceResponse> GetBalanceAsync(RiceMill_MVC.ServiceReference1.GetBalanceRequest request);
+        System.Threading.Tasks.Task<REX_MVC.ServiceReference1.GetBalanceResponse> GetBalanceAsync(REX_MVC.ServiceReference1.GetBalanceRequest request);
         
         // CODEGEN: Generating message contract since element name userName from namespace http://api.onnorokomsms.com/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://api.onnorokomsms.com/GetMask", ReplyAction="*")]
-        RiceMill_MVC.ServiceReference1.GetMaskResponse GetMask(RiceMill_MVC.ServiceReference1.GetMaskRequest request);
+        REX_MVC.ServiceReference1.GetMaskResponse GetMask(REX_MVC.ServiceReference1.GetMaskRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://api.onnorokomsms.com/GetMask", ReplyAction="*")]
-        System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.GetMaskResponse> GetMaskAsync(RiceMill_MVC.ServiceReference1.GetMaskRequest request);
+        System.Threading.Tasks.Task<REX_MVC.ServiceReference1.GetMaskResponse> GetMaskAsync(REX_MVC.ServiceReference1.GetMaskRequest request);
         
         // CODEGEN: Generating message contract since element name apiKey from namespace http://api.onnorokomsms.com/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://api.onnorokomsms.com/NumberSms", ReplyAction="*")]
-        RiceMill_MVC.ServiceReference1.NumberSmsResponse NumberSms(RiceMill_MVC.ServiceReference1.NumberSmsRequest request);
+        REX_MVC.ServiceReference1.NumberSmsResponse NumberSms(REX_MVC.ServiceReference1.NumberSmsRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://api.onnorokomsms.com/NumberSms", ReplyAction="*")]
-        System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.NumberSmsResponse> NumberSmsAsync(RiceMill_MVC.ServiceReference1.NumberSmsRequest request);
+        System.Threading.Tasks.Task<REX_MVC.ServiceReference1.NumberSmsResponse> NumberSmsAsync(REX_MVC.ServiceReference1.NumberSmsRequest request);
         
         // CODEGEN: Generating message contract since element name apiKey from namespace http://api.onnorokomsms.com/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://api.onnorokomsms.com/ListSms", ReplyAction="*")]
-        RiceMill_MVC.ServiceReference1.ListSmsResponse ListSms(RiceMill_MVC.ServiceReference1.ListSmsRequest request);
+        REX_MVC.ServiceReference1.ListSmsResponse ListSms(REX_MVC.ServiceReference1.ListSmsRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://api.onnorokomsms.com/ListSms", ReplyAction="*")]
-        System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.ListSmsResponse> ListSmsAsync(RiceMill_MVC.ServiceReference1.ListSmsRequest request);
+        System.Threading.Tasks.Task<REX_MVC.ServiceReference1.ListSmsResponse> ListSmsAsync(REX_MVC.ServiceReference1.ListSmsRequest request);
         
         // CODEGEN: Generating message contract since element name apiKey from namespace http://api.onnorokomsms.com/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://api.onnorokomsms.com/SMSDeliveryStatus", ReplyAction="*")]
-        RiceMill_MVC.ServiceReference1.SMSDeliveryStatusResponse SMSDeliveryStatus(RiceMill_MVC.ServiceReference1.SMSDeliveryStatusRequest request);
+        REX_MVC.ServiceReference1.SMSDeliveryStatusResponse SMSDeliveryStatus(REX_MVC.ServiceReference1.SMSDeliveryStatusRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://api.onnorokomsms.com/SMSDeliveryStatus", ReplyAction="*")]
-        System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.SMSDeliveryStatusResponse> SMSDeliveryStatusAsync(RiceMill_MVC.ServiceReference1.SMSDeliveryStatusRequest request);
+        System.Threading.Tasks.Task<REX_MVC.ServiceReference1.SMSDeliveryStatusResponse> SMSDeliveryStatusAsync(REX_MVC.ServiceReference1.SMSDeliveryStatusRequest request);
         
         // CODEGEN: Generating message contract since element name apiKey from namespace http://api.onnorokomsms.com/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://api.onnorokomsms.com/GetCurrentBalance", ReplyAction="*")]
-        RiceMill_MVC.ServiceReference1.GetCurrentBalanceResponse GetCurrentBalance(RiceMill_MVC.ServiceReference1.GetCurrentBalanceRequest request);
+        REX_MVC.ServiceReference1.GetCurrentBalanceResponse GetCurrentBalance(REX_MVC.ServiceReference1.GetCurrentBalanceRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://api.onnorokomsms.com/GetCurrentBalance", ReplyAction="*")]
-        System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.GetCurrentBalanceResponse> GetCurrentBalanceAsync(RiceMill_MVC.ServiceReference1.GetCurrentBalanceRequest request);
+        System.Threading.Tasks.Task<REX_MVC.ServiceReference1.GetCurrentBalanceResponse> GetCurrentBalanceAsync(REX_MVC.ServiceReference1.GetCurrentBalanceRequest request);
         
         // CODEGEN: Generating message contract since element name apiKey from namespace http://api.onnorokomsms.com/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://api.onnorokomsms.com/GetAllMask", ReplyAction="*")]
-        RiceMill_MVC.ServiceReference1.GetAllMaskResponse GetAllMask(RiceMill_MVC.ServiceReference1.GetAllMaskRequest request);
+        REX_MVC.ServiceReference1.GetAllMaskResponse GetAllMask(REX_MVC.ServiceReference1.GetAllMaskRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://api.onnorokomsms.com/GetAllMask", ReplyAction="*")]
-        System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.GetAllMaskResponse> GetAllMaskAsync(RiceMill_MVC.ServiceReference1.GetAllMaskRequest request);
+        System.Threading.Tasks.Task<REX_MVC.ServiceReference1.GetAllMaskResponse> GetAllMaskAsync(REX_MVC.ServiceReference1.GetAllMaskRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -272,12 +272,12 @@ namespace RiceMill_MVC.ServiceReference1 {
     public partial class OneToOneBulkRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="OneToOneBulk", Namespace="http://api.onnorokomsms.com/", Order=0)]
-        public RiceMill_MVC.ServiceReference1.OneToOneBulkRequestBody Body;
+        public REX_MVC.ServiceReference1.OneToOneBulkRequestBody Body;
         
         public OneToOneBulkRequest() {
         }
         
-        public OneToOneBulkRequest(RiceMill_MVC.ServiceReference1.OneToOneBulkRequestBody Body) {
+        public OneToOneBulkRequest(REX_MVC.ServiceReference1.OneToOneBulkRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -289,15 +289,15 @@ namespace RiceMill_MVC.ServiceReference1 {
     public partial class OneToOneBulkRequestBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public RiceMill_MVC.ServiceReference1.MessageHeader messageHeader;
+        public REX_MVC.ServiceReference1.MessageHeader messageHeader;
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
-        public RiceMill_MVC.ServiceReference1.WsSms[] wsSmses;
+        public REX_MVC.ServiceReference1.WsSms[] wsSmses;
         
         public OneToOneBulkRequestBody() {
         }
         
-        public OneToOneBulkRequestBody(RiceMill_MVC.ServiceReference1.MessageHeader messageHeader, RiceMill_MVC.ServiceReference1.WsSms[] wsSmses) {
+        public OneToOneBulkRequestBody(REX_MVC.ServiceReference1.MessageHeader messageHeader, REX_MVC.ServiceReference1.WsSms[] wsSmses) {
             this.messageHeader = messageHeader;
             this.wsSmses = wsSmses;
         }
@@ -310,12 +310,12 @@ namespace RiceMill_MVC.ServiceReference1 {
     public partial class OneToOneBulkResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="OneToOneBulkResponse", Namespace="http://api.onnorokomsms.com/", Order=0)]
-        public RiceMill_MVC.ServiceReference1.OneToOneBulkResponseBody Body;
+        public REX_MVC.ServiceReference1.OneToOneBulkResponseBody Body;
         
         public OneToOneBulkResponse() {
         }
         
-        public OneToOneBulkResponse(RiceMill_MVC.ServiceReference1.OneToOneBulkResponseBody Body) {
+        public OneToOneBulkResponse(REX_MVC.ServiceReference1.OneToOneBulkResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -344,12 +344,12 @@ namespace RiceMill_MVC.ServiceReference1 {
     public partial class OneToOneRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="OneToOne", Namespace="http://api.onnorokomsms.com/", Order=0)]
-        public RiceMill_MVC.ServiceReference1.OneToOneRequestBody Body;
+        public REX_MVC.ServiceReference1.OneToOneRequestBody Body;
         
         public OneToOneRequest() {
         }
         
-        public OneToOneRequest(RiceMill_MVC.ServiceReference1.OneToOneRequestBody Body) {
+        public OneToOneRequest(REX_MVC.ServiceReference1.OneToOneRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -402,12 +402,12 @@ namespace RiceMill_MVC.ServiceReference1 {
     public partial class OneToOneResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="OneToOneResponse", Namespace="http://api.onnorokomsms.com/", Order=0)]
-        public RiceMill_MVC.ServiceReference1.OneToOneResponseBody Body;
+        public REX_MVC.ServiceReference1.OneToOneResponseBody Body;
         
         public OneToOneResponse() {
         }
         
-        public OneToOneResponse(RiceMill_MVC.ServiceReference1.OneToOneResponseBody Body) {
+        public OneToOneResponse(REX_MVC.ServiceReference1.OneToOneResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -436,12 +436,12 @@ namespace RiceMill_MVC.ServiceReference1 {
     public partial class OneToManyRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="OneToMany", Namespace="http://api.onnorokomsms.com/", Order=0)]
-        public RiceMill_MVC.ServiceReference1.OneToManyRequestBody Body;
+        public REX_MVC.ServiceReference1.OneToManyRequestBody Body;
         
         public OneToManyRequest() {
         }
         
-        public OneToManyRequest(RiceMill_MVC.ServiceReference1.OneToManyRequestBody Body) {
+        public OneToManyRequest(REX_MVC.ServiceReference1.OneToManyRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -494,12 +494,12 @@ namespace RiceMill_MVC.ServiceReference1 {
     public partial class OneToManyResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="OneToManyResponse", Namespace="http://api.onnorokomsms.com/", Order=0)]
-        public RiceMill_MVC.ServiceReference1.OneToManyResponseBody Body;
+        public REX_MVC.ServiceReference1.OneToManyResponseBody Body;
         
         public OneToManyResponse() {
         }
         
-        public OneToManyResponse(RiceMill_MVC.ServiceReference1.OneToManyResponseBody Body) {
+        public OneToManyResponse(REX_MVC.ServiceReference1.OneToManyResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -528,12 +528,12 @@ namespace RiceMill_MVC.ServiceReference1 {
     public partial class DeliveryStatusRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="DeliveryStatus", Namespace="http://api.onnorokomsms.com/", Order=0)]
-        public RiceMill_MVC.ServiceReference1.DeliveryStatusRequestBody Body;
+        public REX_MVC.ServiceReference1.DeliveryStatusRequestBody Body;
         
         public DeliveryStatusRequest() {
         }
         
-        public DeliveryStatusRequest(RiceMill_MVC.ServiceReference1.DeliveryStatusRequestBody Body) {
+        public DeliveryStatusRequest(REX_MVC.ServiceReference1.DeliveryStatusRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -570,12 +570,12 @@ namespace RiceMill_MVC.ServiceReference1 {
     public partial class DeliveryStatusResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="DeliveryStatusResponse", Namespace="http://api.onnorokomsms.com/", Order=0)]
-        public RiceMill_MVC.ServiceReference1.DeliveryStatusResponseBody Body;
+        public REX_MVC.ServiceReference1.DeliveryStatusResponseBody Body;
         
         public DeliveryStatusResponse() {
         }
         
-        public DeliveryStatusResponse(RiceMill_MVC.ServiceReference1.DeliveryStatusResponseBody Body) {
+        public DeliveryStatusResponse(REX_MVC.ServiceReference1.DeliveryStatusResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -604,12 +604,12 @@ namespace RiceMill_MVC.ServiceReference1 {
     public partial class GetBalanceRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="GetBalance", Namespace="http://api.onnorokomsms.com/", Order=0)]
-        public RiceMill_MVC.ServiceReference1.GetBalanceRequestBody Body;
+        public REX_MVC.ServiceReference1.GetBalanceRequestBody Body;
         
         public GetBalanceRequest() {
         }
         
-        public GetBalanceRequest(RiceMill_MVC.ServiceReference1.GetBalanceRequestBody Body) {
+        public GetBalanceRequest(REX_MVC.ServiceReference1.GetBalanceRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -642,12 +642,12 @@ namespace RiceMill_MVC.ServiceReference1 {
     public partial class GetBalanceResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="GetBalanceResponse", Namespace="http://api.onnorokomsms.com/", Order=0)]
-        public RiceMill_MVC.ServiceReference1.GetBalanceResponseBody Body;
+        public REX_MVC.ServiceReference1.GetBalanceResponseBody Body;
         
         public GetBalanceResponse() {
         }
         
-        public GetBalanceResponse(RiceMill_MVC.ServiceReference1.GetBalanceResponseBody Body) {
+        public GetBalanceResponse(REX_MVC.ServiceReference1.GetBalanceResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -676,12 +676,12 @@ namespace RiceMill_MVC.ServiceReference1 {
     public partial class GetMaskRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="GetMask", Namespace="http://api.onnorokomsms.com/", Order=0)]
-        public RiceMill_MVC.ServiceReference1.GetMaskRequestBody Body;
+        public REX_MVC.ServiceReference1.GetMaskRequestBody Body;
         
         public GetMaskRequest() {
         }
         
-        public GetMaskRequest(RiceMill_MVC.ServiceReference1.GetMaskRequestBody Body) {
+        public GetMaskRequest(REX_MVC.ServiceReference1.GetMaskRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -714,12 +714,12 @@ namespace RiceMill_MVC.ServiceReference1 {
     public partial class GetMaskResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="GetMaskResponse", Namespace="http://api.onnorokomsms.com/", Order=0)]
-        public RiceMill_MVC.ServiceReference1.GetMaskResponseBody Body;
+        public REX_MVC.ServiceReference1.GetMaskResponseBody Body;
         
         public GetMaskResponse() {
         }
         
-        public GetMaskResponse(RiceMill_MVC.ServiceReference1.GetMaskResponseBody Body) {
+        public GetMaskResponse(REX_MVC.ServiceReference1.GetMaskResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -748,12 +748,12 @@ namespace RiceMill_MVC.ServiceReference1 {
     public partial class NumberSmsRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="NumberSms", Namespace="http://api.onnorokomsms.com/", Order=0)]
-        public RiceMill_MVC.ServiceReference1.NumberSmsRequestBody Body;
+        public REX_MVC.ServiceReference1.NumberSmsRequestBody Body;
         
         public NumberSmsRequest() {
         }
         
-        public NumberSmsRequest(RiceMill_MVC.ServiceReference1.NumberSmsRequestBody Body) {
+        public NumberSmsRequest(REX_MVC.ServiceReference1.NumberSmsRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -802,12 +802,12 @@ namespace RiceMill_MVC.ServiceReference1 {
     public partial class NumberSmsResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="NumberSmsResponse", Namespace="http://api.onnorokomsms.com/", Order=0)]
-        public RiceMill_MVC.ServiceReference1.NumberSmsResponseBody Body;
+        public REX_MVC.ServiceReference1.NumberSmsResponseBody Body;
         
         public NumberSmsResponse() {
         }
         
-        public NumberSmsResponse(RiceMill_MVC.ServiceReference1.NumberSmsResponseBody Body) {
+        public NumberSmsResponse(REX_MVC.ServiceReference1.NumberSmsResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -836,12 +836,12 @@ namespace RiceMill_MVC.ServiceReference1 {
     public partial class ListSmsRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="ListSms", Namespace="http://api.onnorokomsms.com/", Order=0)]
-        public RiceMill_MVC.ServiceReference1.ListSmsRequestBody Body;
+        public REX_MVC.ServiceReference1.ListSmsRequestBody Body;
         
         public ListSmsRequest() {
         }
         
-        public ListSmsRequest(RiceMill_MVC.ServiceReference1.ListSmsRequestBody Body) {
+        public ListSmsRequest(REX_MVC.ServiceReference1.ListSmsRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -856,7 +856,7 @@ namespace RiceMill_MVC.ServiceReference1 {
         public string apiKey;
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
-        public RiceMill_MVC.ServiceReference1.WsSms[] wsSmses;
+        public REX_MVC.ServiceReference1.WsSms[] wsSmses;
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
         public string maskName;
@@ -867,7 +867,7 @@ namespace RiceMill_MVC.ServiceReference1 {
         public ListSmsRequestBody() {
         }
         
-        public ListSmsRequestBody(string apiKey, RiceMill_MVC.ServiceReference1.WsSms[] wsSmses, string maskName, string campaignName) {
+        public ListSmsRequestBody(string apiKey, REX_MVC.ServiceReference1.WsSms[] wsSmses, string maskName, string campaignName) {
             this.apiKey = apiKey;
             this.wsSmses = wsSmses;
             this.maskName = maskName;
@@ -882,12 +882,12 @@ namespace RiceMill_MVC.ServiceReference1 {
     public partial class ListSmsResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="ListSmsResponse", Namespace="http://api.onnorokomsms.com/", Order=0)]
-        public RiceMill_MVC.ServiceReference1.ListSmsResponseBody Body;
+        public REX_MVC.ServiceReference1.ListSmsResponseBody Body;
         
         public ListSmsResponse() {
         }
         
-        public ListSmsResponse(RiceMill_MVC.ServiceReference1.ListSmsResponseBody Body) {
+        public ListSmsResponse(REX_MVC.ServiceReference1.ListSmsResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -916,12 +916,12 @@ namespace RiceMill_MVC.ServiceReference1 {
     public partial class SMSDeliveryStatusRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="SMSDeliveryStatus", Namespace="http://api.onnorokomsms.com/", Order=0)]
-        public RiceMill_MVC.ServiceReference1.SMSDeliveryStatusRequestBody Body;
+        public REX_MVC.ServiceReference1.SMSDeliveryStatusRequestBody Body;
         
         public SMSDeliveryStatusRequest() {
         }
         
-        public SMSDeliveryStatusRequest(RiceMill_MVC.ServiceReference1.SMSDeliveryStatusRequestBody Body) {
+        public SMSDeliveryStatusRequest(REX_MVC.ServiceReference1.SMSDeliveryStatusRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -954,12 +954,12 @@ namespace RiceMill_MVC.ServiceReference1 {
     public partial class SMSDeliveryStatusResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="SMSDeliveryStatusResponse", Namespace="http://api.onnorokomsms.com/", Order=0)]
-        public RiceMill_MVC.ServiceReference1.SMSDeliveryStatusResponseBody Body;
+        public REX_MVC.ServiceReference1.SMSDeliveryStatusResponseBody Body;
         
         public SMSDeliveryStatusResponse() {
         }
         
-        public SMSDeliveryStatusResponse(RiceMill_MVC.ServiceReference1.SMSDeliveryStatusResponseBody Body) {
+        public SMSDeliveryStatusResponse(REX_MVC.ServiceReference1.SMSDeliveryStatusResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -988,12 +988,12 @@ namespace RiceMill_MVC.ServiceReference1 {
     public partial class GetCurrentBalanceRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="GetCurrentBalance", Namespace="http://api.onnorokomsms.com/", Order=0)]
-        public RiceMill_MVC.ServiceReference1.GetCurrentBalanceRequestBody Body;
+        public REX_MVC.ServiceReference1.GetCurrentBalanceRequestBody Body;
         
         public GetCurrentBalanceRequest() {
         }
         
-        public GetCurrentBalanceRequest(RiceMill_MVC.ServiceReference1.GetCurrentBalanceRequestBody Body) {
+        public GetCurrentBalanceRequest(REX_MVC.ServiceReference1.GetCurrentBalanceRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -1022,12 +1022,12 @@ namespace RiceMill_MVC.ServiceReference1 {
     public partial class GetCurrentBalanceResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="GetCurrentBalanceResponse", Namespace="http://api.onnorokomsms.com/", Order=0)]
-        public RiceMill_MVC.ServiceReference1.GetCurrentBalanceResponseBody Body;
+        public REX_MVC.ServiceReference1.GetCurrentBalanceResponseBody Body;
         
         public GetCurrentBalanceResponse() {
         }
         
-        public GetCurrentBalanceResponse(RiceMill_MVC.ServiceReference1.GetCurrentBalanceResponseBody Body) {
+        public GetCurrentBalanceResponse(REX_MVC.ServiceReference1.GetCurrentBalanceResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -1056,12 +1056,12 @@ namespace RiceMill_MVC.ServiceReference1 {
     public partial class GetAllMaskRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="GetAllMask", Namespace="http://api.onnorokomsms.com/", Order=0)]
-        public RiceMill_MVC.ServiceReference1.GetAllMaskRequestBody Body;
+        public REX_MVC.ServiceReference1.GetAllMaskRequestBody Body;
         
         public GetAllMaskRequest() {
         }
         
-        public GetAllMaskRequest(RiceMill_MVC.ServiceReference1.GetAllMaskRequestBody Body) {
+        public GetAllMaskRequest(REX_MVC.ServiceReference1.GetAllMaskRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -1090,12 +1090,12 @@ namespace RiceMill_MVC.ServiceReference1 {
     public partial class GetAllMaskResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="GetAllMaskResponse", Namespace="http://api.onnorokomsms.com/", Order=0)]
-        public RiceMill_MVC.ServiceReference1.GetAllMaskResponseBody Body;
+        public REX_MVC.ServiceReference1.GetAllMaskResponseBody Body;
         
         public GetAllMaskResponse() {
         }
         
-        public GetAllMaskResponse(RiceMill_MVC.ServiceReference1.GetAllMaskResponseBody Body) {
+        public GetAllMaskResponse(REX_MVC.ServiceReference1.GetAllMaskResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -1118,12 +1118,12 @@ namespace RiceMill_MVC.ServiceReference1 {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface SendSmsSoapChannel : RiceMill_MVC.ServiceReference1.SendSmsSoap, System.ServiceModel.IClientChannel {
+    public interface SendSmsSoapChannel : REX_MVC.ServiceReference1.SendSmsSoap, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class SendSmsSoapClient : System.ServiceModel.ClientBase<RiceMill_MVC.ServiceReference1.SendSmsSoap>, RiceMill_MVC.ServiceReference1.SendSmsSoap {
+    public partial class SendSmsSoapClient : System.ServiceModel.ClientBase<REX_MVC.ServiceReference1.SendSmsSoap>, REX_MVC.ServiceReference1.SendSmsSoap {
         
         public SendSmsSoapClient() {
         }
@@ -1145,40 +1145,40 @@ namespace RiceMill_MVC.ServiceReference1 {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        RiceMill_MVC.ServiceReference1.OneToOneBulkResponse RiceMill_MVC.ServiceReference1.SendSmsSoap.OneToOneBulk(RiceMill_MVC.ServiceReference1.OneToOneBulkRequest request) {
+        REX_MVC.ServiceReference1.OneToOneBulkResponse REX_MVC.ServiceReference1.SendSmsSoap.OneToOneBulk(REX_MVC.ServiceReference1.OneToOneBulkRequest request) {
             return base.Channel.OneToOneBulk(request);
         }
         
-        public string OneToOneBulk(RiceMill_MVC.ServiceReference1.MessageHeader messageHeader, RiceMill_MVC.ServiceReference1.WsSms[] wsSmses) {
-            RiceMill_MVC.ServiceReference1.OneToOneBulkRequest inValue = new RiceMill_MVC.ServiceReference1.OneToOneBulkRequest();
-            inValue.Body = new RiceMill_MVC.ServiceReference1.OneToOneBulkRequestBody();
+        public string OneToOneBulk(REX_MVC.ServiceReference1.MessageHeader messageHeader, REX_MVC.ServiceReference1.WsSms[] wsSmses) {
+            REX_MVC.ServiceReference1.OneToOneBulkRequest inValue = new REX_MVC.ServiceReference1.OneToOneBulkRequest();
+            inValue.Body = new REX_MVC.ServiceReference1.OneToOneBulkRequestBody();
             inValue.Body.messageHeader = messageHeader;
             inValue.Body.wsSmses = wsSmses;
-            RiceMill_MVC.ServiceReference1.OneToOneBulkResponse retVal = ((RiceMill_MVC.ServiceReference1.SendSmsSoap)(this)).OneToOneBulk(inValue);
+            REX_MVC.ServiceReference1.OneToOneBulkResponse retVal = ((REX_MVC.ServiceReference1.SendSmsSoap)(this)).OneToOneBulk(inValue);
             return retVal.Body.OneToOneBulkResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.OneToOneBulkResponse> RiceMill_MVC.ServiceReference1.SendSmsSoap.OneToOneBulkAsync(RiceMill_MVC.ServiceReference1.OneToOneBulkRequest request) {
+        System.Threading.Tasks.Task<REX_MVC.ServiceReference1.OneToOneBulkResponse> REX_MVC.ServiceReference1.SendSmsSoap.OneToOneBulkAsync(REX_MVC.ServiceReference1.OneToOneBulkRequest request) {
             return base.Channel.OneToOneBulkAsync(request);
         }
         
-        public System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.OneToOneBulkResponse> OneToOneBulkAsync(RiceMill_MVC.ServiceReference1.MessageHeader messageHeader, RiceMill_MVC.ServiceReference1.WsSms[] wsSmses) {
-            RiceMill_MVC.ServiceReference1.OneToOneBulkRequest inValue = new RiceMill_MVC.ServiceReference1.OneToOneBulkRequest();
-            inValue.Body = new RiceMill_MVC.ServiceReference1.OneToOneBulkRequestBody();
+        public System.Threading.Tasks.Task<REX_MVC.ServiceReference1.OneToOneBulkResponse> OneToOneBulkAsync(REX_MVC.ServiceReference1.MessageHeader messageHeader, REX_MVC.ServiceReference1.WsSms[] wsSmses) {
+            REX_MVC.ServiceReference1.OneToOneBulkRequest inValue = new REX_MVC.ServiceReference1.OneToOneBulkRequest();
+            inValue.Body = new REX_MVC.ServiceReference1.OneToOneBulkRequestBody();
             inValue.Body.messageHeader = messageHeader;
             inValue.Body.wsSmses = wsSmses;
-            return ((RiceMill_MVC.ServiceReference1.SendSmsSoap)(this)).OneToOneBulkAsync(inValue);
+            return ((REX_MVC.ServiceReference1.SendSmsSoap)(this)).OneToOneBulkAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        RiceMill_MVC.ServiceReference1.OneToOneResponse RiceMill_MVC.ServiceReference1.SendSmsSoap.OneToOne(RiceMill_MVC.ServiceReference1.OneToOneRequest request) {
+        REX_MVC.ServiceReference1.OneToOneResponse REX_MVC.ServiceReference1.SendSmsSoap.OneToOne(REX_MVC.ServiceReference1.OneToOneRequest request) {
             return base.Channel.OneToOne(request);
         }
         
         public string OneToOne(string userName, string userPassword, string mobileNumber, string smsText, string type, string maskName, string campaignName) {
-            RiceMill_MVC.ServiceReference1.OneToOneRequest inValue = new RiceMill_MVC.ServiceReference1.OneToOneRequest();
-            inValue.Body = new RiceMill_MVC.ServiceReference1.OneToOneRequestBody();
+            REX_MVC.ServiceReference1.OneToOneRequest inValue = new REX_MVC.ServiceReference1.OneToOneRequest();
+            inValue.Body = new REX_MVC.ServiceReference1.OneToOneRequestBody();
             inValue.Body.userName = userName;
             inValue.Body.userPassword = userPassword;
             inValue.Body.mobileNumber = mobileNumber;
@@ -1186,18 +1186,18 @@ namespace RiceMill_MVC.ServiceReference1 {
             inValue.Body.type = type;
             inValue.Body.maskName = maskName;
             inValue.Body.campaignName = campaignName;
-            RiceMill_MVC.ServiceReference1.OneToOneResponse retVal = ((RiceMill_MVC.ServiceReference1.SendSmsSoap)(this)).OneToOne(inValue);
+            REX_MVC.ServiceReference1.OneToOneResponse retVal = ((REX_MVC.ServiceReference1.SendSmsSoap)(this)).OneToOne(inValue);
             return retVal.Body.OneToOneResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.OneToOneResponse> RiceMill_MVC.ServiceReference1.SendSmsSoap.OneToOneAsync(RiceMill_MVC.ServiceReference1.OneToOneRequest request) {
+        System.Threading.Tasks.Task<REX_MVC.ServiceReference1.OneToOneResponse> REX_MVC.ServiceReference1.SendSmsSoap.OneToOneAsync(REX_MVC.ServiceReference1.OneToOneRequest request) {
             return base.Channel.OneToOneAsync(request);
         }
         
-        public System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.OneToOneResponse> OneToOneAsync(string userName, string userPassword, string mobileNumber, string smsText, string type, string maskName, string campaignName) {
-            RiceMill_MVC.ServiceReference1.OneToOneRequest inValue = new RiceMill_MVC.ServiceReference1.OneToOneRequest();
-            inValue.Body = new RiceMill_MVC.ServiceReference1.OneToOneRequestBody();
+        public System.Threading.Tasks.Task<REX_MVC.ServiceReference1.OneToOneResponse> OneToOneAsync(string userName, string userPassword, string mobileNumber, string smsText, string type, string maskName, string campaignName) {
+            REX_MVC.ServiceReference1.OneToOneRequest inValue = new REX_MVC.ServiceReference1.OneToOneRequest();
+            inValue.Body = new REX_MVC.ServiceReference1.OneToOneRequestBody();
             inValue.Body.userName = userName;
             inValue.Body.userPassword = userPassword;
             inValue.Body.mobileNumber = mobileNumber;
@@ -1205,17 +1205,17 @@ namespace RiceMill_MVC.ServiceReference1 {
             inValue.Body.type = type;
             inValue.Body.maskName = maskName;
             inValue.Body.campaignName = campaignName;
-            return ((RiceMill_MVC.ServiceReference1.SendSmsSoap)(this)).OneToOneAsync(inValue);
+            return ((REX_MVC.ServiceReference1.SendSmsSoap)(this)).OneToOneAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        RiceMill_MVC.ServiceReference1.OneToManyResponse RiceMill_MVC.ServiceReference1.SendSmsSoap.OneToMany(RiceMill_MVC.ServiceReference1.OneToManyRequest request) {
+        REX_MVC.ServiceReference1.OneToManyResponse REX_MVC.ServiceReference1.SendSmsSoap.OneToMany(REX_MVC.ServiceReference1.OneToManyRequest request) {
             return base.Channel.OneToMany(request);
         }
         
         public string OneToMany(string userName, string userPassword, string messageText, string numberList, string smsType, string maskName, string campaignName) {
-            RiceMill_MVC.ServiceReference1.OneToManyRequest inValue = new RiceMill_MVC.ServiceReference1.OneToManyRequest();
-            inValue.Body = new RiceMill_MVC.ServiceReference1.OneToManyRequestBody();
+            REX_MVC.ServiceReference1.OneToManyRequest inValue = new REX_MVC.ServiceReference1.OneToManyRequest();
+            inValue.Body = new REX_MVC.ServiceReference1.OneToManyRequestBody();
             inValue.Body.userName = userName;
             inValue.Body.userPassword = userPassword;
             inValue.Body.messageText = messageText;
@@ -1223,18 +1223,18 @@ namespace RiceMill_MVC.ServiceReference1 {
             inValue.Body.smsType = smsType;
             inValue.Body.maskName = maskName;
             inValue.Body.campaignName = campaignName;
-            RiceMill_MVC.ServiceReference1.OneToManyResponse retVal = ((RiceMill_MVC.ServiceReference1.SendSmsSoap)(this)).OneToMany(inValue);
+            REX_MVC.ServiceReference1.OneToManyResponse retVal = ((REX_MVC.ServiceReference1.SendSmsSoap)(this)).OneToMany(inValue);
             return retVal.Body.OneToManyResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.OneToManyResponse> RiceMill_MVC.ServiceReference1.SendSmsSoap.OneToManyAsync(RiceMill_MVC.ServiceReference1.OneToManyRequest request) {
+        System.Threading.Tasks.Task<REX_MVC.ServiceReference1.OneToManyResponse> REX_MVC.ServiceReference1.SendSmsSoap.OneToManyAsync(REX_MVC.ServiceReference1.OneToManyRequest request) {
             return base.Channel.OneToManyAsync(request);
         }
         
-        public System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.OneToManyResponse> OneToManyAsync(string userName, string userPassword, string messageText, string numberList, string smsType, string maskName, string campaignName) {
-            RiceMill_MVC.ServiceReference1.OneToManyRequest inValue = new RiceMill_MVC.ServiceReference1.OneToManyRequest();
-            inValue.Body = new RiceMill_MVC.ServiceReference1.OneToManyRequestBody();
+        public System.Threading.Tasks.Task<REX_MVC.ServiceReference1.OneToManyResponse> OneToManyAsync(string userName, string userPassword, string messageText, string numberList, string smsType, string maskName, string campaignName) {
+            REX_MVC.ServiceReference1.OneToManyRequest inValue = new REX_MVC.ServiceReference1.OneToManyRequest();
+            inValue.Body = new REX_MVC.ServiceReference1.OneToManyRequestBody();
             inValue.Body.userName = userName;
             inValue.Body.userPassword = userPassword;
             inValue.Body.messageText = messageText;
@@ -1242,233 +1242,233 @@ namespace RiceMill_MVC.ServiceReference1 {
             inValue.Body.smsType = smsType;
             inValue.Body.maskName = maskName;
             inValue.Body.campaignName = campaignName;
-            return ((RiceMill_MVC.ServiceReference1.SendSmsSoap)(this)).OneToManyAsync(inValue);
+            return ((REX_MVC.ServiceReference1.SendSmsSoap)(this)).OneToManyAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        RiceMill_MVC.ServiceReference1.DeliveryStatusResponse RiceMill_MVC.ServiceReference1.SendSmsSoap.DeliveryStatus(RiceMill_MVC.ServiceReference1.DeliveryStatusRequest request) {
+        REX_MVC.ServiceReference1.DeliveryStatusResponse REX_MVC.ServiceReference1.SendSmsSoap.DeliveryStatus(REX_MVC.ServiceReference1.DeliveryStatusRequest request) {
             return base.Channel.DeliveryStatus(request);
         }
         
         public string DeliveryStatus(string userName, string userPassword, string responseId) {
-            RiceMill_MVC.ServiceReference1.DeliveryStatusRequest inValue = new RiceMill_MVC.ServiceReference1.DeliveryStatusRequest();
-            inValue.Body = new RiceMill_MVC.ServiceReference1.DeliveryStatusRequestBody();
+            REX_MVC.ServiceReference1.DeliveryStatusRequest inValue = new REX_MVC.ServiceReference1.DeliveryStatusRequest();
+            inValue.Body = new REX_MVC.ServiceReference1.DeliveryStatusRequestBody();
             inValue.Body.userName = userName;
             inValue.Body.userPassword = userPassword;
             inValue.Body.responseId = responseId;
-            RiceMill_MVC.ServiceReference1.DeliveryStatusResponse retVal = ((RiceMill_MVC.ServiceReference1.SendSmsSoap)(this)).DeliveryStatus(inValue);
+            REX_MVC.ServiceReference1.DeliveryStatusResponse retVal = ((REX_MVC.ServiceReference1.SendSmsSoap)(this)).DeliveryStatus(inValue);
             return retVal.Body.DeliveryStatusResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.DeliveryStatusResponse> RiceMill_MVC.ServiceReference1.SendSmsSoap.DeliveryStatusAsync(RiceMill_MVC.ServiceReference1.DeliveryStatusRequest request) {
+        System.Threading.Tasks.Task<REX_MVC.ServiceReference1.DeliveryStatusResponse> REX_MVC.ServiceReference1.SendSmsSoap.DeliveryStatusAsync(REX_MVC.ServiceReference1.DeliveryStatusRequest request) {
             return base.Channel.DeliveryStatusAsync(request);
         }
         
-        public System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.DeliveryStatusResponse> DeliveryStatusAsync(string userName, string userPassword, string responseId) {
-            RiceMill_MVC.ServiceReference1.DeliveryStatusRequest inValue = new RiceMill_MVC.ServiceReference1.DeliveryStatusRequest();
-            inValue.Body = new RiceMill_MVC.ServiceReference1.DeliveryStatusRequestBody();
+        public System.Threading.Tasks.Task<REX_MVC.ServiceReference1.DeliveryStatusResponse> DeliveryStatusAsync(string userName, string userPassword, string responseId) {
+            REX_MVC.ServiceReference1.DeliveryStatusRequest inValue = new REX_MVC.ServiceReference1.DeliveryStatusRequest();
+            inValue.Body = new REX_MVC.ServiceReference1.DeliveryStatusRequestBody();
             inValue.Body.userName = userName;
             inValue.Body.userPassword = userPassword;
             inValue.Body.responseId = responseId;
-            return ((RiceMill_MVC.ServiceReference1.SendSmsSoap)(this)).DeliveryStatusAsync(inValue);
+            return ((REX_MVC.ServiceReference1.SendSmsSoap)(this)).DeliveryStatusAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        RiceMill_MVC.ServiceReference1.GetBalanceResponse RiceMill_MVC.ServiceReference1.SendSmsSoap.GetBalance(RiceMill_MVC.ServiceReference1.GetBalanceRequest request) {
+        REX_MVC.ServiceReference1.GetBalanceResponse REX_MVC.ServiceReference1.SendSmsSoap.GetBalance(REX_MVC.ServiceReference1.GetBalanceRequest request) {
             return base.Channel.GetBalance(request);
         }
         
         public string GetBalance(string userName, string userPassword) {
-            RiceMill_MVC.ServiceReference1.GetBalanceRequest inValue = new RiceMill_MVC.ServiceReference1.GetBalanceRequest();
-            inValue.Body = new RiceMill_MVC.ServiceReference1.GetBalanceRequestBody();
+            REX_MVC.ServiceReference1.GetBalanceRequest inValue = new REX_MVC.ServiceReference1.GetBalanceRequest();
+            inValue.Body = new REX_MVC.ServiceReference1.GetBalanceRequestBody();
             inValue.Body.userName = userName;
             inValue.Body.userPassword = userPassword;
-            RiceMill_MVC.ServiceReference1.GetBalanceResponse retVal = ((RiceMill_MVC.ServiceReference1.SendSmsSoap)(this)).GetBalance(inValue);
+            REX_MVC.ServiceReference1.GetBalanceResponse retVal = ((REX_MVC.ServiceReference1.SendSmsSoap)(this)).GetBalance(inValue);
             return retVal.Body.GetBalanceResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.GetBalanceResponse> RiceMill_MVC.ServiceReference1.SendSmsSoap.GetBalanceAsync(RiceMill_MVC.ServiceReference1.GetBalanceRequest request) {
+        System.Threading.Tasks.Task<REX_MVC.ServiceReference1.GetBalanceResponse> REX_MVC.ServiceReference1.SendSmsSoap.GetBalanceAsync(REX_MVC.ServiceReference1.GetBalanceRequest request) {
             return base.Channel.GetBalanceAsync(request);
         }
         
-        public System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.GetBalanceResponse> GetBalanceAsync(string userName, string userPassword) {
-            RiceMill_MVC.ServiceReference1.GetBalanceRequest inValue = new RiceMill_MVC.ServiceReference1.GetBalanceRequest();
-            inValue.Body = new RiceMill_MVC.ServiceReference1.GetBalanceRequestBody();
+        public System.Threading.Tasks.Task<REX_MVC.ServiceReference1.GetBalanceResponse> GetBalanceAsync(string userName, string userPassword) {
+            REX_MVC.ServiceReference1.GetBalanceRequest inValue = new REX_MVC.ServiceReference1.GetBalanceRequest();
+            inValue.Body = new REX_MVC.ServiceReference1.GetBalanceRequestBody();
             inValue.Body.userName = userName;
             inValue.Body.userPassword = userPassword;
-            return ((RiceMill_MVC.ServiceReference1.SendSmsSoap)(this)).GetBalanceAsync(inValue);
+            return ((REX_MVC.ServiceReference1.SendSmsSoap)(this)).GetBalanceAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        RiceMill_MVC.ServiceReference1.GetMaskResponse RiceMill_MVC.ServiceReference1.SendSmsSoap.GetMask(RiceMill_MVC.ServiceReference1.GetMaskRequest request) {
+        REX_MVC.ServiceReference1.GetMaskResponse REX_MVC.ServiceReference1.SendSmsSoap.GetMask(REX_MVC.ServiceReference1.GetMaskRequest request) {
             return base.Channel.GetMask(request);
         }
         
         public string GetMask(string userName, string userPassword) {
-            RiceMill_MVC.ServiceReference1.GetMaskRequest inValue = new RiceMill_MVC.ServiceReference1.GetMaskRequest();
-            inValue.Body = new RiceMill_MVC.ServiceReference1.GetMaskRequestBody();
+            REX_MVC.ServiceReference1.GetMaskRequest inValue = new REX_MVC.ServiceReference1.GetMaskRequest();
+            inValue.Body = new REX_MVC.ServiceReference1.GetMaskRequestBody();
             inValue.Body.userName = userName;
             inValue.Body.userPassword = userPassword;
-            RiceMill_MVC.ServiceReference1.GetMaskResponse retVal = ((RiceMill_MVC.ServiceReference1.SendSmsSoap)(this)).GetMask(inValue);
+            REX_MVC.ServiceReference1.GetMaskResponse retVal = ((REX_MVC.ServiceReference1.SendSmsSoap)(this)).GetMask(inValue);
             return retVal.Body.GetMaskResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.GetMaskResponse> RiceMill_MVC.ServiceReference1.SendSmsSoap.GetMaskAsync(RiceMill_MVC.ServiceReference1.GetMaskRequest request) {
+        System.Threading.Tasks.Task<REX_MVC.ServiceReference1.GetMaskResponse> REX_MVC.ServiceReference1.SendSmsSoap.GetMaskAsync(REX_MVC.ServiceReference1.GetMaskRequest request) {
             return base.Channel.GetMaskAsync(request);
         }
         
-        public System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.GetMaskResponse> GetMaskAsync(string userName, string userPassword) {
-            RiceMill_MVC.ServiceReference1.GetMaskRequest inValue = new RiceMill_MVC.ServiceReference1.GetMaskRequest();
-            inValue.Body = new RiceMill_MVC.ServiceReference1.GetMaskRequestBody();
+        public System.Threading.Tasks.Task<REX_MVC.ServiceReference1.GetMaskResponse> GetMaskAsync(string userName, string userPassword) {
+            REX_MVC.ServiceReference1.GetMaskRequest inValue = new REX_MVC.ServiceReference1.GetMaskRequest();
+            inValue.Body = new REX_MVC.ServiceReference1.GetMaskRequestBody();
             inValue.Body.userName = userName;
             inValue.Body.userPassword = userPassword;
-            return ((RiceMill_MVC.ServiceReference1.SendSmsSoap)(this)).GetMaskAsync(inValue);
+            return ((REX_MVC.ServiceReference1.SendSmsSoap)(this)).GetMaskAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        RiceMill_MVC.ServiceReference1.NumberSmsResponse RiceMill_MVC.ServiceReference1.SendSmsSoap.NumberSms(RiceMill_MVC.ServiceReference1.NumberSmsRequest request) {
+        REX_MVC.ServiceReference1.NumberSmsResponse REX_MVC.ServiceReference1.SendSmsSoap.NumberSms(REX_MVC.ServiceReference1.NumberSmsRequest request) {
             return base.Channel.NumberSms(request);
         }
         
         public string NumberSms(string apiKey, string messageText, string numberList, string smsType, string maskName, string campaignName) {
-            RiceMill_MVC.ServiceReference1.NumberSmsRequest inValue = new RiceMill_MVC.ServiceReference1.NumberSmsRequest();
-            inValue.Body = new RiceMill_MVC.ServiceReference1.NumberSmsRequestBody();
+            REX_MVC.ServiceReference1.NumberSmsRequest inValue = new REX_MVC.ServiceReference1.NumberSmsRequest();
+            inValue.Body = new REX_MVC.ServiceReference1.NumberSmsRequestBody();
             inValue.Body.apiKey = apiKey;
             inValue.Body.messageText = messageText;
             inValue.Body.numberList = numberList;
             inValue.Body.smsType = smsType;
             inValue.Body.maskName = maskName;
             inValue.Body.campaignName = campaignName;
-            RiceMill_MVC.ServiceReference1.NumberSmsResponse retVal = ((RiceMill_MVC.ServiceReference1.SendSmsSoap)(this)).NumberSms(inValue);
+            REX_MVC.ServiceReference1.NumberSmsResponse retVal = ((REX_MVC.ServiceReference1.SendSmsSoap)(this)).NumberSms(inValue);
             return retVal.Body.NumberSmsResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.NumberSmsResponse> RiceMill_MVC.ServiceReference1.SendSmsSoap.NumberSmsAsync(RiceMill_MVC.ServiceReference1.NumberSmsRequest request) {
+        System.Threading.Tasks.Task<REX_MVC.ServiceReference1.NumberSmsResponse> REX_MVC.ServiceReference1.SendSmsSoap.NumberSmsAsync(REX_MVC.ServiceReference1.NumberSmsRequest request) {
             return base.Channel.NumberSmsAsync(request);
         }
         
-        public System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.NumberSmsResponse> NumberSmsAsync(string apiKey, string messageText, string numberList, string smsType, string maskName, string campaignName) {
-            RiceMill_MVC.ServiceReference1.NumberSmsRequest inValue = new RiceMill_MVC.ServiceReference1.NumberSmsRequest();
-            inValue.Body = new RiceMill_MVC.ServiceReference1.NumberSmsRequestBody();
+        public System.Threading.Tasks.Task<REX_MVC.ServiceReference1.NumberSmsResponse> NumberSmsAsync(string apiKey, string messageText, string numberList, string smsType, string maskName, string campaignName) {
+            REX_MVC.ServiceReference1.NumberSmsRequest inValue = new REX_MVC.ServiceReference1.NumberSmsRequest();
+            inValue.Body = new REX_MVC.ServiceReference1.NumberSmsRequestBody();
             inValue.Body.apiKey = apiKey;
             inValue.Body.messageText = messageText;
             inValue.Body.numberList = numberList;
             inValue.Body.smsType = smsType;
             inValue.Body.maskName = maskName;
             inValue.Body.campaignName = campaignName;
-            return ((RiceMill_MVC.ServiceReference1.SendSmsSoap)(this)).NumberSmsAsync(inValue);
+            return ((REX_MVC.ServiceReference1.SendSmsSoap)(this)).NumberSmsAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        RiceMill_MVC.ServiceReference1.ListSmsResponse RiceMill_MVC.ServiceReference1.SendSmsSoap.ListSms(RiceMill_MVC.ServiceReference1.ListSmsRequest request) {
+        REX_MVC.ServiceReference1.ListSmsResponse REX_MVC.ServiceReference1.SendSmsSoap.ListSms(REX_MVC.ServiceReference1.ListSmsRequest request) {
             return base.Channel.ListSms(request);
         }
         
-        public string ListSms(string apiKey, RiceMill_MVC.ServiceReference1.WsSms[] wsSmses, string maskName, string campaignName) {
-            RiceMill_MVC.ServiceReference1.ListSmsRequest inValue = new RiceMill_MVC.ServiceReference1.ListSmsRequest();
-            inValue.Body = new RiceMill_MVC.ServiceReference1.ListSmsRequestBody();
+        public string ListSms(string apiKey, REX_MVC.ServiceReference1.WsSms[] wsSmses, string maskName, string campaignName) {
+            REX_MVC.ServiceReference1.ListSmsRequest inValue = new REX_MVC.ServiceReference1.ListSmsRequest();
+            inValue.Body = new REX_MVC.ServiceReference1.ListSmsRequestBody();
             inValue.Body.apiKey = apiKey;
             inValue.Body.wsSmses = wsSmses;
             inValue.Body.maskName = maskName;
             inValue.Body.campaignName = campaignName;
-            RiceMill_MVC.ServiceReference1.ListSmsResponse retVal = ((RiceMill_MVC.ServiceReference1.SendSmsSoap)(this)).ListSms(inValue);
+            REX_MVC.ServiceReference1.ListSmsResponse retVal = ((REX_MVC.ServiceReference1.SendSmsSoap)(this)).ListSms(inValue);
             return retVal.Body.ListSmsResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.ListSmsResponse> RiceMill_MVC.ServiceReference1.SendSmsSoap.ListSmsAsync(RiceMill_MVC.ServiceReference1.ListSmsRequest request) {
+        System.Threading.Tasks.Task<REX_MVC.ServiceReference1.ListSmsResponse> REX_MVC.ServiceReference1.SendSmsSoap.ListSmsAsync(REX_MVC.ServiceReference1.ListSmsRequest request) {
             return base.Channel.ListSmsAsync(request);
         }
         
-        public System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.ListSmsResponse> ListSmsAsync(string apiKey, RiceMill_MVC.ServiceReference1.WsSms[] wsSmses, string maskName, string campaignName) {
-            RiceMill_MVC.ServiceReference1.ListSmsRequest inValue = new RiceMill_MVC.ServiceReference1.ListSmsRequest();
-            inValue.Body = new RiceMill_MVC.ServiceReference1.ListSmsRequestBody();
+        public System.Threading.Tasks.Task<REX_MVC.ServiceReference1.ListSmsResponse> ListSmsAsync(string apiKey, REX_MVC.ServiceReference1.WsSms[] wsSmses, string maskName, string campaignName) {
+            REX_MVC.ServiceReference1.ListSmsRequest inValue = new REX_MVC.ServiceReference1.ListSmsRequest();
+            inValue.Body = new REX_MVC.ServiceReference1.ListSmsRequestBody();
             inValue.Body.apiKey = apiKey;
             inValue.Body.wsSmses = wsSmses;
             inValue.Body.maskName = maskName;
             inValue.Body.campaignName = campaignName;
-            return ((RiceMill_MVC.ServiceReference1.SendSmsSoap)(this)).ListSmsAsync(inValue);
+            return ((REX_MVC.ServiceReference1.SendSmsSoap)(this)).ListSmsAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        RiceMill_MVC.ServiceReference1.SMSDeliveryStatusResponse RiceMill_MVC.ServiceReference1.SendSmsSoap.SMSDeliveryStatus(RiceMill_MVC.ServiceReference1.SMSDeliveryStatusRequest request) {
+        REX_MVC.ServiceReference1.SMSDeliveryStatusResponse REX_MVC.ServiceReference1.SendSmsSoap.SMSDeliveryStatus(REX_MVC.ServiceReference1.SMSDeliveryStatusRequest request) {
             return base.Channel.SMSDeliveryStatus(request);
         }
         
         public string SMSDeliveryStatus(string apiKey, string responseId) {
-            RiceMill_MVC.ServiceReference1.SMSDeliveryStatusRequest inValue = new RiceMill_MVC.ServiceReference1.SMSDeliveryStatusRequest();
-            inValue.Body = new RiceMill_MVC.ServiceReference1.SMSDeliveryStatusRequestBody();
+            REX_MVC.ServiceReference1.SMSDeliveryStatusRequest inValue = new REX_MVC.ServiceReference1.SMSDeliveryStatusRequest();
+            inValue.Body = new REX_MVC.ServiceReference1.SMSDeliveryStatusRequestBody();
             inValue.Body.apiKey = apiKey;
             inValue.Body.responseId = responseId;
-            RiceMill_MVC.ServiceReference1.SMSDeliveryStatusResponse retVal = ((RiceMill_MVC.ServiceReference1.SendSmsSoap)(this)).SMSDeliveryStatus(inValue);
+            REX_MVC.ServiceReference1.SMSDeliveryStatusResponse retVal = ((REX_MVC.ServiceReference1.SendSmsSoap)(this)).SMSDeliveryStatus(inValue);
             return retVal.Body.SMSDeliveryStatusResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.SMSDeliveryStatusResponse> RiceMill_MVC.ServiceReference1.SendSmsSoap.SMSDeliveryStatusAsync(RiceMill_MVC.ServiceReference1.SMSDeliveryStatusRequest request) {
+        System.Threading.Tasks.Task<REX_MVC.ServiceReference1.SMSDeliveryStatusResponse> REX_MVC.ServiceReference1.SendSmsSoap.SMSDeliveryStatusAsync(REX_MVC.ServiceReference1.SMSDeliveryStatusRequest request) {
             return base.Channel.SMSDeliveryStatusAsync(request);
         }
         
-        public System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.SMSDeliveryStatusResponse> SMSDeliveryStatusAsync(string apiKey, string responseId) {
-            RiceMill_MVC.ServiceReference1.SMSDeliveryStatusRequest inValue = new RiceMill_MVC.ServiceReference1.SMSDeliveryStatusRequest();
-            inValue.Body = new RiceMill_MVC.ServiceReference1.SMSDeliveryStatusRequestBody();
+        public System.Threading.Tasks.Task<REX_MVC.ServiceReference1.SMSDeliveryStatusResponse> SMSDeliveryStatusAsync(string apiKey, string responseId) {
+            REX_MVC.ServiceReference1.SMSDeliveryStatusRequest inValue = new REX_MVC.ServiceReference1.SMSDeliveryStatusRequest();
+            inValue.Body = new REX_MVC.ServiceReference1.SMSDeliveryStatusRequestBody();
             inValue.Body.apiKey = apiKey;
             inValue.Body.responseId = responseId;
-            return ((RiceMill_MVC.ServiceReference1.SendSmsSoap)(this)).SMSDeliveryStatusAsync(inValue);
+            return ((REX_MVC.ServiceReference1.SendSmsSoap)(this)).SMSDeliveryStatusAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        RiceMill_MVC.ServiceReference1.GetCurrentBalanceResponse RiceMill_MVC.ServiceReference1.SendSmsSoap.GetCurrentBalance(RiceMill_MVC.ServiceReference1.GetCurrentBalanceRequest request) {
+        REX_MVC.ServiceReference1.GetCurrentBalanceResponse REX_MVC.ServiceReference1.SendSmsSoap.GetCurrentBalance(REX_MVC.ServiceReference1.GetCurrentBalanceRequest request) {
             return base.Channel.GetCurrentBalance(request);
         }
         
         public string GetCurrentBalance(string apiKey) {
-            RiceMill_MVC.ServiceReference1.GetCurrentBalanceRequest inValue = new RiceMill_MVC.ServiceReference1.GetCurrentBalanceRequest();
-            inValue.Body = new RiceMill_MVC.ServiceReference1.GetCurrentBalanceRequestBody();
+            REX_MVC.ServiceReference1.GetCurrentBalanceRequest inValue = new REX_MVC.ServiceReference1.GetCurrentBalanceRequest();
+            inValue.Body = new REX_MVC.ServiceReference1.GetCurrentBalanceRequestBody();
             inValue.Body.apiKey = apiKey;
-            RiceMill_MVC.ServiceReference1.GetCurrentBalanceResponse retVal = ((RiceMill_MVC.ServiceReference1.SendSmsSoap)(this)).GetCurrentBalance(inValue);
+            REX_MVC.ServiceReference1.GetCurrentBalanceResponse retVal = ((REX_MVC.ServiceReference1.SendSmsSoap)(this)).GetCurrentBalance(inValue);
             return retVal.Body.GetCurrentBalanceResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.GetCurrentBalanceResponse> RiceMill_MVC.ServiceReference1.SendSmsSoap.GetCurrentBalanceAsync(RiceMill_MVC.ServiceReference1.GetCurrentBalanceRequest request) {
+        System.Threading.Tasks.Task<REX_MVC.ServiceReference1.GetCurrentBalanceResponse> REX_MVC.ServiceReference1.SendSmsSoap.GetCurrentBalanceAsync(REX_MVC.ServiceReference1.GetCurrentBalanceRequest request) {
             return base.Channel.GetCurrentBalanceAsync(request);
         }
         
-        public System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.GetCurrentBalanceResponse> GetCurrentBalanceAsync(string apiKey) {
-            RiceMill_MVC.ServiceReference1.GetCurrentBalanceRequest inValue = new RiceMill_MVC.ServiceReference1.GetCurrentBalanceRequest();
-            inValue.Body = new RiceMill_MVC.ServiceReference1.GetCurrentBalanceRequestBody();
+        public System.Threading.Tasks.Task<REX_MVC.ServiceReference1.GetCurrentBalanceResponse> GetCurrentBalanceAsync(string apiKey) {
+            REX_MVC.ServiceReference1.GetCurrentBalanceRequest inValue = new REX_MVC.ServiceReference1.GetCurrentBalanceRequest();
+            inValue.Body = new REX_MVC.ServiceReference1.GetCurrentBalanceRequestBody();
             inValue.Body.apiKey = apiKey;
-            return ((RiceMill_MVC.ServiceReference1.SendSmsSoap)(this)).GetCurrentBalanceAsync(inValue);
+            return ((REX_MVC.ServiceReference1.SendSmsSoap)(this)).GetCurrentBalanceAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        RiceMill_MVC.ServiceReference1.GetAllMaskResponse RiceMill_MVC.ServiceReference1.SendSmsSoap.GetAllMask(RiceMill_MVC.ServiceReference1.GetAllMaskRequest request) {
+        REX_MVC.ServiceReference1.GetAllMaskResponse REX_MVC.ServiceReference1.SendSmsSoap.GetAllMask(REX_MVC.ServiceReference1.GetAllMaskRequest request) {
             return base.Channel.GetAllMask(request);
         }
         
         public string GetAllMask(string apiKey) {
-            RiceMill_MVC.ServiceReference1.GetAllMaskRequest inValue = new RiceMill_MVC.ServiceReference1.GetAllMaskRequest();
-            inValue.Body = new RiceMill_MVC.ServiceReference1.GetAllMaskRequestBody();
+            REX_MVC.ServiceReference1.GetAllMaskRequest inValue = new REX_MVC.ServiceReference1.GetAllMaskRequest();
+            inValue.Body = new REX_MVC.ServiceReference1.GetAllMaskRequestBody();
             inValue.Body.apiKey = apiKey;
-            RiceMill_MVC.ServiceReference1.GetAllMaskResponse retVal = ((RiceMill_MVC.ServiceReference1.SendSmsSoap)(this)).GetAllMask(inValue);
+            REX_MVC.ServiceReference1.GetAllMaskResponse retVal = ((REX_MVC.ServiceReference1.SendSmsSoap)(this)).GetAllMask(inValue);
             return retVal.Body.GetAllMaskResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.GetAllMaskResponse> RiceMill_MVC.ServiceReference1.SendSmsSoap.GetAllMaskAsync(RiceMill_MVC.ServiceReference1.GetAllMaskRequest request) {
+        System.Threading.Tasks.Task<REX_MVC.ServiceReference1.GetAllMaskResponse> REX_MVC.ServiceReference1.SendSmsSoap.GetAllMaskAsync(REX_MVC.ServiceReference1.GetAllMaskRequest request) {
             return base.Channel.GetAllMaskAsync(request);
         }
         
-        public System.Threading.Tasks.Task<RiceMill_MVC.ServiceReference1.GetAllMaskResponse> GetAllMaskAsync(string apiKey) {
-            RiceMill_MVC.ServiceReference1.GetAllMaskRequest inValue = new RiceMill_MVC.ServiceReference1.GetAllMaskRequest();
-            inValue.Body = new RiceMill_MVC.ServiceReference1.GetAllMaskRequestBody();
+        public System.Threading.Tasks.Task<REX_MVC.ServiceReference1.GetAllMaskResponse> GetAllMaskAsync(string apiKey) {
+            REX_MVC.ServiceReference1.GetAllMaskRequest inValue = new REX_MVC.ServiceReference1.GetAllMaskRequest();
+            inValue.Body = new REX_MVC.ServiceReference1.GetAllMaskRequestBody();
             inValue.Body.apiKey = apiKey;
-            return ((RiceMill_MVC.ServiceReference1.SendSmsSoap)(this)).GetAllMaskAsync(inValue);
+            return ((REX_MVC.ServiceReference1.SendSmsSoap)(this)).GetAllMaskAsync(inValue);
         }
     }
 }

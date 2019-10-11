@@ -1,13 +1,13 @@
-﻿using RiceMill_MVC.BAL;
-using RiceMill_MVC.BLL;
-using RiceMill_MVC.Models;
+﻿using REX_MVC.BAL;
+using REX_MVC.BLL;
+using REX_MVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace RiceMill_MVC.Controllers
+namespace REX_MVC.Controllers
 {
     public class ReceiptController : Controller
     {

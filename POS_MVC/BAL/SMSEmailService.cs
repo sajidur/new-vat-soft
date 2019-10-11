@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using RiceMill_MVC.ServiceReference1;
+using REX_MVC.ServiceReference1;
 using RestSharp;
 using System.Configuration;
 
-namespace RiceMill_MVC.BAL
+namespace REX_MVC.BAL
 {
     public class SMSEmailService
     {

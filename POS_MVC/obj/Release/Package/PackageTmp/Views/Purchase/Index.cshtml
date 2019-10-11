@@ -92,6 +92,7 @@
                                     <td>Rate</td>                               
                                     <td>Total Amount </td>
                                     <td>Godown</td>
+                                    <td></td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -114,8 +115,8 @@
                                     <td class="col-md-2">
                                         <select class="form-control" id="ddlWareHouse" name="ddlWareHouse"></select>
                                     </td>
-                                    <td class="col-sm-1">
-                                        <input type="button" class="btn btn-primary " id="btnAdd" name="btnAdd" value="Add" />
+                                    <td class="col-md-2">
+                                        <button class="btn btn-w-m btn-info" data-style="expand-left" id="btnAdd" type="button"><i class="fa fa-save"></i>Add</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -158,9 +159,10 @@
         <th> </th>
         <th>Item</th>
         <th>Quantity</th>
-        <th>Unit</th>
         <th>Rate</th>
-        <th>Total Amount </th>
+        <th>Tax </th>
+        <th>SD </th>
+        <th>Total Amount</th>
         <th>Action </th>
         </thead>
         <tbody>
@@ -168,10 +170,10 @@
         <tr>
                 <td>{{countAddedProductCount}}</td>
                 <td>{{Item}}</td>
-                <td> {{TotalBale}}</td>
-                <td> {{QtyInBale}}</td>
-                <td> {{WeightInKG}}</td>
-                <td> {{Amount}}</td>              
+                <td> {{Quantity}}</td>              
+                <td> {{Amount}}</td>
+                <td> {{TaxRate}}</td>
+                <td> {{SDRate}}</td>              
                 <td> {{TotalAmount}}</td>
                 <td>
                     <a class="btn btn-danger" onclick="OnDeleteProduct('{{countAddedProductCount}}')"><i class="fa fa-trash-o"></i></a>
@@ -182,9 +184,6 @@
     </table>
 </script>
 <script>
-    function calculateRow(row) {
-        var price = +row.find('input[name^="price"]').val();
-    }
     function calculateGrandTotal() {
         var grandTotal = 0;
         $("table.order-list").find('input[name^="price"]').each(function () {
@@ -192,9 +191,6 @@
         });
         $("#grandtotal").text(grandTotal.toFixed(2));
     }
-    $(document).ready(function () {
-        // LoadAccountLedgerList(13, "ddlExpenseHead");
-    });
 </script>
 <script src="~/Scripts/app/CommonLoader.js"></script>
 <script src="~/Scripts/app/Purchase.js"></script>

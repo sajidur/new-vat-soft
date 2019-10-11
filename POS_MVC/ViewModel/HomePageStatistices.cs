@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using RiceMill_MVC.Models;
-using RiceMill_MVC.ViewModel;
+using REX_MVC.Models;
+using REX_MVC.ViewModel;
 
-namespace RiceMill_MVC.Controllers
+namespace REX_MVC.Controllers
 {
     public class HomePageStatistices
     {

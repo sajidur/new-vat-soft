@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace RiceMill_MVC.Report {
+namespace REX_MVC.Report {
     
     
     /// <summary>
@@ -10686,7 +10686,7 @@ namespace RiceMill_MVC.Report {
         }
     }
 }
-namespace RiceMill_MVC.Report.mvcReportTableAdapters {
+namespace REX_MVC.Report.mvcReportTableAdapters {
     
     
     /// <summary>

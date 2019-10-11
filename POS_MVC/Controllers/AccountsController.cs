@@ -1,11 +1,11 @@
-﻿using RiceMill_MVC.BAL;
+﻿using REX_MVC.BAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace RiceMill_MVC.Controllers
+namespace REX_MVC.Controllers
 {
     public class AccountsController : Controller
     {

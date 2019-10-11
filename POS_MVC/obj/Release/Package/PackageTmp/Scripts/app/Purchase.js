@@ -12,74 +12,23 @@ $(document).ready(function () {
     $("#div-expense-add").empty().html(templateWithExpense);
 
     Calculation();
-    CalculationExpense();
 });
 function Calculation()
 {
-    var BaleQty = $("#txtBaleQty").val();
-    var QtyPerBale = $("#txtQtyPerBale").val();
-    var UnitStyle = $("#txtUnitStyle").val();
     var amount = $("#txtAmount").val();
-    if (BaleQty=='') {
-        BaleQty = 0;
-    }
-    if (QtyPerBale == '') {
-        QtyPerBale = 0;
-    }
-    if (UnitStyle == '') {
-        UnitStyle = 1;
-    }
     if (amount == '') {
         amount = 0;
     }
-    var totalInKG = parseFloat(QtyPerBale * BaleQty);
-    $("#txtTotalinKG").val(totalInKG.toFixed(2));
-    var totalQty = parseFloat(totalInKG / UnitStyle);
-    $("#txtTotalQty").val(totalQty.toFixed(2));
+    var totalQty = parseFloat($("#txtTotalQty").val());
     var totalAmount = parseFloat(totalQty * amount);
     $("#txtTotalAmount").val(totalAmount.toFixed(2));
 }
 
-function CalculationExpense() {
-    var ExpenseRate = $("#txtExpenseRate").val();
-    var ExpenseAmount = $("#txtExpenseAmount").val();
-    if (ExpenseRate == '') {
-        ExpenseRate = 0;
-        $("#txtExpenseRate").val('0');
-    }
-    if (ExpenseAmount == '') {
-        ExpenseAmount = 0;
-        $("#txtExpenseAmount").val('0');
-    }
-    var totalExpenseAmount = ExpenseRate * ExpenseAmount;
-    $("#txtExpenseTotalAmount").val(totalExpenseAmount);
-}
-
-$("#txtBaleQty").on("propertychange change keyup paste input", function () {
-    // do stuff;
-    Calculation();
-});
-$("#txtQtyPerBale").on("propertychange change keyup paste input", function () {
-    // do stuff;
-    Calculation();
-});
-$("#txtUnitStyle").on("propertychange change keyup paste input", function () {
-    // do stuff;
-    Calculation();
-});
 $("#txtAmount").on("propertychange change keyup paste input", function () {
     // do stuff;
     Calculation();
 });
 
-$("#txtExpenseRate").on("propertychange change keyup paste input", function () {
-    // do stuff;
-    CalculationExpense();
-});
-$("#txtExpenseAmount").on("propertychange change keyup paste input", function () {
-    // do stuff;
-    CalculationExpense();
-});
 $("#txtDiscount").on("propertychange change keyup paste input", function () {
     GrandTotal();
 });
@@ -91,13 +40,8 @@ $("#btnAdd").click(function () {
     var ProductId = $("#ddlItem option:selected").val();
     //var ProductId = 6;
     var WarehouseId = $("#ddlWareHouse option:selected").val();
-    //var WarehouseId = 1;
-    var TotalBale = $("#txtBaleQty").val();
-    var QtyInBale = $("#txtQtyPerBale").val();
-    var WeightInKG = $("#txtTotalinKG").val();
-    var WeightType = $("#txtUnitStyle").val();
-    var WeightInMon = $("#txtTotalQty").val();
-    var Amount = $("#txtAmount").val();
+    var Quantity = $("#txtTotalQty").val();
+    var rate = $("#txtAmount").val();
     var TotalAmount = $("#txtTotalAmount").val();
     if (WarehouseId <= 0) {
         ShowNotification("3", "Select a godown!!");
@@ -107,53 +51,31 @@ $("#btnAdd").click(function () {
         ShowNotification("3", "Select a product!!");
         return;
     }
-    if (WeightInKG <= 0) {
-        ShowNotification("3", "qty Emplty!!");
-        return;
-    }
-    if (Amount <= 0) {
+    if (rate <= 0) {
         ShowNotification("3", "amount Emplty!!");
         return;
     }
+    var productA = {};
+    allproduct.forEach((product) => {
+        if (product.Id == Id) {
+                productA = product;
+            }
+    });
     //var object = {Id:Id, Item: item, BaleQty: BaleQty, QtyPerBale: QtyPerBale, UnitStyle: UnitStyle, Amount: Amount, TotalKg: TotalKg, TotalQty: TotalQty, TotalAmount: TotalAmount };
-    var object = { countAddedProductCount: countAddedProductCount, Id: Id, Item: item, ProductId: ProductId, WarehouseId: WarehouseId, TotalBale: TotalBale, QtyInBale: QtyInBale, WeightInKG: WeightInKG, WeightType: WeightType, WeightInMon: WeightInMon, Amount: Amount, TotalQty: WeightInMon, TotalAmount: TotalAmount };
+    var tax=TotalAmount/productA.TaxRate;
+    var sd=TotalAmount/productA.SDRate
+    var amount=parseFloat(TotalAmount)+ tax+sd;
+   // TotalAmount += parseFloat(sd);
+    var object = { countAddedProductCount: countAddedProductCount, Id: Id, Item: item, ProductId: ProductId, WarehouseId: WarehouseId, Amount: rate, Quantity: Quantity, TaxRate: tax, SDRate: sd, TotalAmount: amount };
     details.push(object);
     var templateWithData = Mustache.to_html($("#templateProductModalAdd").html(), { ProductSearchAdd: details });
     $("#div-product-add").empty().html(templateWithData);
     CalculateSum();
-    GrandTotal();
-    $("#txtBaleQty").val("0");
-    $("#txtQtyPerBale").val("0");
-    $("#txtTotalinKG").val("0");
-    $("#txtUnitStyle").val("0");
+   // GrandTotal();   
     $("#txtTotalQty").val("0");
     $("#txtAmount").val("0");
-    $("#txtTotalAmount").val("0");
+    $("txtTotalAmount").val("0");
 });
-
-var countAddedExpense = 1;
-$("#btnAddExpense").click(function () {
-    var countAddedExpenseCount = countAddedExpense++;
-    var Id = $("#ddlExpenseHead option:selected").val();
-    var item = $("#ddlExpenseHead option:selected").text();
-    var ledgerId = $("#ddlExpenseHead option:selected").val();
-    var ExpenseRate = $("#txtExpenseRate").val();
-    var ExpenseAmount = $("#txtExpenseAmount").val();
-    var TotalAmount = ExpenseRate * ExpenseAmount;
-    $("#txtExpenseTotalAmount").val(TotalAmount);
-    var object = { countAddedExpenseCount: countAddedExpenseCount, Id: Id, Item: item, ExpenseRate: ExpenseRate, ExpenseAmount: ExpenseAmount, TotalAmount: TotalAmount, Debit: TotalAmount, LedgerId: ledgerId };
-    detailsExpense.push(object);
-    //expense box
-
-    var templateWithExpense = Mustache.to_html($("#templateExpenseModalAdd").html(), { ExpenseSearchAdd: detailsExpense });
-    $("#div-expense-add").empty().html(templateWithExpense);
-    CalculateExpenseSum();
-    GrandTotal();
-    $("#txtExpenseRate").val("0");
-    $("#txtExpenseAmount").val("0");
-    $("#txtExpenseTotalAmount").val("0");
-});
-
 
 function CalculateSum()
 {
@@ -161,9 +83,8 @@ function CalculateSum()
     try {
 
         for (var i = 0; i < details.length; i++) {
-            console.log(details[i].TotalQty);
             TotalAmount += parseFloat(details[i].TotalAmount);
-            TotalQty += parseFloat(details[i].TotalQty);
+            TotalQty += parseFloat(details[i].Quantity);
         }
         $("#lblTotalAmount").html(TotalAmount.toFixed(2));
         $("#lblTotalQty").html(TotalQty.toFixed(2));
@@ -185,56 +106,11 @@ function OnDeleteProduct(productId)
     var templateWithData = Mustache.to_html($("#templateProductModalAdd").html(), { ProductSearchAdd: details });
     $("#div-product-add").empty().html(templateWithData);
     CalculateSum();
-    GrandTotal();//update Grand Total
+   // GrandTotal();//update Grand Total
 }
-
-//Calculate Total of Aditional Expense
-function CalculateExpenseSum() {
-    var TotalAmount = 0.0;
-    try {
-
-        for (var i = 0; i < detailsExpense.length; i++) {
-            console.log(detailsExpense[i].TotalAmount);
-            TotalAmount += parseFloat(detailsExpense[i].TotalAmount);
-            }
-        $("#lblTotalExpenseAmount").html(TotalAmount.toFixed(2));
-
-    } catch (e) {
-        console.log(e);
-
-    }
-}
-
-function OnDeleteExpense(expenseId) {
-    for (var i = 0; i < detailsExpense.length; i++) {
-        if (detailsExpense[i].countAddedExpenseCount == expenseId) {
-            detailsExpense.splice(i, 1);
-        }
-    }
-    var templateWithExpense = Mustache.to_html($("#templateExpenseModalAdd").html(), { ExpenseSearchAdd: detailsExpense });
-    $("#div-expense-add").empty().html(templateWithExpense);
-    CalculateExpenseSum();// update total aditional expense
-    GrandTotal();// update total grand total
-}
-
-// Calculating Grand Total
-function GrandTotal(){
-    try {
-        var GTotal = 0.0;
-        $("#lblGrandTotal").html(GTotal.toFixed(2));
-        var TotalAdded = parseFloat($('#lblTotalAmount').text());
-        var TotalExpense = parseFloat($('#lblTotalExpenseAmount').text());
-        var discount = $("#txtDiscount").val();
-        GTotal = TotalAdded + TotalExpense-discount;
-        console.log(GTotal);
-        $("#lblGrandTotal").html(GTotal.toFixed(2));
-        } catch (e) {
-        console.log(e);
-    }
-}
-
 
 function GetDataFromDataTable(productId) {
+    var obj = new Object();
     $('#productGroupTableModal tr').each(function (i) {
         if (i > 0) {
             var Id = $(this).find('td').eq(0).text();
@@ -244,7 +120,9 @@ function GetDataFromDataTable(productId) {
                 var RetailPrice = $(this).find('td').eq(3).text();
                 var WholeSalesPrice = $(this).find('td').eq(4).text();
                 var Quantity = $(this).find('td').eq(5).find('input').val();
-                var obj = new Object();
+                var taxRate = $(this).find('td').eq(6).find('input').val();
+                var SDRate = $(this).find('td').eq(7).find('input').val();
+              
                 obj.ItemId = Id;
                 obj.ItemInfo = ItemInfo;
                 obj.Barcode1 = Barcode1;
@@ -252,6 +130,8 @@ function GetDataFromDataTable(productId) {
                 obj.RetailPrice = RetailPrice;
                 obj.WholeSalesPrice = WholeSalesPrice;
                 obj.Qty = Quantity;
+                obj.TaxRate = taxRate;
+                obj.SDRate = SDRate;
                 details.push(obj);
                 var templateWithData = Mustache.to_html($("#templateProductModalAdd").html(), { ProductSearchAdd: details });
                 $("#div-product-add").empty().html(templateWithData);
@@ -259,7 +139,6 @@ function GetDataFromDataTable(productId) {
             } 
         }
     });
-
     return details;
 }
 

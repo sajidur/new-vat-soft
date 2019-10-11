@@ -1,12 +1,12 @@
-﻿using RiceMill_MVC.BAL;
-using RiceMill_MVC.Models;
+﻿using REX_MVC.BAL;
+using REX_MVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace RiceMill_MVC.BAL
+namespace REX_MVC.BAL
 {
     public class LoginService
     {

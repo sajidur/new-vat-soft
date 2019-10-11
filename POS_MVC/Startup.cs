@@ -2,8 +2,8 @@
 using Microsoft.Owin.Builder;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(RiceMill_MVC.Startup))]
-namespace RiceMill_MVC
+[assembly: OwinStartupAttribute(typeof(REX_MVC.Startup))]
+namespace REX_MVC
 {
     public partial class Startup
     {

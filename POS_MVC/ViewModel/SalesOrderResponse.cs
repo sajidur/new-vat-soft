@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace RiceMill_MVC.ViewModel
+namespace REX_MVC.ViewModel
 {
     public class SalesOrderResponse
     {

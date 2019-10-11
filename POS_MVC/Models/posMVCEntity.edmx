@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="vatModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="vatModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AccountGroup">
           <Key>
             <PropertyRef Name="Id" />
@@ -454,13 +454,11 @@ warning 6013: The table/view 'Vat.dbo.Ones' does not have a primary key defined 
           <Property Name="ReceiveMasterId" Type="int" Nullable="false" />
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="WarehouseId" Type="int" />
-          <Property Name="TotalBale" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="QtyInBale" Type="int" Nullable="false" />
-          <Property Name="WeightInKG" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="WeightType" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="WeightInMon" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Rate" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Qty" Type="int" Nullable="false" />
+          <Property Name="SD" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Tax" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="TotalAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="CreatedBy" Type="char" MaxLength="24" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="UpdatedBy" Type="nchar" MaxLength="24" />
@@ -553,10 +551,10 @@ warning 6013: The table/view 'Vat.dbo.Ones' does not have a primary key defined 
           <Property Name="SalesMasterId" Type="int" Nullable="false" />
           <Property Name="SalesInvoice" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ProductId" Type="int" Nullable="false" />
-          <Property Name="BaleQty" Type="int" Nullable="false" />
-          <Property Name="BaleWeight" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Qty" Type="int" Nullable="false" />
+          <Property Name="SD" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="WarehouseId" Type="int" Nullable="false" />
-          <Property Name="TotalQtyInKG" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Tax" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Rate" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Notes" Type="nvarchar" MaxLength="500" />
@@ -732,16 +730,6 @@ warning 6013: The table/view 'Vat.dbo.SMSHistory' does not have a primary key de
           <Property Name="Remarks" Type="nvarchar(max)" />
           <Property Name="LedgerId" Type="int" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="Tax">
           <Key>
             <PropertyRef Name="Id" />
@@ -875,35 +863,6 @@ warning 6013: The table/view 'Vat.dbo.SMSHistory' does not have a primary key de
           <Property Name="UpdatedBy" Type="nvarchar" MaxLength="250" />
           <Property Name="UpdatedDate" Type="datetime" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="ProductInfo">
-          <Key>
-            <PropertyRef Name="DesignName" />
-            <PropertyRef Name="Name" />
-            <PropertyRef Name="ColorName" />
-            <PropertyRef Name="DesignCode" />
-            <PropertyRef Name="ProductName" />
-            <PropertyRef Name="Code" />
-            <PropertyRef Name="ProductInfo" />
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="SBarCode" Type="nvarchar" MaxLength="50" />
-          <Property Name="PBarCode" Type="nvarchar" MaxLength="50" />
-          <Property Name="Barcode1" Type="nvarchar" MaxLength="50" />
-          <Property Name="Barcode2" Type="nvarchar" MaxLength="50" />
-          <Property Name="CostPrice" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="RetailPrice" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="WholeSalesPrice" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="DesignName" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ColorName" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="DesignCode" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ProductName" Type="nvarchar" MaxLength="250" Nullable="false" />
-          <Property Name="Code" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="ProductInfo" Type="nvarchar" MaxLength="1303" Nullable="false" />
-          <Property Name="Id" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_AccountLedger_AccountGroup">
           <End Role="AccountGroup" Type="Self.AccountGroup" Multiplicity="0..1" />
@@ -1542,7 +1501,6 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
           <Parameter Name="ReportType" Type="int" Mode="In" />
           <Parameter Name="yearId" Type="int" Mode="In" />
         </Function>
-        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="GetBalance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ledgerId" Type="int" Mode="In" />
           <Parameter Name="yearId" Type="int" Mode="In" />
@@ -1591,36 +1549,6 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
         <Function Name="rptSalesInvoice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SalesInvoice" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="StockOutChallanList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="fromDate" Type="date" Mode="In" />
           <Parameter Name="toDate" Type="date" Mode="In" />
@@ -1667,7 +1595,6 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
           <EntitySet Name="StockIn" EntityType="Self.StockIn" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StockOut" EntityType="Self.StockOut" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tax" EntityType="Self.Tax" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TempSalesDetails" EntityType="Self.TempSalesDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TempSalesMaster" EntityType="Self.TempSalesMaster" Schema="dbo" store:Type="Tables" />
@@ -1676,25 +1603,6 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
           <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VoucherType" EntityType="Self.VoucherType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WareHouse" EntityType="Self.WareHouse" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ProductInfo" EntityType="Self.ProductInfo" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [ProductInfo].[SBarCode] AS [SBarCode], 
-    [ProductInfo].[PBarCode] AS [PBarCode], 
-    [ProductInfo].[Barcode1] AS [Barcode1], 
-    [ProductInfo].[Barcode2] AS [Barcode2], 
-    [ProductInfo].[CostPrice] AS [CostPrice], 
-    [ProductInfo].[RetailPrice] AS [RetailPrice], 
-    [ProductInfo].[WholeSalesPrice] AS [WholeSalesPrice], 
-    [ProductInfo].[DesignName] AS [DesignName], 
-    [ProductInfo].[Name] AS [Name], 
-    [ProductInfo].[ColorName] AS [ColorName], 
-    [ProductInfo].[DesignCode] AS [DesignCode], 
-    [ProductInfo].[ProductName] AS [ProductName], 
-    [ProductInfo].[Code] AS [Code], 
-    [ProductInfo].[ProductInfo] AS [ProductInfo], 
-    [ProductInfo].[Id] AS [Id]
-    FROM [dbo].[ProductInfo] AS [ProductInfo]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_AccountLedger_AccountGroup" Association="Self.FK_AccountLedger_AccountGroup">
             <End Role="AccountGroup" EntitySet="AccountGroup" />
             <End Role="AccountLedger" EntitySet="AccountLedger" />
@@ -1900,8 +1808,7 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
             <End Role="UserInfo" EntitySet="UserInfo" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="vatModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -2386,36 +2293,12 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Product_Category" FromRole="Product" ToRole="Category" />
           <NavigationProperty Name="Inventories" Relationship="Self.FK_Inventory_Product" FromRole="Product" ToRole="Inventory" />
-          <NavigationProperty Name="ReceiveDetails" Relationship="Self.FK_ReceiveDetails_product" FromRole="Product" ToRole="ReceiveDetails" />
-          <NavigationProperty Name="SalesDetails" Relationship="Self.FK_SalesDetails_Product" FromRole="Product" ToRole="SalesDetails" />
           <NavigationProperty Name="SalesOrders" Relationship="Self.FK_SalesOrder_product" FromRole="Product" ToRole="SalesOrder" />
           <NavigationProperty Name="StockIns" Relationship="Self.FK_StockIn_Product" FromRole="Product" ToRole="StockIn" />
           <NavigationProperty Name="StockOuts" Relationship="Self.FK_StockOut_Product" FromRole="Product" ToRole="StockOut" />
           <NavigationProperty Name="TempSalesDetails" Relationship="Self.FK_TempSalesDetails_Product" FromRole="Product" ToRole="TempSalesDetails" />
-        </EntityType>
-        <EntityType Name="ReceiveDetail">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ReceiveMasterId" Type="Int32" Nullable="false" />
-          <Property Name="ProductId" Type="Int32" Nullable="false" />
-          <Property Name="WarehouseId" Type="Int32" />
-          <Property Name="TotalBale" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="QtyInBale" Type="Int32" Nullable="false" />
-          <Property Name="WeightInKG" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="WeightType" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="WeightInMon" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="CreatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
-          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_ReceiveDetails_product" FromRole="ReceiveDetails" ToRole="Product" />
-          <NavigationProperty Name="ReceiveMaster" Relationship="Self.FK_ReceiveDetails_RecieveMaster" FromRole="ReceiveDetails" ToRole="ReceiveMaster" />
-          <NavigationProperty Name="WareHouse" Relationship="Self.FK_ReceiveDetails_Warehouse" FromRole="ReceiveDetails" ToRole="WareHouse" />
+          <NavigationProperty Name="SalesDetails" Relationship="vatModel.FK_SalesDetails_Product" FromRole="Product" ToRole="SalesDetail" />
+          <NavigationProperty Name="ReceiveDetails" Relationship="vatModel.FK_ReceiveDetails_product" FromRole="Product" ToRole="ReceiveDetail" />
         </EntityType>
         <EntityType Name="ReceiveMaster">
           <Key>
@@ -2442,8 +2325,8 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="YearId" Type="Int32" />
-          <NavigationProperty Name="ReceiveDetails" Relationship="Self.FK_ReceiveDetails_RecieveMaster" FromRole="ReceiveMaster" ToRole="ReceiveDetails" />
           <NavigationProperty Name="Supplier" Relationship="Self.FK_ReceiveMaster_Supplier" FromRole="ReceiveMaster" ToRole="Supplier" />
+          <NavigationProperty Name="ReceiveDetails" Relationship="vatModel.FK_ReceiveDetails_RecieveMaster" FromRole="ReceiveMaster" ToRole="ReceiveDetail" />
         </EntityType>
         <EntityType Name="RoleWiseScreenPermission">
           <Key>
@@ -2500,29 +2383,6 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
           <NavigationProperty Name="Customer" Relationship="Self.FK_SalesDelivery_Customer" FromRole="SalesDelivery" ToRole="Customer" />
           <NavigationProperty Name="SalesMaster" Relationship="Self.FK_SalesDelivery_SalesMaster" FromRole="SalesDelivery" ToRole="SalesMaster" />
         </EntityType>
-        <EntityType Name="SalesDetail">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SalesMasterId" Type="Int32" Nullable="false" />
-          <Property Name="SalesInvoice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProductId" Type="Int32" Nullable="false" />
-          <Property Name="BaleQty" Type="Int32" Nullable="false" />
-          <Property Name="BaleWeight" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="WarehouseId" Type="Int32" Nullable="false" />
-          <Property Name="TotalQtyInKG" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="Rate" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="Notes" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
-          <Property Name="UpdatedDate" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_SalesDetails_Product" FromRole="SalesDetails" ToRole="Product" />
-          <NavigationProperty Name="SalesMaster" Relationship="Self.FK_SalesDetails_SalesMaster" FromRole="SalesDetails" ToRole="SalesMaster" />
-        </EntityType>
         <EntityType Name="SalesMaster">
           <Key>
             <PropertyRef Name="Id" />
@@ -2553,8 +2413,8 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
           <Property Name="YearId" Type="Int32" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_SalesMaster_Customer" FromRole="SalesMaster" ToRole="Customer" />
           <NavigationProperty Name="SalesDeliveries" Relationship="Self.FK_SalesDelivery_SalesMaster" FromRole="SalesMaster" ToRole="SalesDelivery" />
-          <NavigationProperty Name="SalesDetails" Relationship="Self.FK_SalesDetails_SalesMaster" FromRole="SalesMaster" ToRole="SalesDetails" />
           <NavigationProperty Name="SalesOrder" Relationship="Self.FK_SalesMaster_Salesorder" FromRole="SalesMaster" ToRole="SalesOrder" />
+          <NavigationProperty Name="SalesDetails" Relationship="vatModel.FK_SalesDetails_SalesMaster" FromRole="SalesMaster" ToRole="SalesDetail" />
         </EntityType>
         <EntityType Name="SalesOrder">
           <Key>
@@ -2698,16 +2558,6 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
           <NavigationProperty Name="ReceiveMasters" Relationship="Self.FK_ReceiveMaster_Supplier" FromRole="Supplier" ToRole="ReceiveMaster" />
           <NavigationProperty Name="StockIns" Relationship="Self.FK_StockIn_Supplier" FromRole="Supplier" ToRole="StockIn" />
           <NavigationProperty Name="StockOuts" Relationship="Self.FK_StockOut_Supplier" FromRole="Supplier" ToRole="StockOut" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Tax">
           <Key>
@@ -2859,36 +2709,9 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Inventories" Relationship="Self.FK_Inventory_WareHouse" FromRole="WareHouse" ToRole="Inventory" />
-          <NavigationProperty Name="ReceiveDetails" Relationship="Self.FK_ReceiveDetails_Warehouse" FromRole="WareHouse" ToRole="ReceiveDetails" />
           <NavigationProperty Name="StockIns" Relationship="Self.FK_StockIn_Warehouse" FromRole="WareHouse" ToRole="StockIn" />
           <NavigationProperty Name="StockOuts" Relationship="Self.FK_StockOut_Warehouse" FromRole="WareHouse" ToRole="StockOut" />
-        </EntityType>
-        <EntityType Name="ProductInfo">
-          <Key>
-            <PropertyRef Name="DesignName" />
-            <PropertyRef Name="Name" />
-            <PropertyRef Name="ColorName" />
-            <PropertyRef Name="DesignCode" />
-            <PropertyRef Name="ProductName" />
-            <PropertyRef Name="Code" />
-            <PropertyRef Name="ProductInfo1" />
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="SBarCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PBarCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Barcode1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Barcode2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CostPrice" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="RetailPrice" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="WholeSalesPrice" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="DesignName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ColorName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DesignCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProductName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Code" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ProductInfo1" Type="String" MaxLength="1303" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ReceiveDetails" Relationship="vatModel.FK_ReceiveDetails_Warehouse" FromRole="WareHouse" ToRole="ReceiveDetail" />
         </EntityType>
         <Association Name="FK_AccountLedger_AccountGroup">
           <End Role="AccountGroup" Type="Self.AccountGroup" Multiplicity="0..1" />
@@ -3250,30 +3073,6 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ReceiveDetails_product">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="ReceiveDetails" Type="Self.ReceiveDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ReceiveDetails">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SalesDetails_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="SalesDetails" Type="Self.SalesDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SalesDetails">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SalesOrder_product">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="SalesOrder" Type="Self.SalesOrder" Multiplicity="*" />
@@ -3322,30 +3121,6 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ReceiveDetails_RecieveMaster">
-          <End Role="ReceiveMaster" Type="Self.ReceiveMaster" Multiplicity="1" />
-          <End Role="ReceiveDetails" Type="Self.ReceiveDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ReceiveMaster">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ReceiveDetails">
-              <PropertyRef Name="ReceiveMasterId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReceiveDetails_Warehouse">
-          <End Role="WareHouse" Type="Self.WareHouse" Multiplicity="0..1" />
-          <End Role="ReceiveDetails" Type="Self.ReceiveDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="WareHouse">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ReceiveDetails">
-              <PropertyRef Name="WarehouseId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ReceiveMaster_Supplier">
           <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
           <End Role="ReceiveMaster" Type="Self.ReceiveMaster" Multiplicity="*" />
@@ -3378,18 +3153,6 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="SalesDelivery">
-              <PropertyRef Name="SalesMasterId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SalesDetails_SalesMaster">
-          <End Role="SalesMaster" Type="Self.SalesMaster" Multiplicity="1" />
-          <End Role="SalesDetails" Type="Self.SalesDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SalesMaster">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SalesDetails">
               <PropertyRef Name="SalesMasterId" />
             </Dependent>
           </ReferentialConstraint>
@@ -3527,12 +3290,10 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
           <EntitySet Name="PartyPaymentHistories" EntityType="Self.PartyPaymentHistory" />
           <EntitySet Name="Pictures" EntityType="Self.Picture" />
           <EntitySet Name="Products" EntityType="Self.Product" />
-          <EntitySet Name="ReceiveDetails" EntityType="Self.ReceiveDetail" />
           <EntitySet Name="ReceiveMasters" EntityType="Self.ReceiveMaster" />
           <EntitySet Name="RoleWiseScreenPermissions" EntityType="Self.RoleWiseScreenPermission" />
           <EntitySet Name="SalaryPayments" EntityType="Self.SalaryPayment" />
           <EntitySet Name="SalesDeliveries" EntityType="Self.SalesDelivery" />
-          <EntitySet Name="SalesDetails" EntityType="Self.SalesDetail" />
           <EntitySet Name="SalesMasters" EntityType="Self.SalesMaster" />
           <EntitySet Name="SalesOrders" EntityType="Self.SalesOrder" />
           <EntitySet Name="SalesReturns" EntityType="Self.SalesReturn" />
@@ -3541,7 +3302,6 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
           <EntitySet Name="StockIns" EntityType="Self.StockIn" />
           <EntitySet Name="StockOuts" EntityType="Self.StockOut" />
           <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Taxes" EntityType="Self.Tax" />
           <EntitySet Name="TempSalesDetails" EntityType="Self.TempSalesDetail" />
           <EntitySet Name="TempSalesMasters" EntityType="Self.TempSalesMaster" />
@@ -3550,7 +3310,6 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
           <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
           <EntitySet Name="VoucherTypes" EntityType="Self.VoucherType" />
           <EntitySet Name="WareHouses" EntityType="Self.WareHouse" />
-          <EntitySet Name="ProductInfoes" EntityType="Self.ProductInfo" />
           <AssociationSet Name="FK_AccountLedger_AccountGroup" Association="Self.FK_AccountLedger_AccountGroup">
             <End Role="AccountGroup" EntitySet="AccountGroups" />
             <End Role="AccountLedger" EntitySet="AccountLedgers" />
@@ -3671,14 +3430,6 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
             <End Role="VoucherType" EntitySet="VoucherTypes" />
             <End Role="PartyBalance" EntitySet="PartyBalances" />
           </AssociationSet>
-          <AssociationSet Name="FK_ReceiveDetails_product" Association="Self.FK_ReceiveDetails_product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="ReceiveDetails" EntitySet="ReceiveDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SalesDetails_Product" Association="Self.FK_SalesDetails_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="SalesDetails" EntitySet="SalesDetails" />
-          </AssociationSet>
           <AssociationSet Name="FK_SalesOrder_product" Association="Self.FK_SalesOrder_product">
             <End Role="Product" EntitySet="Products" />
             <End Role="SalesOrder" EntitySet="SalesOrders" />
@@ -3695,14 +3446,6 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
             <End Role="Product" EntitySet="Products" />
             <End Role="TempSalesDetails" EntitySet="TempSalesDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_ReceiveDetails_RecieveMaster" Association="Self.FK_ReceiveDetails_RecieveMaster">
-            <End Role="ReceiveMaster" EntitySet="ReceiveMasters" />
-            <End Role="ReceiveDetails" EntitySet="ReceiveDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReceiveDetails_Warehouse" Association="Self.FK_ReceiveDetails_Warehouse">
-            <End Role="WareHouse" EntitySet="WareHouses" />
-            <End Role="ReceiveDetails" EntitySet="ReceiveDetails" />
-          </AssociationSet>
           <AssociationSet Name="FK_ReceiveMaster_Supplier" Association="Self.FK_ReceiveMaster_Supplier">
             <End Role="Supplier" EntitySet="Suppliers" />
             <End Role="ReceiveMaster" EntitySet="ReceiveMasters" />
@@ -3714,10 +3457,6 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
           <AssociationSet Name="FK_SalesDelivery_SalesMaster" Association="Self.FK_SalesDelivery_SalesMaster">
             <End Role="SalesMaster" EntitySet="SalesMasters" />
             <End Role="SalesDelivery" EntitySet="SalesDeliveries" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SalesDetails_SalesMaster" Association="Self.FK_SalesDetails_SalesMaster">
-            <End Role="SalesMaster" EntitySet="SalesMasters" />
-            <End Role="SalesDetails" EntitySet="SalesDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_SalesMaster_Salesorder" Association="Self.FK_SalesMaster_Salesorder">
             <End Role="SalesOrder" EntitySet="SalesOrders" />
@@ -3775,7 +3514,7 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
             <Parameter Name="customerOrSupplier" Mode="In" Type="Int32" />
             <Parameter Name="yearId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="DueSummary" ReturnType="Collection(vatModel.DueSummary_Result)">
+          <FunctionImport Name="DueSummary">
             <Parameter Name="FinancialYear" Mode="In" Type="Int32" />
             <Parameter Name="ReportType" Mode="In" Type="Int32" />
             <Parameter Name="yearId" Mode="In" Type="Int32" />
@@ -3814,7 +3553,7 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
             <Parameter Name="invoiceId" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="rptCustomerTransaction" ReturnType="Collection(vatModel.rptCustomerTransaction_Result)">
-            <Parameter Name="CustomerId" Mode="In" Type="Int32" />
+          <Parameter Name="CustomerId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="rptIndividualLedger" ReturnType="Collection(vatModel.rptIndividualLedger_Result)">
             <Parameter Name="CustomerId" Mode="In" Type="Int32" />
@@ -3823,45 +3562,37 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
             <Parameter Name="invoiceId" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="rptSalesInvoice" ReturnType="Collection(vatModel.rptSalesInvoice_Result)">
-            <Parameter Name="SalesInvoice" Mode="In" Type="String" />
+          <Parameter Name="SalesInvoice" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_alterdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_creatediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_dropdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_renamediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="new_diagramname" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_upgraddiagrams" />
           <FunctionImport Name="StockOutChallanList" ReturnType="Collection(vatModel.StockOutChallanList_Result)">
             <Parameter Name="fromDate" Mode="In" Type="DateTime" />
             <Parameter Name="toDate" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="StockOutInvoice" ReturnType="Collection(vatModel.StockOutInvoice_Result)">
-            <Parameter Name="InvoiceNo" Mode="In" Type="String" />
+          <Parameter Name="InvoiceNo" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="SalesDetails" EntityType="vatModel.SalesDetail" />
+          <AssociationSet Name="FK_SalesDetails_Product" Association="vatModel.FK_SalesDetails_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="SalesDetail" EntitySet="SalesDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesDetails_SalesMaster" Association="vatModel.FK_SalesDetails_SalesMaster">
+            <End Role="SalesMaster" EntitySet="SalesMasters" />
+            <End Role="SalesDetail" EntitySet="SalesDetails" />
+          </AssociationSet>
+          <EntitySet Name="ReceiveDetails" EntityType="vatModel.ReceiveDetail" />
+          <AssociationSet Name="FK_ReceiveDetails_product" Association="vatModel.FK_ReceiveDetails_product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ReceiveDetail" EntitySet="ReceiveDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReceiveDetails_RecieveMaster" Association="vatModel.FK_ReceiveDetails_RecieveMaster">
+            <End Role="ReceiveMaster" EntitySet="ReceiveMasters" />
+            <End Role="ReceiveDetail" EntitySet="ReceiveDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReceiveDetails_Warehouse" Association="vatModel.FK_ReceiveDetails_Warehouse">
+            <End Role="WareHouse" EntitySet="WareHouses" />
+            <End Role="ReceiveDetail" EntitySet="ReceiveDetails" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="CashBook_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -3905,20 +3636,6 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
           <Property Type="String" Name="LedgerName" Nullable="true" />
           <Property Type="String" Name="extra1" Nullable="true" />
           <Property Type="String" Name="Phone" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="DueSummary_Result">
-          <Property Type="Int32" Name="LedgerId" Nullable="false" />
-          <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="String" Name="Name" Nullable="true" />
-          <Property Type="String" Name="Address" Nullable="true" />
-          <Property Type="String" Name="Phone" Nullable="true" />
-          <Property Type="String" Name="ContactPersonPhone" Nullable="true" />
-          <Property Type="Decimal" Name="Ton" Nullable="true" Precision="38" Scale="6" />
-          <Property Type="Int32" Name="TotalInvoice" Nullable="true" />
-          <Property Type="String" Name="reportType" Nullable="false" MaxLength="20" />
-          <Property Type="Decimal" Name="Credit" Nullable="true" Precision="38" Scale="5" />
-          <Property Type="Decimal" Name="Debit" Nullable="true" Precision="38" Scale="5" />
-          <Property Type="Decimal" Name="Balance" Nullable="true" Precision="38" Scale="5" />
         </ComplexType>
         <ComplexType Name="GetBalance_Result">
           <Property Type="Int32" Name="LedgerId" Nullable="false" />
@@ -4048,10 +3765,10 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
           <Property Type="Int32" Name="SalesMasterId" Nullable="false" />
           <Property Type="String" Name="SalesInvoice1" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="ProductId" Nullable="false" />
-          <Property Type="Int32" Name="BaleQty" Nullable="false" />
-          <Property Type="Decimal" Name="BaleWeight" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="Qty" Nullable="false" />
+          <Property Type="Decimal" Name="SD" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Int32" Name="WarehouseId" Nullable="false" />
-          <Property Type="Decimal" Name="TotalQtyInKG" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Tax" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="Rate" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="Amount" Nullable="false" Precision="18" Scale="2" />
           <Property Type="String" Name="Notes" Nullable="true" MaxLength="500" />
@@ -4110,6 +3827,111 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
           <Property Type="String" Name="Notes" Nullable="true" MaxLength="500" />
           <Property Type="Decimal" Name="WeightInMon" Nullable="true" Precision="18" Scale="2" />
         </ComplexType>
+        <EntityType Name="SalesDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SalesMasterId" Type="Int32" Nullable="false" />
+          <Property Name="SalesInvoice" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Qty" Type="Int32" Nullable="false" />
+          <Property Name="SD" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="WarehouseId" Type="Int32" Nullable="false" />
+          <Property Name="Tax" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Rate" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Notes" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+          <Property Name="UpdatedDate" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Product" Relationship="vatModel.FK_SalesDetails_Product" FromRole="SalesDetail" ToRole="Product" />
+          <NavigationProperty Name="SalesMaster" Relationship="vatModel.FK_SalesDetails_SalesMaster" FromRole="SalesDetail" ToRole="SalesMaster" />
+        </EntityType>
+        <Association Name="FK_SalesDetails_Product">
+          <End Type="vatModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="vatModel.SalesDetail" Role="SalesDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SalesDetail">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesDetails_SalesMaster">
+          <End Type="vatModel.SalesMaster" Role="SalesMaster" Multiplicity="1" />
+          <End Type="vatModel.SalesDetail" Role="SalesDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SalesMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SalesDetail">
+              <PropertyRef Name="SalesMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ReceiveDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReceiveMasterId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="WarehouseId" Type="Int32" />
+          <Property Name="Rate" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Qty" Type="Int32" Nullable="false" />
+          <Property Name="SD" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Tax" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="CreatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="vatModel.FK_ReceiveDetails_product" FromRole="ReceiveDetail" ToRole="Product" />
+          <NavigationProperty Name="ReceiveMaster" Relationship="vatModel.FK_ReceiveDetails_RecieveMaster" FromRole="ReceiveDetail" ToRole="ReceiveMaster" />
+          <NavigationProperty Name="WareHouse" Relationship="vatModel.FK_ReceiveDetails_Warehouse" FromRole="ReceiveDetail" ToRole="WareHouse" />
+        </EntityType>
+        <Association Name="FK_ReceiveDetails_product">
+          <End Type="vatModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="vatModel.ReceiveDetail" Role="ReceiveDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReceiveDetail">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReceiveDetails_RecieveMaster">
+          <End Type="vatModel.ReceiveMaster" Role="ReceiveMaster" Multiplicity="1" />
+          <End Type="vatModel.ReceiveDetail" Role="ReceiveDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReceiveMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReceiveDetail">
+              <PropertyRef Name="ReceiveMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReceiveDetails_Warehouse">
+          <End Type="vatModel.WareHouse" Role="WareHouse" Multiplicity="0..1" />
+          <End Type="vatModel.ReceiveDetail" Role="ReceiveDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WareHouse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReceiveDetail">
+              <PropertyRef Name="WarehouseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4575,28 +4397,6 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ReceiveDetails">
-            <EntityTypeMapping TypeName="vatModel.ReceiveDetail">
-              <MappingFragment StoreEntitySet="ReceiveDetails">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ReceiveMasterId" ColumnName="ReceiveMasterId" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="WarehouseId" ColumnName="WarehouseId" />
-                <ScalarProperty Name="TotalBale" ColumnName="TotalBale" />
-                <ScalarProperty Name="QtyInBale" ColumnName="QtyInBale" />
-                <ScalarProperty Name="WeightInKG" ColumnName="WeightInKG" />
-                <ScalarProperty Name="WeightType" ColumnName="WeightType" />
-                <ScalarProperty Name="WeightInMon" ColumnName="WeightInMon" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ReceiveMasters">
             <EntityTypeMapping TypeName="vatModel.ReceiveMaster">
               <MappingFragment StoreEntitySet="ReceiveMaster">
@@ -4668,28 +4468,6 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
                 <ScalarProperty Name="TransportType" ColumnName="TransportType" />
                 <ScalarProperty Name="TransportNo" ColumnName="TransportNo" />
                 <ScalarProperty Name="ExpenseBy" ColumnName="ExpenseBy" />
-                <ScalarProperty Name="Notes" ColumnName="Notes" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SalesDetails">
-            <EntityTypeMapping TypeName="vatModel.SalesDetail">
-              <MappingFragment StoreEntitySet="SalesDetails">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="SalesMasterId" ColumnName="SalesMasterId" />
-                <ScalarProperty Name="SalesInvoice" ColumnName="SalesInvoice" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="BaleQty" ColumnName="BaleQty" />
-                <ScalarProperty Name="BaleWeight" ColumnName="BaleWeight" />
-                <ScalarProperty Name="WarehouseId" ColumnName="WarehouseId" />
-                <ScalarProperty Name="TotalQtyInKG" ColumnName="TotalQtyInKG" />
-                <ScalarProperty Name="Rate" ColumnName="Rate" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -4864,17 +4642,6 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="vatModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Taxes">
             <EntityTypeMapping TypeName="vatModel.Tax">
               <MappingFragment StoreEntitySet="Tax">
@@ -5017,27 +4784,6 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ProductInfoes">
-            <EntityTypeMapping TypeName="vatModel.ProductInfo">
-              <MappingFragment StoreEntitySet="ProductInfo">
-                <ScalarProperty Name="SBarCode" ColumnName="SBarCode" />
-                <ScalarProperty Name="PBarCode" ColumnName="PBarCode" />
-                <ScalarProperty Name="Barcode1" ColumnName="Barcode1" />
-                <ScalarProperty Name="Barcode2" ColumnName="Barcode2" />
-                <ScalarProperty Name="CostPrice" ColumnName="CostPrice" />
-                <ScalarProperty Name="RetailPrice" ColumnName="RetailPrice" />
-                <ScalarProperty Name="WholeSalesPrice" ColumnName="WholeSalesPrice" />
-                <ScalarProperty Name="DesignName" ColumnName="DesignName" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ColorName" ColumnName="ColorName" />
-                <ScalarProperty Name="DesignCode" ColumnName="DesignCode" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="ProductInfo1" ColumnName="ProductInfo" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="BalanceReconcilation" FunctionName="vatModel.Store.BalanceReconcilation" />
           <FunctionImportMapping FunctionImportName="CashBook" FunctionName="vatModel.Store.CashBook">
             <ResultMapping>
@@ -5099,24 +4845,7 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="DueSummary" FunctionName="vatModel.Store.DueSummary">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="vatModel.DueSummary_Result">
-                <ScalarProperty Name="LedgerId" ColumnName="LedgerId" />
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="ContactPersonPhone" ColumnName="ContactPersonPhone" />
-                <ScalarProperty Name="Ton" ColumnName="Ton" />
-                <ScalarProperty Name="TotalInvoice" ColumnName="TotalInvoice" />
-                <ScalarProperty Name="reportType" ColumnName="reportType" />
-                <ScalarProperty Name="Credit" ColumnName="Credit" />
-                <ScalarProperty Name="Debit" ColumnName="Debit" />
-                <ScalarProperty Name="Balance" ColumnName="Balance" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="DueSummary" FunctionName="vatModel.Store.DueSummary" />
           <FunctionImportMapping FunctionImportName="GetBalance" FunctionName="vatModel.Store.GetBalance">
             <ResultMapping>
               <ComplexTypeMapping TypeName="vatModel.GetBalance_Result">
@@ -5287,10 +5016,10 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
                 <ScalarProperty Name="SalesMasterId" ColumnName="SalesMasterId" />
                 <ScalarProperty Name="SalesInvoice1" ColumnName="SalesInvoice1" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="BaleQty" ColumnName="BaleQty" />
-                <ScalarProperty Name="BaleWeight" ColumnName="BaleWeight" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="SD" ColumnName="SD" />
                 <ScalarProperty Name="WarehouseId" ColumnName="WarehouseId" />
-                <ScalarProperty Name="TotalQtyInKG" ColumnName="TotalQtyInKG" />
+                <ScalarProperty Name="Tax" ColumnName="Tax" />
                 <ScalarProperty Name="Rate" ColumnName="Rate" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
@@ -5337,13 +5066,6 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="vatModel.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="vatModel.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="vatModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="vatModel.Store.sp_helpdiagramdefinition" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="vatModel.Store.sp_helpdiagrams" />
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="vatModel.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="vatModel.Store.sp_upgraddiagrams" />
           <FunctionImportMapping FunctionImportName="StockOutChallanList" FunctionName="vatModel.Store.StockOutChallanList">
             <ResultMapping>
               <ComplexTypeMapping TypeName="vatModel.StockOutChallanList_Result">
@@ -5366,6 +5088,48 @@ warning 6002: The table/view 'Vat.dbo.ProductInfo' does not have a primary key d
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="SalesDetails">
+            <EntityTypeMapping TypeName="vatModel.SalesDetail">
+              <MappingFragment StoreEntitySet="SalesDetails">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Tax" ColumnName="Tax" />
+                <ScalarProperty Name="WarehouseId" ColumnName="WarehouseId" />
+                <ScalarProperty Name="SD" ColumnName="SD" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="SalesInvoice" ColumnName="SalesInvoice" />
+                <ScalarProperty Name="SalesMasterId" ColumnName="SalesMasterId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReceiveDetails">
+            <EntityTypeMapping TypeName="vatModel.ReceiveDetail">
+              <MappingFragment StoreEntitySet="ReceiveDetails">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Tax" ColumnName="Tax" />
+                <ScalarProperty Name="SD" ColumnName="SD" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="WarehouseId" ColumnName="WarehouseId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ReceiveMasterId" ColumnName="ReceiveMasterId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

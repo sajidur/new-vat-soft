@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace RiceMill_MVC.ViewModel
+namespace REX_MVC.ViewModel
 {
     public class BranchReceiveMasterResponse
     {

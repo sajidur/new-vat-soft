@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace RiceMill_MVC
+namespace REX_MVC
 {
     public class FilterConfig
     {

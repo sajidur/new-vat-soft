@@ -1,12 +1,12 @@
-﻿using RiceMill_MVC.Models;
-using RiceMill_MVC.Util;
+﻿using REX_MVC.Models;
+using REX_MVC.Util;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace RiceMill_MVC.BAL
+namespace REX_MVC.BAL
 {
     public class GoodsReceiveService
     {
@@ -18,6 +18,7 @@ namespace RiceMill_MVC.BAL
         SupplierService supplierService = new SupplierService();
         FinancialYearService year = new FinancialYearService();
         PartyBalanceService partyBalanceService = new PartyBalanceService();
+        ProductService productService = new ProductService();
         int financialYearId = CurrentSession.GetCurrentSession().FinancialYear;
         public List<ReceiveMaster> GetAll()
         {
@@ -37,15 +38,20 @@ namespace RiceMill_MVC.BAL
             {
                 foreach (var item in cus.ReceiveDetails)
                 {
-                    var existingItem = inventory.GetAll(a=>a.ProductId==item.ProductId && a.IsActive==true && a.WarehouseId==wareHouseId && a.QtyInBale==item.QtyInBale).ToList();
+                    var product = productService.GetById(item.ProductId);
+                    if (product!=null)
+                    {
+                        goodsType = product.ProductTypeId??1;
+                    }
+                    var existingItem = inventory.GetAll(a=>a.ProductId==item.ProductId && a.IsActive==true && a.WarehouseId==wareHouseId).ToList();
                     if (existingItem.Count>0)
                     {
                         foreach (var inv in existingItem)
                         {
                             inv.UpdatedDate = DateTime.Now;
                             inv.UpdatedBy = "";
-                            inv.BalanceQty = inv.BalanceQty + item.TotalBale;
-                            inv.ReceiveQty = inv.ReceiveQty??0 + item.TotalBale;
+                            inv.BalanceQty = inv.BalanceQty + item.Qty;
+                            inv.ReceiveQty = inv.ReceiveQty??0 + item.Qty;
                             inventory.Update(inv, inv.Id);
                         }
 
@@ -55,12 +61,12 @@ namespace RiceMill_MVC.BAL
                         Inventory inv = new Inventory();
                         inv.IsActive = true;
                         inv.ProductId = item.ProductId;
-                        inv.ReceiveQty = item.TotalBale;
-                        inv.QtyInBale = item.QtyInBale;
+                        inv.ReceiveQty = item.Qty;
+                        inv.QtyInBale = 0;
                         inv.SupplierId = cus.SupplierID;
                         inv.WarehouseId = wareHouseId;
                         inv.OpeningQty = 0;
-                        inv.BalanceQty = item.TotalBale;
+                        inv.BalanceQty = item.Qty;
                         inv.GoodsType = goodsType.ToString();
                         inventory.Save(inv);
                     }
@@ -137,15 +143,15 @@ namespace RiceMill_MVC.BAL
                 var isDeleted = service.Delete(master.Id);
                 foreach (var item in master.ReceiveDetails)
                 {
-                    var existingItem = inventory.GetAll(a => a.ProductId == item.ProductId && a.IsActive == true && a.WarehouseId == item.WarehouseId && a.QtyInBale == item.QtyInBale).ToList();
+                    var existingItem = inventory.GetAll(a => a.ProductId == item.ProductId && a.IsActive == true && a.WarehouseId == item.WarehouseId).ToList();
                     if (existingItem.Count > 0)
                     {
                         foreach (var inv in existingItem)
                         {
                             inv.UpdatedDate = DateTime.Now;
                             inv.UpdatedBy = "";
-                            inv.BalanceQty = inv.BalanceQty - item.TotalBale;
-                            inv.ReceiveQty = inv.ReceiveQty ?? 0 - item.TotalBale;
+                            inv.BalanceQty = inv.BalanceQty - item.Qty;
+                            inv.ReceiveQty = inv.ReceiveQty ?? 0 - item.Qty;
                             inventory.Update(inv, inv.Id);
                         }
 

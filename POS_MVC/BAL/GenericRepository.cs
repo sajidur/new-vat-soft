@@ -1,11 +1,11 @@
-﻿using RiceMill_MVC.BAL;
+﻿using REX_MVC.BAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
 
-namespace RiceMill_MVC.BAL
+namespace REX_MVC.BAL
 {
     public interface IRepository<T> : IDisposable where T : class
     {

@@ -1,5 +1,5 @@
 ﻿using Microsoft.Ajax.Utilities;
-using RiceMill_MVC.BAL;
+using REX_MVC.BAL;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -10,7 +10,7 @@ using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Data;
 
-namespace RiceMill_MVC.BAL
+namespace REX_MVC.BAL
 {                                   
      public class DbContextRepository<T> : GenericRepository<T>
         where T : class

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace RiceMill_MVC.Models
+namespace REX_MVC.Models
 {
     public class AppSession
     {

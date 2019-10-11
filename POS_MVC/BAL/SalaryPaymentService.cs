@@ -1,10 +1,10 @@
-﻿using RiceMill_MVC.Models;
+﻿using REX_MVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace RiceMill_MVC.BAL
+namespace REX_MVC.BAL
 {
     public class SalaryPaymentService
     {

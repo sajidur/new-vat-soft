@@ -6,7 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
 
-namespace RiceMill_MVC.BAL
+namespace REX_MVC.BAL
 {
     public class DBService <T> where T : class
     {

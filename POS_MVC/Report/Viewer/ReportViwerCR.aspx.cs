@@ -1,7 +1,7 @@
 ﻿using CrystalDecisions.CrystalReports.Engine;
-using RiceMill_MVC.BAL;
-using RiceMill_MVC.Report.Viewer;
-using RiceMill_MVC.Util;
+using REX_MVC.BAL;
+using REX_MVC.Report.Viewer;
+using REX_MVC.Util;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,7 +10,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace RiceMill_MVC.Report.Viewer
+namespace REX_MVC.Report.Viewer
 {
     public partial class ReportViwerCR : System.Web.UI.Page
     {
@@ -25,9 +25,9 @@ namespace RiceMill_MVC.Report.Viewer
                 try
                 {
                     string reportType = Request.QueryString["ReportName"].ToString();
-                    if (reportType == "RevenueReport")
+                    if (reportType == "Mushak11")
                     {
-                        //LoadRevenueReport();
+                        Mushak11();
                     }
                     if (reportType == "EXECLIPARTReport")
                     {
@@ -76,9 +76,8 @@ namespace RiceMill_MVC.Report.Viewer
 
         private void Mushak11()
         {
-            string invoiceId = Request.QueryString["invoiceId"].ToString();
-            string query = @"exec rptSalesInvoice '" + invoiceId + "'";
-            oResult = oDAL.Select(query);
+            string query = @"exec rptSalesInvoice";
+           // oResult = oDAL.Select(query);
             DataTable dt = null;
             dt = oResult.Data as DataTable;
 

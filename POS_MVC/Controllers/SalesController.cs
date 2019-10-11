@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using RiceMill_MVC.BAL;
-using RiceMill_MVC.BLL;
-using RiceMill_MVC.Models;
-using RiceMill_MVC.Util;
-using RiceMill_MVC.ViewModel;
+using REX_MVC.BAL;
+using REX_MVC.BLL;
+using REX_MVC.Models;
+using REX_MVC.Util;
+using REX_MVC.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -13,7 +13,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
-namespace RiceMill_MVC.Controllers
+namespace REX_MVC.Controllers
 {
     public class SalesController : Controller
     {
@@ -123,9 +123,9 @@ namespace RiceMill_MVC.Controllers
                         SalesMasterId = result.Id,
                         SalesInvoice = result.SalesInvoice,
                         ProductId = itemDetails.ProductId,
-                        BaleQty = itemDetails.BaleQty,
-                        BaleWeight = itemDetails.BaleWeight,
-                        TotalQtyInKG = itemDetails.TotalQtyInKG,
+                        Qty = itemDetails.BaleQty,
+                        SD = itemDetails.BaleWeight,
+                        Tax = itemDetails.TotalQtyInKG,
                         Rate = itemDetails.Rate,
                         Amount = itemDetails.Amount,
                         Notes = FinalResult.Notes,
@@ -546,27 +546,33 @@ namespace RiceMill_MVC.Controllers
         //}
 
         [HttpPost]
-        public ActionResult SaveSales(List<TempSalesMaster> salesMasters, decimal Discount, List<TempSalesDetail> salesDetail, List<SalesOrder> salesOrders, List<string> lstDeliveryQunatities, bool isSendSMS, string DriverName, decimal RentAmount = 0.0m)
+        public ActionResult SaveSales(List<SalesMaster> salesMasters, decimal Discount, List<SalesDetail> salesDetail, string DriverName, decimal RentAmount = 0.0m)
         {
-            var salesinvoiceid = GetInvoiceNo();
+            var salesinvoiceid = "DR" + DateTime.Now.Year +
+                new GlobalClass().GetMaxId("Id", "SalesMaster");
+
+            decimal? deliveryQty;
+            decimal baleQty;
             ActionResult actionResult;
+            decimal? nullable;
             int customerId = 0;
-            TempSalesMaster result = new TempSalesMaster();
+            string message = "";
+            SalesMaster result = new SalesMaster();
             result.SalesInvoice = salesinvoiceid;
             foreach (var item in salesMasters)
             {
                 item.SalesInvoice = salesinvoiceid;
             }
-            TempSalesMaster FinalResult = new TempSalesMaster();
+            SalesMaster FinalResult = new SalesMaster();
             FinalResult.SalesInvoice = salesinvoiceid;
-            TempSalesDetail FinalResultDetail = new TempSalesDetail();
+            SalesDetail FinalResultDetail = new SalesDetail();
             SalesOrder resultOrder = new SalesOrder();
             SalesOrder FinalResultOrder = new SalesOrder();
 
             List<int> lstSalesMasterId = new List<int>();
             try
             {
-                foreach (TempSalesMaster item in salesMasters)
+                foreach (SalesMaster item in salesMasters)
                 {
                     customerId = item.CustomerID;
                     result.SalesInvoice = item.SalesInvoice;
@@ -595,16 +601,16 @@ namespace RiceMill_MVC.Controllers
                     from a in salesMasters
                     select a.TotalAmount).Sum() + result.AdditionalCost) - result.Discount;
                 int count = 0;
-                foreach (TempSalesDetail item in salesDetail)
+                foreach (SalesDetail item in salesDetail)
                 {
-                    TempSalesDetail resultDetail = new TempSalesDetail()
+                    SalesDetail resultDetail = new SalesDetail()
                     {
                         SalesMasterId = result.Id,
                         SalesInvoice = result.SalesInvoice,
                         ProductId = item.ProductId,
-                        BaleQty = item.BaleQty,
-                        BaleWeight = item.BaleWeight,
-                        TotalQtyInKG = item.TotalQtyInKG,
+                        Qty = item.Qty,
+                        SD = item.SD,
+                        Tax = item.Tax,
                         Rate = item.Rate,
                         Amount = item.Amount,
                         Notes = FinalResult.Notes,
@@ -613,12 +619,12 @@ namespace RiceMill_MVC.Controllers
                         IsActive = new bool?(true),
                         WarehouseId = item.WarehouseId
                     };
-                    result.TempSalesDetails.Add(resultDetail);
-                    count += item.BaleQty;
+                    result.SalesDetails.Add(resultDetail);
+                    count += item.Qty;
                 }
                 result.DriverName = DriverName;
                 result.RentAmount = RentAmount;
-                TempSalesMaster saved = this.salesService.SaveTempSalesMaster(result);
+                SalesMaster saved = this.salesService.SaveSalesMaster(result);
                 actionResult = base.Json(FinalResult, 0);
             }
             catch (Exception exception)
@@ -628,166 +634,6 @@ namespace RiceMill_MVC.Controllers
             }
             return actionResult;
         }
-        //[HttpPost]
-        //public ActionResult SaveSales(List<SalesMaster> salesMasters, decimal Discount, List<SalesDetail> salesDetail, List<SalesOrder> salesOrders, List<string> lstDeliveryQunatities,bool isSendSMS,string DriverName,decimal RentAmount=0.0m)
-        //{
-        //    var salesinvoiceid = "DR" + DateTime.Now.Year +
-        //        new GlobalClass().GetMaxId("Id", "SalesMaster");
-
-        //    decimal? deliveryQty;
-        //    decimal baleQty;
-        //    ActionResult actionResult;
-        //    decimal? nullable;
-        //    int customerId = 0;
-        //    string message = "";
-        //    SalesMaster result = new SalesMaster();
-        //    result.SalesInvoice = salesinvoiceid;
-        //    foreach (var item in salesMasters)
-        //    {
-        //        item.SalesInvoice = salesinvoiceid;
-        //    }
-        //    SalesMaster FinalResult = new SalesMaster();           
-        //    FinalResult.SalesInvoice = salesinvoiceid;
-        //    SalesDetail FinalResultDetail = new SalesDetail();
-        //    SalesOrder resultOrder = new SalesOrder();
-        //    SalesOrder FinalResultOrder = new SalesOrder();
-
-        //    List<int> lstSalesMasterId = new List<int>();
-        //    try
-        //    {
-        //        foreach (SalesMaster item in salesMasters)
-        //        {
-        //            customerId = item.CustomerID;
-        //            result.SalesInvoice = item.SalesInvoice;
-        //            result.SalesOrderId = item.SalesOrderId;
-        //            result.SalesDate = item.SalesDate;
-        //            if (!result.SalesDate.HasValue)
-        //            {
-        //                result.SalesDate = new DateTime?(DateTime.Now);
-        //            }
-        //            result.SalesBy = CurrentSession.GetCurrentSession().UserName;
-        //            result.CustomerID = item.CustomerID;
-        //            result.AdditionalCost = decimal.Zero;
-        //            result.Discount = Discount;
-        //            result.Notes = item.Notes;
-        //            result.Coutha = item.Coutha;
-        //            result.TransportNo = item.TransportNo;
-        //            result.TransportType = item.TransportType;
-        //            result.CreatedBy = CurrentSession.GetCurrentSession().UserName;
-        //            result.CreatedDate = new DateTime?(DateTime.Now);
-        //            result.IsActive = true;
-        //        }
-        //        result.TotalAmount = (
-        //            from a in salesMasters
-        //            select a.TotalAmount).Sum();
-        //        result.GrandTotal = ((
-        //            from a in salesMasters
-        //            select a.TotalAmount).Sum() + result.AdditionalCost) - result.Discount;
-        //        int count = 0;
-        //        foreach (SalesDetail item in salesDetail)
-        //        {
-        //            SalesDetail resultDetail = new SalesDetail()
-        //            {
-        //                SalesMasterId = result.Id,
-        //                SalesInvoice = result.SalesInvoice,
-        //                ProductId = item.ProductId,
-        //                BaleQty = item.BaleQty,
-        //                BaleWeight = item.BaleWeight,
-        //                TotalQtyInKG = item.TotalQtyInKG,
-        //                Rate = item.Rate,
-        //                Amount = item.Amount,
-        //                Notes = FinalResult.Notes,
-        //                CreatedBy = CurrentSession.GetCurrentSession().UserName,
-        //                CreatedDate = new DateTime?(DateTime.Now),
-        //                IsActive = new bool?(true),
-        //                WarehouseId = item.WarehouseId
-        //            };
-        //            result.SalesDetails.Add(resultDetail);
-        //            count += item.BaleQty;
-        //        }
-        //        message = string.Concat(message, "Tk=", string.Format("{0:#,#.}", decimal.Round(result.GrandTotal), ""), "=");
-        //        if (salesOrders != null)
-        //        {
-        //            string orderid = "";
-        //            for (int i = 0; i < salesOrders.Count; i++)
-        //            {
-        //                SalesOrder order = this.salesService.GetSalesOrderById(new int?(Convert.ToInt32(salesOrders[i].SalesOrderId)));
-        //                orderid = string.Concat(",", order.SalesOrderId);
-        //            }
-        //            message = string.Concat(message, orderid);
-        //        }
-        //        message = string.Concat(message, ",SO-", result.SalesInvoice);
-        //        message = string.Concat(message, ",T/No:", salesMasters.FirstOrDefault<SalesMaster>().TransportType+ ",Mob:"+result.TransportNo);
-
-        //        result.DriverName = DriverName;
-        //        result.RentAmount = RentAmount;
-        //        SalesMaster saved = this.salesService.SaveSalesMaster(result);
-        //        if (salesOrders != null)
-        //        {
-        //            for (int i = 0; i < salesOrders.Count; i++)
-        //            {
-        //                salesOrders[i].DeliveryDate = new DateTime?(DateTime.Now);
-        //                SalesOrder order = this.salesService.GetSalesOrderById(new int?(Convert.ToInt32(salesOrders[i].SalesOrderId)));
-        //                SalesOrder salesOrder = order;
-        //                deliveryQty = order.DeliveryQty;
-        //                baleQty = salesOrders[i].BaleQty;
-        //                if (deliveryQty.HasValue)
-        //                {
-        //                    nullable = new decimal?(deliveryQty.GetValueOrDefault() + baleQty);
-        //                }
-        //                else
-        //                {
-        //                    nullable = null;
-        //                }
-        //                salesOrder.DeliveryQty = nullable;
-        //                order.BaleQty = order.BaleQty - salesOrders[i].BaleQty;
-        //                order.DeliveryDate = new DateTime?(DateTime.Now);
-        //                order.IsActive = salesOrders[i].IsActive;
-        //                FinalResultOrder = this.salesService.Update(order, order.Id);
-        //            }
-        //        }
-        //        if (saved.Id > 0)
-        //        {
-        //            if (customerId != 0)
-        //            {
-        //                Customer customer = (new CustomerService()).GetById(new int?(customerId));
-        //                int? ledgerId = customer.LedgerId;
-        //                rptIndividualLedger_Result due = customerService.GetBalance((ledgerId.HasValue ? ledgerId.GetValueOrDefault() : 0));
-        //                string balanceText = "";
-        //                deliveryQty = due.Balance;
-        //                baleQty = new decimal();
-        //                if ((deliveryQty.GetValueOrDefault() < baleQty ? !deliveryQty.HasValue : true))
-        //                {
-        //                    deliveryQty = due.Balance;
-        //                    balanceText = string.Concat("Balance with Dada Rice Tk=", string.Format("{0:#,#.}", decimal.Round((deliveryQty.HasValue ? deliveryQty.GetValueOrDefault() : decimal.Zero)), ""), "=");
-        //                }
-        //                else
-        //                {
-        //                    decimal minusOne = decimal.MinusOne;
-        //                    deliveryQty = due.Balance;
-        //                    balanceText = string.Concat("Balance with Dada Rice Tk=", string.Format("{0:#,#.}", minusOne * decimal.Round((deliveryQty.HasValue ? deliveryQty.GetValueOrDefault() : decimal.Zero)), ""), "=");
-        //                }
-        //                SMSEmailService sMSEmailService = new SMSEmailService();
-        //                string phone = customer.Phone;
-        //                string[] str = new string[] { "Dear Customer,Del Qty=", count.ToString(), " BAGS ", message, ",Dated:", null, null, null };
-        //                str[5] = DateTime.Now.ToString("dd-MM-yyyy");
-        //                str[6] = ".";
-        //                str[7] = balanceText;
-        //                if (isSendSMS)
-        //                {
-        //                    sMSEmailService.SendOneToOneSingleSms(phone, string.Concat(str));
-        //                }
-        //            }
-        //        }
-        //        actionResult = base.Json(FinalResult, 0);
-        //    }
-        //    catch (Exception exception)
-        //    {
-        //        exception.ErrorWritter();
-        //        actionResult = base.Json("Error", 0);
-        //    }
-        //    return actionResult;
-        //}
 
         [HttpGet]
         public ActionResult Delete(int? id)

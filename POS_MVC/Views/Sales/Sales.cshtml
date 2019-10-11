@@ -54,11 +54,6 @@
                                     <div class="col-md-3">
                                         <input type="date" id="txtDate" name="txtDate" class="form-control" style="width:200px; height:35px" placeholder="Dates"/>
                                     </div>
-                                    <div class="col-md-3 form-group">
-                                        <div class="text-center">
-                                            <button class="btn btn-primary" id="btnAddFromOrders" type="button" data-toggle="modal" data-target="#myModal">Add Sell From Orders</button>
-                                        </div>
-                                    </div>
                                 </div>
                                 
                             </fieldset>
@@ -93,14 +88,15 @@
                                     <table class="table table-bordered table-striped table-hover" id="inventoryGroupTableModal">
                                         <thead>
                                         <th>Id</th>
-                                        <th>Id</th>
-                                        <th>Product</th>
-                                        <th>Unit</th>
+                                        <th>Product Id</th>
+                                        <th>Product</th>                                     
                                         <th>Product Type</th>
                                         <th>Godown</th>
                                         <th>Stock Qty</th>
                                         <th>Sale Qty</th>
-                                        <th>দাম/বস্তা</th>
+                                        <th>Rate</th>
+                                        <th>SD(%)</th>
+                                        <th>Tax(%)</th>
                                         <th>Action</th>
                                         <th></th>
                                         </thead>
@@ -110,8 +106,7 @@
                                             <td>{{Id}}</td>
                                             <td>{{Product.Id}}</td>
                                             <td> {{Product.ProductName}}</td>
-                                            <td> {{QtyInBale}}</td>
-                                            <td></td>
+                                            <td>{{Product.ProductType}}</td>
                                             <td>{{WareHouse.WareHouseName}}</td>
                                             <td> {{BalanceQty}}</td>
                                             <td width="10px">
@@ -120,6 +115,8 @@
                                             <td width="10px">
                                                 <input type="text" name="txtRate" id="txtRate" class="datatable-textbox-style"  />
                                             </td>
+                                            <td>{{Product.SDRate}}</td>
+                                            <td>{{Product.TaxRate}}</td>
                                                 <td class="action-sm">
                                                     <a class="datatable-submit-button" id="btnAdd" onclick="LoadForAdd('{{Id}}')"><i class="fa fa-edit"></i>Add</a>
                                                 </td>
@@ -222,75 +219,17 @@
     </div>
 </div>
 
-<div class="col-lg-8 col-lg-offset-1">
-    <form class="bs-component">
-        <script id="templateSalesOrderGroupModal" type="text/html">
-            <table class="table table-bordered table-striped table-hover" id="salesOrderGroupTableModal">
-                <thead>
-                    <th>Id</th>
-                    <th>OrderNo</th>
-                    <th>আইটেম</th>
-                    <th>বস্তা (অর্ডার)</th>
-                    <th>কেজি /বস্তা</th>
-                    <th>দাম /বস্তা</th>
-                    <th>বস্তা (বিক্রয়)</th>
-                    <th>দাম (বিক্রয়)</th>
-                    <th></th>
-                    <th>Godown</th>
-                    <th>Add</th>
-                     <th style="display:none">ProductId</th>
-                </thead>
-                <tbody>
-                {{#SalesOrderGroupSearch}}
-                <tr>
-                    <td>{{Id}}</td>
-                    <td> {{SalesOrderId}}</td>
-                    <td> {{Product.ProductName}}</td>
-                    <td> {{BaleQty}}</td>
-                    <td> {{BaleWeight}}</td>
-                    <td> {{Rate}}</td>
-                    <td>
-                        <input type="text" name="txtRateOrder" value="{{BaleQty}}" id="txtRateOrder" class="datatable-textbox-style" />
-                    </td>
-                    <td>
-                        <input type="text" name="txtDeliveryQty" value="{{Rate}}" id="txtDeliveryQty" class="datatable-textbox-style" />
-                    </td>
-                    <td>
-                        <input type="checkbox" class="checkbox" id="chkOrderComplete" value="true"/>
-                    </td>
-                    <td>
-                        <select class="form-control" id="ddlWareHouse" name="ddlWareHouse">
-                            <option value="0">পছন্দ করুন</option>
-                            <option value="1">Godown-1</option>
-                            <option value="3">Godown-2</option>
-                        </select>
-                    </td>
-                    <td>
-                            <a class="datatable-submit-button" id="btnAddOrder" onclick="LoadForAddOrder('{{Id}}')">Add</a>
-                    </td>
-
-                    <td style="display:none;"> {{ProductId}}</td>
-                    </tr>
-
-                    {{/SalesOrderGroupSearch}}
-                </tbody>
-            </table>
-        </script>
-    </form>
-</div>
-
 <script id="templateSalesGroupModalGrid" type="text/html">
     <table class="table table-bordered table-striped table-hover" id="salesGroupTableModalGrid">
         <thead>
         <th> </th>
-        <th>আইডি</th>
-        <th>আইটেম</th>
-        <th>বস্তা</th>
-        <th>বস্তা/কেজি</th>
-        <th>কেজি</th>
-        <th>দাম/বস্তা</th>
-        <th>মোট দাম</th>
-        <th>অর্ডার আইডি</th>
+        <th>Item Id</th>
+        <th>Product</th>
+        <th>Qty</th>
+        <th>Rate</th>
+        <th>SD</th>
+        <th>Tax</th>
+        <th>Total Amount</th>
         <th>Action</th>
         <th></th>
         </thead>
@@ -300,12 +239,11 @@
             <td>{{countCount}}</td>
             <td>{{ProductId}}</td>
             <td>{{ProductName}}</td>
-            <td>{{BaleQty}}</td>
-            <td>{{BaleWeight}}</td>
-            <td>{{TotalQtyInKG}}</td>
+            <td>{{Qty}}</td>
             <td>{{Rate}}</td>
+            <td>{{SDRate}}</td>
+            <td>{{TaxRate}}</td>
             <td>{{Amount}}</td>
-            <td>{{SalesOrderId}}</td>
             <td class="action-sm">
                 <a class="btn btn-danger" onclick="OnDeleteSalesOrder('{{countCount}}')"><i class="fa fa-trash-o"></i></a>
             </td>

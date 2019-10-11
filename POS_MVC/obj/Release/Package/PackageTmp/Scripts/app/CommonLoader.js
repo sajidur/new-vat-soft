@@ -1,4 +1,5 @@
-﻿function LoadAllWareHouse(controlId) {
+﻿var allproduct = [];
+function LoadAllWareHouse(controlId) {
     var url = "/WareHouse/GetAll";
     $.ajax({
         url: url,
@@ -129,6 +130,7 @@ function LoadAllProduct(controlId) {
         method: "POST",
         success: function (res) {
             var data = res;
+            allproduct = data;
             //alert('Success');
             $("#" + controlId).empty();
             $("#" + controlId).get(0).options.length = 0;
@@ -206,6 +208,8 @@ function LoadAllProduct(type, controlId) {
         method: "POST",
         success: function (res) {
             var data = res;
+            allproduct = data;
+
             $("#" + controlId).empty();
             $("#" + controlId).get(0).options.length = 0;
             if (true) {

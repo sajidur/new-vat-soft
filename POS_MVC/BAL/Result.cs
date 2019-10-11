@@ -3,7 +3,7 @@ using System.Data;
 using System.Web;
 using System.Web.UI;
 
-namespace RiceMill_MVC.BAL
+namespace REX_MVC.BAL
 {
     [Serializable]
     public class ResultReport : System.Web.UI.Page

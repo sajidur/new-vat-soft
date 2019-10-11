@@ -1,8 +1,8 @@
 ﻿using Microsoft.Build.Framework;
 using Microsoft.Owin.Logging;
-using RiceMill_MVC.Models;
-using RiceMill_MVC.Util;
-using RiceMill_MVC.ViewModel;
+using REX_MVC.Models;
+using REX_MVC.Util;
+using REX_MVC.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,7 +11,7 @@ using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Web;
 
-namespace RiceMill_MVC.BAL
+namespace REX_MVC.BAL
 {
     public class SalesService
     {  // SQLDAL objSqlData = new SQLDAL();
@@ -160,7 +160,7 @@ namespace RiceMill_MVC.BAL
                 this.serviceSalesMaster.Delete(salesMaster.Id);
                 foreach (SalesDetail salesDetail in salesMaster.SalesDetails)
                 {
-                    List<Inventory> existingItem = this.inventory.GetAll((Inventory a) => a.ProductId == salesDetail.ProductId && a.IsActive && a.QtyInBale == (int?)salesDetail.BaleQty && a.WarehouseId == salesDetail.WarehouseId).ToList<Inventory>();
+                    List<Inventory> existingItem = this.inventory.GetAll((Inventory a) => a.ProductId == salesDetail.ProductId && a.IsActive && a.QtyInBale == (int?)salesDetail.Qty && a.WarehouseId == salesDetail.WarehouseId).ToList<Inventory>();
                     if (existingItem.Count > 0)
                     {
                         foreach (Inventory inv in existingItem)
@@ -169,8 +169,8 @@ namespace RiceMill_MVC.BAL
                             inv.UpdatedBy = "";
                             Inventory nullable = inv;
                             decimal? salesQty = inv.SalesQty;
-                            nullable.SalesQty = new decimal?((salesQty.HasValue ? salesQty.GetValueOrDefault() : 0 - salesDetail.BaleQty));
-                            inv.BalanceQty = inv.BalanceQty + salesDetail.BaleQty;
+                            nullable.SalesQty = new decimal?((salesQty.HasValue ? salesQty.GetValueOrDefault() : 0 - salesDetail.Qty));
+                            inv.BalanceQty = inv.BalanceQty + salesDetail.Qty;
                             this.inventory.Update(inv, inv.Id);
                         }
                     }
@@ -219,7 +219,7 @@ namespace RiceMill_MVC.BAL
             {
                 foreach (SalesDetail salesDetail in salesMaster.SalesDetails)
                 {
-                    List<Inventory> existingItem = this.inventory.GetAll((Inventory a) => a.ProductId == salesDetail.ProductId && a.IsActive && (decimal?)a.QtyInBale == (decimal?)salesDetail.BaleWeight && a.WarehouseId == salesDetail.WarehouseId).ToList<Inventory>();
+                    List<Inventory> existingItem = this.inventory.GetAll((Inventory a) => a.ProductId == salesDetail.ProductId && a.IsActive && a.WarehouseId == salesDetail.WarehouseId).ToList<Inventory>();
                     if (existingItem.Count > 0)
                     {
                         foreach (Inventory inv in existingItem)
@@ -228,8 +228,8 @@ namespace RiceMill_MVC.BAL
                             inv.UpdatedBy = "";
                             Inventory nullable = inv;
                             decimal? salesQty = inv.SalesQty;
-                            nullable.SalesQty = new decimal?((salesQty.HasValue ? salesQty.GetValueOrDefault() : salesDetail.BaleQty));
-                            inv.BalanceQty = inv.BalanceQty - salesDetail.BaleQty;
+                            nullable.SalesQty = new decimal?((salesQty.HasValue ? salesQty.GetValueOrDefault() : salesDetail.Qty));
+                            inv.BalanceQty = inv.BalanceQty - salesDetail.Qty;
                             this.inventory.Update(inv, inv.Id);
                         }
                     }

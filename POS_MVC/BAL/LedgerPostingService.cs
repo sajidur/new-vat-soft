@@ -1,6 +1,6 @@
-﻿using RiceMill_MVC.Models;
-using RiceMill_MVC.Util;
-using RiceMill_MVC.ViewModel;
+﻿using REX_MVC.Models;
+using REX_MVC.Util;
+using REX_MVC.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace RiceMill_MVC.BAL
+namespace REX_MVC.BAL
 {
     public class LedgerPostingService
     {

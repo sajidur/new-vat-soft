@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RiceMill_MVC.Report.RPT.Mushak11Ka {
+namespace REX_MVC.Report.RPT.Mushak11Ka {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -41,7 +41,7 @@ namespace RiceMill_MVC.Report.RPT.Mushak11Ka {
         
         public override string FullResourceName {
             get {
-                return "RiceMill_MVC.Report.RPT.Mushak11Ka.rptSalesCashMemo.rpt";
+                return "REX_MVC.Report.RPT.Mushak11Ka.rptSalesCashMemo.rpt";
             }
             set {
                 // Do nothing

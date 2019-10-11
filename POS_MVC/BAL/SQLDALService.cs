@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 //using POS_MVC;
 //using POS_MVC.Data;
 
-namespace RiceMill_MVC.BAL
+namespace REX_MVC.BAL
 {
     public class SQLDALService
     {

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RiceMill_MVC.Models
+namespace REX_MVC.Models
 {
     using System;
     

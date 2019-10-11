@@ -1,15 +1,15 @@
-﻿using RiceMill_MVC.BAL;
-using RiceMill_MVC.Models;
-using RiceMill_MVC.ViewModel;
+﻿using REX_MVC.BAL;
+using REX_MVC.Models;
+using REX_MVC.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using RiceMill_MVC.Util;
+using REX_MVC.Util;
 using System.Net;
 
-namespace RiceMill_MVC.Controllers
+namespace REX_MVC.Controllers
 {
     public class WareHouseController : Controller
     {

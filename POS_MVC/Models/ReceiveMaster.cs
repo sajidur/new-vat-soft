@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RiceMill_MVC.Models
+namespace REX_MVC.Models
 {
     using System;
     using System.Collections.Generic;
@@ -42,8 +42,8 @@ namespace RiceMill_MVC.Models
         public bool IsActive { get; set; }
         public Nullable<int> YearId { get; set; }
     
+        public virtual Supplier Supplier { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReceiveDetail> ReceiveDetails { get; set; }
-        public virtual Supplier Supplier { get; set; }
     }
 }

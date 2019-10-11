@@ -1,0 +1,2123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="vatModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AccountGroup">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="AccountGroupName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GroupUnder" Type="Int32" />
+    <Property Name="Narration" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsDefault" Type="Boolean" />
+    <Property Name="Nature" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AffectGrossProfit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ExtraDate" Type="DateTime" Precision="3" />
+    <Property Name="Extra1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Extra2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AccountLedgers" Relationship="Self.FK_AccountLedger_AccountGroup" FromRole="AccountGroup" ToRole="AccountLedger" />
+  </EntityType>
+  <EntityType Name="AccountLedger">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="AccountGroupId" Type="Int32" />
+    <Property Name="LedgerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OpeningBalance" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="IsDefault" Type="Boolean" />
+    <Property Name="CrOrDr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Narration" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MailingName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreditPeriod" Type="Int32" />
+    <Property Name="CreditLimit" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="PricinglevelId" Type="Int32" />
+    <Property Name="BillByBill" Type="Boolean" />
+    <Property Name="Tin" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RouteId" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="BankAccountNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BranchName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BranchCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ExtraDate" Type="DateTime" Precision="3" />
+    <Property Name="Extra1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Extra2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OrderNo" Type="Int32" />
+    <NavigationProperty Name="AccountGroup" Relationship="Self.FK_AccountLedger_AccountGroup" FromRole="AccountLedger" ToRole="AccountGroup" />
+    <NavigationProperty Name="AdvancePayments" Relationship="Self.FK_AdvancePayment_Ledger" FromRole="AccountLedger" ToRole="AdvancePayment" />
+    <NavigationProperty Name="ContraDetails" Relationship="Self.FK_ContraDetails_Ledger" FromRole="AccountLedger" ToRole="ContraDetails" />
+    <NavigationProperty Name="JournalDetails" Relationship="Self.FK_JournalDetails_Ladger" FromRole="AccountLedger" ToRole="JournalDetails" />
+    <NavigationProperty Name="LedgerPostings" Relationship="Self.FK_LedgerPosting_AccountLedger" FromRole="AccountLedger" ToRole="LedgerPosting" />
+    <NavigationProperty Name="PartyBalances" Relationship="Self.FK_PartyBalance_Ledger" FromRole="AccountLedger" ToRole="PartyBalance" />
+  </EntityType>
+  <EntityType Name="AdditionalCost">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VoucherTypeId" Type="Int32" />
+    <Property Name="VoucherNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LedgerId" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Debit" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="Credit" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="ExtraDate" Type="DateTime" Precision="3" />
+    <Property Name="Extra1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Extra2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AdvancePayment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeId" Type="Int32" />
+    <Property Name="LedgerId" Type="Int32" />
+    <Property Name="VoucherNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="InvoiceNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="InvoiceDate" Type="DateTime" Precision="3" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="SalaryMonth" Type="DateTime" Precision="3" />
+    <Property Name="ChequeNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ChequeDate" Type="DateTime" Precision="3" />
+    <Property Name="Narration" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ExtraDate" Type="DateTime" Precision="3" />
+    <Property Name="Extra1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Extra2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SuffixPrefixId" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="VoucherTypeId" Type="Int32" />
+    <Property Name="FinancialYearId" Type="Int32" />
+    <NavigationProperty Name="AccountLedger" Relationship="Self.FK_AdvancePayment_Ledger" FromRole="AdvancePayment" ToRole="AccountLedger" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_AdvancePayment_Employee" FromRole="AdvancePayment" ToRole="Employee" />
+    <NavigationProperty Name="VoucherType" Relationship="Self.FK_AdvancePayment_VoucherType" FromRole="AdvancePayment" ToRole="VoucherType" />
+    <NavigationProperty Name="FinancialYear" Relationship="Self.FK_AdvancePayment_Year" FromRole="AdvancePayment" ToRole="FinancialYear" />
+  </EntityType>
+  <EntityType Name="BankReconciliation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="LedgerPostingId" Type="Int32" />
+    <Property Name="StatementDate" Type="DateTime" Precision="3" />
+    <Property Name="ExtraDate" Type="DateTime" Precision="3" />
+    <Property Name="Extra1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Extra2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="LedgerPosting" Relationship="Self.FK_BankReconciliation_LadgerPosting" FromRole="BankReconciliation" ToRole="LedgerPosting" />
+  </EntityType>
+  <EntityType Name="Brand">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BrandName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BrandNameInBangla" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Descriptions" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="UpdateDate" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Product_Category" FromRole="Category" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Code" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Street" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Road" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Web" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LogoURL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Creator" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+    <Property Name="CreationDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdateBy" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="UpdateDate" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ContraDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ContraMasterId" Type="Int32" Nullable="false" />
+    <Property Name="LedgerId" Type="Int32" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="ExchangeRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ChequeNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ChequeDate" Type="DateTime" Precision="3" />
+    <Property Name="ExtraDate" Type="DateTime" Precision="3" />
+    <Property Name="Extra1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Extra2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AccountLedger" Relationship="Self.FK_ContraDetails_Ledger" FromRole="ContraDetails" ToRole="AccountLedger" />
+    <NavigationProperty Name="ContraMaster" Relationship="Self.FK_ContraDetails_ContraMaster" FromRole="ContraDetails" ToRole="ContraMaster" />
+  </EntityType>
+  <EntityType Name="ContraMaster">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VoucherNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="InvoiceNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SuffixPrefixId" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="InvoiceDate" Type="DateTime" Precision="3" />
+    <Property Name="LedgerId" Type="Int32" />
+    <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="Narration" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="VoucherTypeId" Type="Int32" />
+    <Property Name="FinancialYearId" Type="Int32" />
+    <Property Name="ExtraDate" Type="DateTime" Precision="3" />
+    <Property Name="Extra1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="extra2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ContraDetails" Relationship="Self.FK_ContraDetails_ContraMaster" FromRole="ContraMaster" ToRole="ContraDetails" />
+    <NavigationProperty Name="ContraMaster1" Relationship="Self.FK_ContraMaster_Ledger" FromRole="ContraMaster" ToRole="ContraMaster1" />
+    <NavigationProperty Name="ContraMaster2" Relationship="Self.FK_ContraMaster_Ledger" FromRole="ContraMaster1" ToRole="ContraMaster" />
+    <NavigationProperty Name="UserInfo" Relationship="Self.FK_ContraMaster_User" FromRole="ContraMaster" ToRole="UserInfo" />
+    <NavigationProperty Name="VoucherType" Relationship="Self.FK_ContraMaster_VoucherType" FromRole="ContraMaster" ToRole="VoucherType" />
+    <NavigationProperty Name="FinancialYear" Relationship="Self.FK_ContraMaster_Year" FromRole="ContraMaster" ToRole="FinancialYear" />
+  </EntityType>
+  <EntityType Name="CreditNoteMaster">
+    <Key>
+      <PropertyRef Name="creditNoteMasterId" />
+    </Key>
+    <Property Name="creditNoteMasterId" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="voucherNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="invoiceNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="suffixPrefixId" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="date" Type="DateTime" Precision="3" />
+    <Property Name="userId" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="totalAmount" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="narration" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="financialYearId" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="extraDate" Type="DateTime" Precision="3" />
+    <Property Name="extra1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="extra2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="voucherTypeId" Type="Decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ContactPersonName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ContactPersonPhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Web" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Limit" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="LedgerId" Type="Int32" />
+    <NavigationProperty Name="SalesDeliveries" Relationship="Self.FK_SalesDelivery_Customer" FromRole="Customer" ToRole="SalesDelivery" />
+    <NavigationProperty Name="SalesMasters" Relationship="Self.FK_SalesMaster_Customer" FromRole="Customer" ToRole="SalesMaster" />
+    <NavigationProperty Name="SalesOrders" Relationship="Self.FK_SalesOrder_Customer" FromRole="Customer" ToRole="SalesOrder" />
+    <NavigationProperty Name="TempSalesMasters" Relationship="Self.FK_TempSalesMaster_Customer" FromRole="Customer" ToRole="TempSalesMaster" />
+  </EntityType>
+  <EntityType Name="Design">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DesignName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DesignCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Descriptions" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="UpdatedDate" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FatherName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MotherName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ZipCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Salary" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Creator" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreationDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdateBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LedgerId" Type="Int32" />
+    <NavigationProperty Name="AdvancePayments" Relationship="Self.FK_AdvancePayment_Employee" FromRole="Employee" ToRole="AdvancePayment" />
+  </EntityType>
+  <EntityType Name="FinancialYear">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FromDate" Type="DateTime" Precision="3" />
+    <Property Name="ToDate" Type="DateTime" Precision="3" />
+    <Property Name="ExtraDate" Type="DateTime" Precision="3" />
+    <Property Name="Extra1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Extra2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AdvancePayments" Relationship="Self.FK_AdvancePayment_Year" FromRole="FinancialYear" ToRole="AdvancePayment" />
+    <NavigationProperty Name="ContraMasters" Relationship="Self.FK_ContraMaster_Year" FromRole="FinancialYear" ToRole="ContraMaster" />
+    <NavigationProperty Name="JournalMasters" Relationship="Self.FK_JournalMaster_Year" FromRole="FinancialYear" ToRole="JournalMaster" />
+    <NavigationProperty Name="LedgerPostings" Relationship="Self.FK_LedgerPosting_Year" FromRole="FinancialYear" ToRole="LedgerPosting" />
+  </EntityType>
+  <EntityType Name="Inventory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="InventoryGuid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="QtyInBale" Type="Int32" />
+    <Property Name="SupplierId" Type="Int32" Nullable="false" />
+    <Property Name="WarehouseId" Type="Int32" Nullable="false" />
+    <Property Name="OpeningQty" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ReceiveQty" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="AddFromOtherSource" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ProductionQty" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ReturnQty" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Faulty" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="SalesQty" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="BalanceQty" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Notes" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="GoodsType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Inventory_Product" FromRole="Inventory" ToRole="Product" />
+    <NavigationProperty Name="Supplier" Relationship="Self.FK_Inventory_Supplier" FromRole="Inventory" ToRole="Supplier" />
+    <NavigationProperty Name="WareHouse" Relationship="Self.FK_Inventory_WareHouse" FromRole="Inventory" ToRole="WareHouse" />
+  </EntityType>
+  <EntityType Name="JournalDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JournalMasterId" Type="Int32" />
+    <Property Name="LedgerId" Type="Int32" />
+    <Property Name="Credit" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="Debit" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="ExchangeRate" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="ChequeNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ChequeDate" Type="DateTime" Precision="3" />
+    <Property Name="ExtraDate" Type="DateTime" Precision="3" />
+    <Property Name="Extra1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Extra2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AccountLedger" Relationship="Self.FK_JournalDetails_Ladger" FromRole="JournalDetails" ToRole="AccountLedger" />
+    <NavigationProperty Name="JournalDetails1" Relationship="Self.FK_JournalDetails_JournalMaster" FromRole="JournalDetails" ToRole="JournalDetails1" />
+    <NavigationProperty Name="JournalDetail1" Relationship="Self.FK_JournalDetails_JournalMaster" FromRole="JournalDetails1" ToRole="JournalDetails" />
+  </EntityType>
+  <EntityType Name="JournalMaster">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VoucherNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="InvoiceNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SuffixPrefixId" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="LadgerDate" Type="DateTime" Precision="3" />
+    <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="Narration" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="VoucherTypeId" Type="Int32" />
+    <Property Name="YearId" Type="Int32" />
+    <Property Name="ExtraDate" Type="DateTime" Precision="3" />
+    <Property Name="Extra1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Extra2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="FinancialYear" Relationship="Self.FK_JournalMaster_Year" FromRole="JournalMaster" ToRole="FinancialYear" />
+    <NavigationProperty Name="UserInfo" Relationship="Self.FK_JournalMaster_User" FromRole="JournalMaster" ToRole="UserInfo" />
+    <NavigationProperty Name="VoucherType" Relationship="Self.FK_JournalMaster_VoucherType" FromRole="JournalMaster" ToRole="VoucherType" />
+  </EntityType>
+  <EntityType Name="LedgerPosting">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="PostingDate" Type="DateTime" Precision="3" />
+    <Property Name="VoucherTypeId" Type="Int32" />
+    <Property Name="VoucherNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="LedgerId" Type="Int32" />
+    <Property Name="Debit" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="Credit" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="YearId" Type="Int32" />
+    <Property Name="InvoiceNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ChequeNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ChequeDate" Type="DateTime" Precision="3" />
+    <Property Name="ExtraDate" Type="DateTime" Precision="3" />
+    <Property Name="Extra1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Extra2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="AccountLedger" Relationship="Self.FK_LedgerPosting_AccountLedger" FromRole="LedgerPosting" ToRole="AccountLedger" />
+    <NavigationProperty Name="BankReconciliations" Relationship="Self.FK_BankReconciliation_LadgerPosting" FromRole="LedgerPosting" ToRole="BankReconciliation" />
+    <NavigationProperty Name="FinancialYear" Relationship="Self.FK_LedgerPosting_Year" FromRole="LedgerPosting" ToRole="FinancialYear" />
+    <NavigationProperty Name="VoucherType" Relationship="Self.FK_LedgerPosting_Voucher" FromRole="LedgerPosting" ToRole="VoucherType" />
+  </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LocationName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LocationDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="WarehouseId" Type="Int32" />
+    <Property Name="IsActive" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PartyBalance">
+    <Key>
+      <PropertyRef Name="PartyBalanceId" />
+    </Key>
+    <Property Name="PartyBalanceId" Type="Int32" Nullable="false" />
+    <Property Name="PostingDate" Type="DateTime" Precision="3" />
+    <Property Name="LedgerId" Type="Int32" Nullable="false" />
+    <Property Name="VoucherTypeId" Type="Int32" Nullable="false" />
+    <Property Name="VoucherNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="AgainstVoucherTypeId" Type="Int32" />
+    <Property Name="AgainstVoucherNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvoiceNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="AgainstInvoiceNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ReferenceType" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Debit" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="Credit" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="Balance" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CreditPeriod" Type="Int32" />
+    <Property Name="FinancialYearId" Type="Int32" />
+    <Property Name="extraDate" Type="DateTime" Precision="3" />
+    <Property Name="extra1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="extra2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AccountLedger" Relationship="Self.FK_PartyBalance_Ledger" FromRole="PartyBalance" ToRole="AccountLedger" />
+    <NavigationProperty Name="VoucherType" Relationship="Self.FK_PartyBalance_Voucher" FromRole="PartyBalance" ToRole="VoucherType" />
+  </EntityType>
+  <EntityType Name="PartyPaymentHistory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PartyBalanceId" Type="Int32" />
+    <Property Name="PostingDate" Type="DateTime" Precision="0" />
+    <Property Name="LedgerId" Type="Int32" />
+    <Property Name="CustomerId" Type="Int32" />
+    <Property Name="VoucherNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PaidAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="PaymentCash" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="PaymentChecque" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ChecqueDate" Type="DateTime" Precision="0" />
+    <Property Name="Bank" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Notes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Picture">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TypeId" Type="Int32" />
+    <Property Name="ImageId" Type="Int32" />
+    <Property Name="URL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ImageType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ImageSize" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdateBy" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductNameBangla" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CategoryId" Type="Int32" />
+    <Property Name="ProductType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProductTypeId" Type="Int32" />
+    <Property Name="Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TaxRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="SDRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ProductCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HSCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdateBy" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_Product_Category" FromRole="Product" ToRole="Category" />
+    <NavigationProperty Name="Inventories" Relationship="Self.FK_Inventory_Product" FromRole="Product" ToRole="Inventory" />
+    <NavigationProperty Name="SalesOrders" Relationship="Self.FK_SalesOrder_product" FromRole="Product" ToRole="SalesOrder" />
+    <NavigationProperty Name="StockIns" Relationship="Self.FK_StockIn_Product" FromRole="Product" ToRole="StockIn" />
+    <NavigationProperty Name="StockOuts" Relationship="Self.FK_StockOut_Product" FromRole="Product" ToRole="StockOut" />
+    <NavigationProperty Name="TempSalesDetails" Relationship="Self.FK_TempSalesDetails_Product" FromRole="Product" ToRole="TempSalesDetails" />
+    <NavigationProperty Name="SalesDetails" Relationship="vatModel.FK_SalesDetails_Product" FromRole="Product" ToRole="SalesDetail" />
+    <NavigationProperty Name="ReceiveDetails" Relationship="vatModel.FK_ReceiveDetails_product" FromRole="Product" ToRole="ReceiveDetail" />
+  </EntityType>
+  <EntityType Name="ReceiveMaster">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InvoiceNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="InvoiceNoPaper" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SupplierID" Type="Int32" Nullable="false" />
+    <Property Name="RecieveFrom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InvoiceDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="AdditionalCost" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+    <Property Name="BillDiscount" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+    <Property Name="GrandTotal" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+    <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="MarketType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TransportType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TransportNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AdditionalCostPurpose" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Notes" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="YearId" Type="Int32" />
+    <NavigationProperty Name="Supplier" Relationship="Self.FK_ReceiveMaster_Supplier" FromRole="ReceiveMaster" ToRole="Supplier" />
+    <NavigationProperty Name="ReceiveDetails" Relationship="vatModel.FK_ReceiveDetails_RecieveMaster" FromRole="ReceiveMaster" ToRole="ReceiveDetail" />
+  </EntityType>
+  <EntityType Name="RoleWiseScreenPermission">
+    <Key>
+      <PropertyRef Name="RoleId" />
+      <PropertyRef Name="ScreenId" />
+      <PropertyRef Name="CompanyId" />
+    </Key>
+    <Property Name="RoleId" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ScreenId" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="CompanyId" Type="Int32" Nullable="false" />
+    <Property Name="SetDate" Type="DateTime" Precision="3" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Screen" Relationship="Self.FK_RoleWiseScreenPermission_Screens" FromRole="RoleWiseScreenPermission" ToRole="Screens" />
+  </EntityType>
+  <EntityType Name="SalaryPayment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" />
+    <Property Name="EmployeeId" Type="Int32" />
+    <Property Name="LedgerId" Type="Int32" />
+    <Property Name="VoucherNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="Month" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SalaryAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Bonus" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Deduction" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Advance" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="LoanDeduction" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Narration" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SalesDelivery">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="SalesInvoice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SalesMasterId" Type="Int32" />
+    <Property Name="DeliveryDate" Type="DateTime" Precision="3" />
+    <Property Name="DriverName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DriverMobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerID" Type="Int32" Nullable="false" />
+    <Property Name="AdditionalCost" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="TransportType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TransportNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ExpenseBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Notes" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="UpdatedDate" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_SalesDelivery_Customer" FromRole="SalesDelivery" ToRole="Customer" />
+    <NavigationProperty Name="SalesMaster" Relationship="Self.FK_SalesDelivery_SalesMaster" FromRole="SalesDelivery" ToRole="SalesMaster" />
+  </EntityType>
+  <EntityType Name="SalesMaster">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SalesInvoice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SalesOrderId" Type="Int32" />
+    <Property Name="SalesDate" Type="DateTime" Precision="3" />
+    <Property Name="SalesBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerID" Type="Int32" Nullable="false" />
+    <Property Name="AdditionalCost" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="GrandTotal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="TransportType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TransportNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PricingDate" Type="DateTime" Precision="3" />
+    <Property Name="DiscountPurpose" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="Notes" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="UpdatedDate" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="Coutha" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DriverName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="RentAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="YearId" Type="Int32" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_SalesMaster_Customer" FromRole="SalesMaster" ToRole="Customer" />
+    <NavigationProperty Name="SalesDeliveries" Relationship="Self.FK_SalesDelivery_SalesMaster" FromRole="SalesMaster" ToRole="SalesDelivery" />
+    <NavigationProperty Name="SalesOrder" Relationship="Self.FK_SalesMaster_Salesorder" FromRole="SalesMaster" ToRole="SalesOrder" />
+    <NavigationProperty Name="SalesDetails" Relationship="vatModel.FK_SalesDetails_SalesMaster" FromRole="SalesMaster" ToRole="SalesDetail" />
+  </EntityType>
+  <EntityType Name="SalesOrder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SalesOrderId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OrderRecieveBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerID" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="BaleQty" Type="Int32" Nullable="false" />
+    <Property Name="BaleWeight" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="TotalQtyInKG" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Rate" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="DeliveryDate" Type="DateTime" Precision="3" />
+    <Property Name="DeliveryQty" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="TransportType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TransportNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PricingDate" Type="DateTime" Precision="3" />
+    <Property Name="Notes" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="UpdatedDate" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_SalesOrder_Customer" FromRole="SalesOrder" ToRole="Customer" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_SalesOrder_product" FromRole="SalesOrder" ToRole="Product" />
+    <NavigationProperty Name="SalesMasters" Relationship="Self.FK_SalesMaster_Salesorder" FromRole="SalesOrder" ToRole="SalesMaster" />
+    <NavigationProperty Name="TempSalesMasters" Relationship="Self.FK_TempSalesMaster_SalesOrder" FromRole="SalesOrder" ToRole="TempSalesMaster" />
+  </EntityType>
+  <EntityType Name="SalesReturn">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SalesId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BranchId" Type="Int32" Nullable="false" />
+    <Property Name="ItemId" Type="Int32" Nullable="false" />
+    <Property Name="Qty" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="Notes" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Screen">
+    <Key>
+      <PropertyRef Name="ScreenId" />
+    </Key>
+    <Property Name="ScreenId" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="ScreenName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="URL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ParentScreenId" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="IconName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Manager" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SetDate" Type="DateTime" Precision="3" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OrderBy" Type="Int32" />
+    <NavigationProperty Name="RoleWiseScreenPermissions" Relationship="Self.FK_RoleWiseScreenPermission_Screens" FromRole="Screens" ToRole="RoleWiseScreenPermission" />
+  </EntityType>
+  <EntityType Name="Setting">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KeyName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="StockIn">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InvoiceNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="StockOutInvoiceNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="BaleWeight" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="WarehouseId" Type="Int32" />
+    <Property Name="SupplierId" Type="Int32" />
+    <Property Name="ProductionDate" Type="DateTime" Precision="0" />
+    <Property Name="BaleQty" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="WeightInMon" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Notes" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_StockIn_Product" FromRole="StockIn" ToRole="Product" />
+    <NavigationProperty Name="Supplier" Relationship="Self.FK_StockIn_Supplier" FromRole="StockIn" ToRole="Supplier" />
+    <NavigationProperty Name="WareHouse" Relationship="Self.FK_StockIn_Warehouse" FromRole="StockIn" ToRole="WareHouse" />
+  </EntityType>
+  <EntityType Name="StockOut">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InvoiceNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="BaleWeight" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="WarehouseId" Type="Int32" />
+    <Property Name="SupplierId" Type="Int32" />
+    <Property Name="ProductionDate" Type="DateTime" Precision="0" />
+    <Property Name="BaleQty" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="WeightInMon" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Notes" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="AlreadyProcessed" Type="Boolean" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_StockOut_Product" FromRole="StockOut" ToRole="Product" />
+    <NavigationProperty Name="Supplier" Relationship="Self.FK_StockOut_Supplier" FromRole="StockOut" ToRole="Supplier" />
+    <NavigationProperty Name="WareHouse" Relationship="Self.FK_StockOut_Warehouse" FromRole="StockOut" ToRole="WareHouse" />
+  </EntityType>
+  <EntityType Name="Supplier">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ContactPersonName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ContactPersonPhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Web" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SupplierType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Creator" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreationDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdateBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LedgerId" Type="Int32" />
+    <NavigationProperty Name="Inventories" Relationship="Self.FK_Inventory_Supplier" FromRole="Supplier" ToRole="Inventory" />
+    <NavigationProperty Name="ReceiveMasters" Relationship="Self.FK_ReceiveMaster_Supplier" FromRole="Supplier" ToRole="ReceiveMaster" />
+    <NavigationProperty Name="StockIns" Relationship="Self.FK_StockIn_Supplier" FromRole="Supplier" ToRole="StockIn" />
+    <NavigationProperty Name="StockOuts" Relationship="Self.FK_StockOut_Supplier" FromRole="Supplier" ToRole="StockOut" />
+  </EntityType>
+  <EntityType Name="Tax">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Percentage" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="TypeOfDiscount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Creator" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+    <Property Name="CreationDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdateBy" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="UpdateDate" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TempSalesDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SalesMasterId" Type="Int32" Nullable="false" />
+    <Property Name="SalesInvoice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="BaleQty" Type="Int32" Nullable="false" />
+    <Property Name="BaleWeight" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="WarehouseId" Type="Int32" Nullable="false" />
+    <Property Name="TotalQtyInKG" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Rate" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Notes" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="UpdatedDate" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_TempSalesDetails_Product" FromRole="TempSalesDetails" ToRole="Product" />
+    <NavigationProperty Name="TempSalesMaster" Relationship="Self.FK_TempSalesDetails_TempSalesMaster" FromRole="TempSalesDetails" ToRole="TempSalesMaster" />
+  </EntityType>
+  <EntityType Name="TempSalesMaster">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SalesInvoice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SalesOrderId" Type="Int32" />
+    <Property Name="SalesDate" Type="DateTime" Precision="3" />
+    <Property Name="SalesBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerID" Type="Int32" Nullable="false" />
+    <Property Name="AdditionalCost" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="GrandTotal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="TransportType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TransportNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PricingDate" Type="DateTime" Precision="3" />
+    <Property Name="DiscountPurpose" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="Notes" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="UpdatedDate" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="Coutha" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DriverName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="RentAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="YearId" Type="Int32" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_TempSalesMaster_Customer" FromRole="TempSalesMaster" ToRole="Customer" />
+    <NavigationProperty Name="SalesOrder" Relationship="Self.FK_TempSalesMaster_SalesOrder" FromRole="TempSalesMaster" ToRole="SalesOrder" />
+    <NavigationProperty Name="TempSalesDetails" Relationship="Self.FK_TempSalesDetails_TempSalesMaster" FromRole="TempSalesMaster" ToRole="TempSalesDetails" />
+    <NavigationProperty Name="TempSalesMaster1" Relationship="Self.FK_TempSalesMaster_TempSalesDetails" FromRole="TempSalesMaster" ToRole="TempSalesMaster1" />
+    <NavigationProperty Name="TempSalesMaster2" Relationship="Self.FK_TempSalesMaster_TempSalesDetails" FromRole="TempSalesMaster1" ToRole="TempSalesMaster" />
+  </EntityType>
+  <EntityType Name="Unit">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Descriptions" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="UpdateDate" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserRoleId" Type="Int32" Nullable="false" />
+    <Property Name="UserStatus" Type="Boolean" Nullable="false" />
+    <Property Name="SetDate" Type="DateTime" Precision="0" />
+    <Property Name="ModifyUser" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="BranchId" Type="Int32" />
+    <NavigationProperty Name="ContraMasters" Relationship="Self.FK_ContraMaster_User" FromRole="UserInfo" ToRole="ContraMaster" />
+    <NavigationProperty Name="JournalMasters" Relationship="Self.FK_JournalMaster_User" FromRole="UserInfo" ToRole="JournalMaster" />
+    <NavigationProperty Name="UserRole" Relationship="Self.FK_UserInfo_UserInfo" FromRole="UserInfo" ToRole="UserRole" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenancyId" Type="Int32" Nullable="false" />
+    <Property Name="SetDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="UserInfoes" Relationship="Self.FK_UserInfo_UserInfo" FromRole="UserRole" ToRole="UserInfo" />
+  </EntityType>
+  <EntityType Name="VoucherType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="VoucherTypeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TypeOfVoucher" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MethodOfVoucherNumbering" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsTaxApplicable" Type="Boolean" />
+    <Property Name="Narration" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ExtraDate" Type="DateTime" Precision="3" />
+    <Property Name="Extra1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Extra2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDefault" Type="Boolean" />
+    <Property Name="MasterId" Type="Int32" />
+    <Property Name="Declaration" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Heading1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Heading2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Heading3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Heading4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AdvancePayments" Relationship="Self.FK_AdvancePayment_VoucherType" FromRole="VoucherType" ToRole="AdvancePayment" />
+    <NavigationProperty Name="ContraMasters" Relationship="Self.FK_ContraMaster_VoucherType" FromRole="VoucherType" ToRole="ContraMaster" />
+    <NavigationProperty Name="JournalMasters" Relationship="Self.FK_JournalMaster_VoucherType" FromRole="VoucherType" ToRole="JournalMaster" />
+    <NavigationProperty Name="LedgerPostings" Relationship="Self.FK_LedgerPosting_Voucher" FromRole="VoucherType" ToRole="LedgerPosting" />
+    <NavigationProperty Name="PartyBalances" Relationship="Self.FK_PartyBalance_Voucher" FromRole="VoucherType" ToRole="PartyBalance" />
+  </EntityType>
+  <EntityType Name="WareHouse">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WareHouseName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Inventories" Relationship="Self.FK_Inventory_WareHouse" FromRole="WareHouse" ToRole="Inventory" />
+    <NavigationProperty Name="StockIns" Relationship="Self.FK_StockIn_Warehouse" FromRole="WareHouse" ToRole="StockIn" />
+    <NavigationProperty Name="StockOuts" Relationship="Self.FK_StockOut_Warehouse" FromRole="WareHouse" ToRole="StockOut" />
+    <NavigationProperty Name="ReceiveDetails" Relationship="vatModel.FK_ReceiveDetails_Warehouse" FromRole="WareHouse" ToRole="ReceiveDetail" />
+  </EntityType>
+  <Association Name="FK_AccountLedger_AccountGroup">
+    <End Role="AccountGroup" Type="Self.AccountGroup" Multiplicity="0..1" />
+    <End Role="AccountLedger" Type="Self.AccountLedger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountGroup">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountLedger">
+        <PropertyRef Name="AccountGroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AdvancePayment_Ledger">
+    <End Role="AccountLedger" Type="Self.AccountLedger" Multiplicity="0..1" />
+    <End Role="AdvancePayment" Type="Self.AdvancePayment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountLedger">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AdvancePayment">
+        <PropertyRef Name="LedgerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContraDetails_Ledger">
+    <End Role="AccountLedger" Type="Self.AccountLedger" Multiplicity="0..1" />
+    <End Role="ContraDetails" Type="Self.ContraDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountLedger">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ContraDetails">
+        <PropertyRef Name="LedgerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JournalDetails_Ladger">
+    <End Role="AccountLedger" Type="Self.AccountLedger" Multiplicity="0..1" />
+    <End Role="JournalDetails" Type="Self.JournalDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountLedger">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="JournalDetails">
+        <PropertyRef Name="LedgerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LedgerPosting_AccountLedger">
+    <End Role="AccountLedger" Type="Self.AccountLedger" Multiplicity="0..1" />
+    <End Role="LedgerPosting" Type="Self.LedgerPosting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountLedger">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LedgerPosting">
+        <PropertyRef Name="LedgerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartyBalance_Ledger">
+    <End Role="AccountLedger" Type="Self.AccountLedger" Multiplicity="1" />
+    <End Role="PartyBalance" Type="Self.PartyBalance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountLedger">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PartyBalance">
+        <PropertyRef Name="LedgerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AdvancePayment_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="AdvancePayment" Type="Self.AdvancePayment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AdvancePayment">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AdvancePayment_VoucherType">
+    <End Role="VoucherType" Type="Self.VoucherType" Multiplicity="0..1" />
+    <End Role="AdvancePayment" Type="Self.AdvancePayment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VoucherType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AdvancePayment">
+        <PropertyRef Name="VoucherTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AdvancePayment_Year">
+    <End Role="FinancialYear" Type="Self.FinancialYear" Multiplicity="0..1" />
+    <End Role="AdvancePayment" Type="Self.AdvancePayment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FinancialYear">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AdvancePayment">
+        <PropertyRef Name="FinancialYearId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BankReconciliation_LadgerPosting">
+    <End Role="LedgerPosting" Type="Self.LedgerPosting" Multiplicity="0..1" />
+    <End Role="BankReconciliation" Type="Self.BankReconciliation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LedgerPosting">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BankReconciliation">
+        <PropertyRef Name="LedgerPostingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContraDetails_ContraMaster">
+    <End Role="ContraMaster" Type="Self.ContraMaster" Multiplicity="1" />
+    <End Role="ContraDetails" Type="Self.ContraDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ContraMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ContraDetails">
+        <PropertyRef Name="ContraMasterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContraMaster_Ledger">
+    <End Role="ContraMaster" Type="Self.ContraMaster" Multiplicity="1" />
+    <End Role="ContraMaster1" Type="Self.ContraMaster" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ContraMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ContraMaster1">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContraMaster_User">
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+    <End Role="ContraMaster" Type="Self.ContraMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ContraMaster">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContraMaster_VoucherType">
+    <End Role="VoucherType" Type="Self.VoucherType" Multiplicity="0..1" />
+    <End Role="ContraMaster" Type="Self.ContraMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VoucherType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ContraMaster">
+        <PropertyRef Name="VoucherTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContraMaster_Year">
+    <End Role="FinancialYear" Type="Self.FinancialYear" Multiplicity="0..1" />
+    <End Role="ContraMaster" Type="Self.ContraMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FinancialYear">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ContraMaster">
+        <PropertyRef Name="FinancialYearId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesDelivery_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="SalesDelivery" Type="Self.SalesDelivery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SalesDelivery">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesMaster_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="SalesMaster" Type="Self.SalesMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SalesMaster">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesOrder_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="SalesOrder" Type="Self.SalesOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SalesOrder">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TempSalesMaster_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="TempSalesMaster" Type="Self.TempSalesMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TempSalesMaster">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JournalMaster_Year">
+    <End Role="FinancialYear" Type="Self.FinancialYear" Multiplicity="0..1" />
+    <End Role="JournalMaster" Type="Self.JournalMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FinancialYear">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="JournalMaster">
+        <PropertyRef Name="YearId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LedgerPosting_Year">
+    <End Role="FinancialYear" Type="Self.FinancialYear" Multiplicity="0..1" />
+    <End Role="LedgerPosting" Type="Self.LedgerPosting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FinancialYear">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LedgerPosting">
+        <PropertyRef Name="YearId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inventory_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Inventory">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inventory_Supplier">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+    <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Inventory">
+        <PropertyRef Name="SupplierId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inventory_WareHouse">
+    <End Role="WareHouse" Type="Self.WareHouse" Multiplicity="1" />
+    <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WareHouse">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Inventory">
+        <PropertyRef Name="WarehouseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JournalDetails_JournalMaster">
+    <End Role="JournalDetails" Type="Self.JournalDetail" Multiplicity="1" />
+    <End Role="JournalDetails1" Type="Self.JournalDetail" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="JournalDetails">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="JournalDetails1">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JournalMaster_User">
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+    <End Role="JournalMaster" Type="Self.JournalMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="JournalMaster">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JournalMaster_VoucherType">
+    <End Role="VoucherType" Type="Self.VoucherType" Multiplicity="0..1" />
+    <End Role="JournalMaster" Type="Self.JournalMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VoucherType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="JournalMaster">
+        <PropertyRef Name="VoucherTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LedgerPosting_Voucher">
+    <End Role="VoucherType" Type="Self.VoucherType" Multiplicity="0..1" />
+    <End Role="LedgerPosting" Type="Self.LedgerPosting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VoucherType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LedgerPosting">
+        <PropertyRef Name="VoucherTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartyBalance_Voucher">
+    <End Role="VoucherType" Type="Self.VoucherType" Multiplicity="1" />
+    <End Role="PartyBalance" Type="Self.PartyBalance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VoucherType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PartyBalance">
+        <PropertyRef Name="VoucherTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesOrder_product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="SalesOrder" Type="Self.SalesOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SalesOrder">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockIn_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="StockIn" Type="Self.StockIn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockIn">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockOut_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="StockOut" Type="Self.StockOut" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockOut">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TempSalesDetails_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="TempSalesDetails" Type="Self.TempSalesDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TempSalesDetails">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReceiveMaster_Supplier">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+    <End Role="ReceiveMaster" Type="Self.ReceiveMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReceiveMaster">
+        <PropertyRef Name="SupplierID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleWiseScreenPermission_Screens">
+    <End Role="Screens" Type="Self.Screen" Multiplicity="1" />
+    <End Role="RoleWiseScreenPermission" Type="Self.RoleWiseScreenPermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Screens">
+        <PropertyRef Name="ScreenId" />
+      </Principal>
+      <Dependent Role="RoleWiseScreenPermission">
+        <PropertyRef Name="ScreenId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesDelivery_SalesMaster">
+    <End Role="SalesMaster" Type="Self.SalesMaster" Multiplicity="0..1" />
+    <End Role="SalesDelivery" Type="Self.SalesDelivery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SalesMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SalesDelivery">
+        <PropertyRef Name="SalesMasterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesMaster_Salesorder">
+    <End Role="SalesOrder" Type="Self.SalesOrder" Multiplicity="0..1" />
+    <End Role="SalesMaster" Type="Self.SalesMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SalesOrder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SalesMaster">
+        <PropertyRef Name="SalesOrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TempSalesMaster_SalesOrder">
+    <End Role="SalesOrder" Type="Self.SalesOrder" Multiplicity="0..1" />
+    <End Role="TempSalesMaster" Type="Self.TempSalesMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SalesOrder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TempSalesMaster">
+        <PropertyRef Name="SalesOrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockIn_Supplier">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+    <End Role="StockIn" Type="Self.StockIn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockIn">
+        <PropertyRef Name="SupplierId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockIn_Warehouse">
+    <End Role="WareHouse" Type="Self.WareHouse" Multiplicity="0..1" />
+    <End Role="StockIn" Type="Self.StockIn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WareHouse">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockIn">
+        <PropertyRef Name="WarehouseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockOut_Supplier">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+    <End Role="StockOut" Type="Self.StockOut" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockOut">
+        <PropertyRef Name="SupplierId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockOut_Warehouse">
+    <End Role="WareHouse" Type="Self.WareHouse" Multiplicity="0..1" />
+    <End Role="StockOut" Type="Self.StockOut" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WareHouse">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockOut">
+        <PropertyRef Name="WarehouseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TempSalesDetails_TempSalesMaster">
+    <End Role="TempSalesMaster" Type="Self.TempSalesMaster" Multiplicity="1" />
+    <End Role="TempSalesDetails" Type="Self.TempSalesDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TempSalesMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TempSalesDetails">
+        <PropertyRef Name="SalesMasterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TempSalesMaster_TempSalesDetails">
+    <End Role="TempSalesMaster" Type="Self.TempSalesMaster" Multiplicity="1" />
+    <End Role="TempSalesMaster1" Type="Self.TempSalesMaster" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TempSalesMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TempSalesMaster1">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserInfo_UserInfo">
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="1" />
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRole">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserInfo">
+        <PropertyRef Name="UserRoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AccountGroups" EntityType="Self.AccountGroup" />
+    <EntitySet Name="AccountLedgers" EntityType="Self.AccountLedger" />
+    <EntitySet Name="AdditionalCosts" EntityType="Self.AdditionalCost" />
+    <EntitySet Name="AdvancePayments" EntityType="Self.AdvancePayment" />
+    <EntitySet Name="BankReconciliations" EntityType="Self.BankReconciliation" />
+    <EntitySet Name="Brands" EntityType="Self.Brand" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Companies" EntityType="Self.Company" />
+    <EntitySet Name="ContraDetails" EntityType="Self.ContraDetail" />
+    <EntitySet Name="ContraMasters" EntityType="Self.ContraMaster" />
+    <EntitySet Name="CreditNoteMasters" EntityType="Self.CreditNoteMaster" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="Designs" EntityType="Self.Design" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="FinancialYears" EntityType="Self.FinancialYear" />
+    <EntitySet Name="Inventories" EntityType="Self.Inventory" />
+    <EntitySet Name="JournalDetails" EntityType="Self.JournalDetail" />
+    <EntitySet Name="JournalMasters" EntityType="Self.JournalMaster" />
+    <EntitySet Name="LedgerPostings" EntityType="Self.LedgerPosting" />
+    <EntitySet Name="Locations" EntityType="Self.Location" />
+    <EntitySet Name="PartyBalances" EntityType="Self.PartyBalance" />
+    <EntitySet Name="PartyPaymentHistories" EntityType="Self.PartyPaymentHistory" />
+    <EntitySet Name="Pictures" EntityType="Self.Picture" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="ReceiveMasters" EntityType="Self.ReceiveMaster" />
+    <EntitySet Name="RoleWiseScreenPermissions" EntityType="Self.RoleWiseScreenPermission" />
+    <EntitySet Name="SalaryPayments" EntityType="Self.SalaryPayment" />
+    <EntitySet Name="SalesDeliveries" EntityType="Self.SalesDelivery" />
+    <EntitySet Name="SalesMasters" EntityType="Self.SalesMaster" />
+    <EntitySet Name="SalesOrders" EntityType="Self.SalesOrder" />
+    <EntitySet Name="SalesReturns" EntityType="Self.SalesReturn" />
+    <EntitySet Name="Screens" EntityType="Self.Screen" />
+    <EntitySet Name="Settings" EntityType="Self.Setting" />
+    <EntitySet Name="StockIns" EntityType="Self.StockIn" />
+    <EntitySet Name="StockOuts" EntityType="Self.StockOut" />
+    <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+    <EntitySet Name="Taxes" EntityType="Self.Tax" />
+    <EntitySet Name="TempSalesDetails" EntityType="Self.TempSalesDetail" />
+    <EntitySet Name="TempSalesMasters" EntityType="Self.TempSalesMaster" />
+    <EntitySet Name="Units" EntityType="Self.Unit" />
+    <EntitySet Name="UserInfoes" EntityType="Self.UserInfo" />
+    <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
+    <EntitySet Name="VoucherTypes" EntityType="Self.VoucherType" />
+    <EntitySet Name="WareHouses" EntityType="Self.WareHouse" />
+    <AssociationSet Name="FK_AccountLedger_AccountGroup" Association="Self.FK_AccountLedger_AccountGroup">
+      <End Role="AccountGroup" EntitySet="AccountGroups" />
+      <End Role="AccountLedger" EntitySet="AccountLedgers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AdvancePayment_Ledger" Association="Self.FK_AdvancePayment_Ledger">
+      <End Role="AccountLedger" EntitySet="AccountLedgers" />
+      <End Role="AdvancePayment" EntitySet="AdvancePayments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContraDetails_Ledger" Association="Self.FK_ContraDetails_Ledger">
+      <End Role="AccountLedger" EntitySet="AccountLedgers" />
+      <End Role="ContraDetails" EntitySet="ContraDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JournalDetails_Ladger" Association="Self.FK_JournalDetails_Ladger">
+      <End Role="AccountLedger" EntitySet="AccountLedgers" />
+      <End Role="JournalDetails" EntitySet="JournalDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LedgerPosting_AccountLedger" Association="Self.FK_LedgerPosting_AccountLedger">
+      <End Role="AccountLedger" EntitySet="AccountLedgers" />
+      <End Role="LedgerPosting" EntitySet="LedgerPostings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartyBalance_Ledger" Association="Self.FK_PartyBalance_Ledger">
+      <End Role="AccountLedger" EntitySet="AccountLedgers" />
+      <End Role="PartyBalance" EntitySet="PartyBalances" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AdvancePayment_Employee" Association="Self.FK_AdvancePayment_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="AdvancePayment" EntitySet="AdvancePayments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AdvancePayment_VoucherType" Association="Self.FK_AdvancePayment_VoucherType">
+      <End Role="VoucherType" EntitySet="VoucherTypes" />
+      <End Role="AdvancePayment" EntitySet="AdvancePayments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AdvancePayment_Year" Association="Self.FK_AdvancePayment_Year">
+      <End Role="FinancialYear" EntitySet="FinancialYears" />
+      <End Role="AdvancePayment" EntitySet="AdvancePayments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BankReconciliation_LadgerPosting" Association="Self.FK_BankReconciliation_LadgerPosting">
+      <End Role="LedgerPosting" EntitySet="LedgerPostings" />
+      <End Role="BankReconciliation" EntitySet="BankReconciliations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContraDetails_ContraMaster" Association="Self.FK_ContraDetails_ContraMaster">
+      <End Role="ContraMaster" EntitySet="ContraMasters" />
+      <End Role="ContraDetails" EntitySet="ContraDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContraMaster_Ledger" Association="Self.FK_ContraMaster_Ledger">
+      <End Role="ContraMaster" EntitySet="ContraMasters" />
+      <End Role="ContraMaster1" EntitySet="ContraMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContraMaster_User" Association="Self.FK_ContraMaster_User">
+      <End Role="UserInfo" EntitySet="UserInfoes" />
+      <End Role="ContraMaster" EntitySet="ContraMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContraMaster_VoucherType" Association="Self.FK_ContraMaster_VoucherType">
+      <End Role="VoucherType" EntitySet="VoucherTypes" />
+      <End Role="ContraMaster" EntitySet="ContraMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContraMaster_Year" Association="Self.FK_ContraMaster_Year">
+      <End Role="FinancialYear" EntitySet="FinancialYears" />
+      <End Role="ContraMaster" EntitySet="ContraMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesDelivery_Customer" Association="Self.FK_SalesDelivery_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="SalesDelivery" EntitySet="SalesDeliveries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesMaster_Customer" Association="Self.FK_SalesMaster_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="SalesMaster" EntitySet="SalesMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesOrder_Customer" Association="Self.FK_SalesOrder_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="SalesOrder" EntitySet="SalesOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TempSalesMaster_Customer" Association="Self.FK_TempSalesMaster_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="TempSalesMaster" EntitySet="TempSalesMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JournalMaster_Year" Association="Self.FK_JournalMaster_Year">
+      <End Role="FinancialYear" EntitySet="FinancialYears" />
+      <End Role="JournalMaster" EntitySet="JournalMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LedgerPosting_Year" Association="Self.FK_LedgerPosting_Year">
+      <End Role="FinancialYear" EntitySet="FinancialYears" />
+      <End Role="LedgerPosting" EntitySet="LedgerPostings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inventory_Product" Association="Self.FK_Inventory_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Inventory" EntitySet="Inventories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inventory_Supplier" Association="Self.FK_Inventory_Supplier">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="Inventory" EntitySet="Inventories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inventory_WareHouse" Association="Self.FK_Inventory_WareHouse">
+      <End Role="WareHouse" EntitySet="WareHouses" />
+      <End Role="Inventory" EntitySet="Inventories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JournalDetails_JournalMaster" Association="Self.FK_JournalDetails_JournalMaster">
+      <End Role="JournalDetails" EntitySet="JournalDetails" />
+      <End Role="JournalDetails1" EntitySet="JournalDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JournalMaster_User" Association="Self.FK_JournalMaster_User">
+      <End Role="UserInfo" EntitySet="UserInfoes" />
+      <End Role="JournalMaster" EntitySet="JournalMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JournalMaster_VoucherType" Association="Self.FK_JournalMaster_VoucherType">
+      <End Role="VoucherType" EntitySet="VoucherTypes" />
+      <End Role="JournalMaster" EntitySet="JournalMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LedgerPosting_Voucher" Association="Self.FK_LedgerPosting_Voucher">
+      <End Role="VoucherType" EntitySet="VoucherTypes" />
+      <End Role="LedgerPosting" EntitySet="LedgerPostings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartyBalance_Voucher" Association="Self.FK_PartyBalance_Voucher">
+      <End Role="VoucherType" EntitySet="VoucherTypes" />
+      <End Role="PartyBalance" EntitySet="PartyBalances" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesOrder_product" Association="Self.FK_SalesOrder_product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="SalesOrder" EntitySet="SalesOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockIn_Product" Association="Self.FK_StockIn_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="StockIn" EntitySet="StockIns" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockOut_Product" Association="Self.FK_StockOut_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="StockOut" EntitySet="StockOuts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TempSalesDetails_Product" Association="Self.FK_TempSalesDetails_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="TempSalesDetails" EntitySet="TempSalesDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReceiveMaster_Supplier" Association="Self.FK_ReceiveMaster_Supplier">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="ReceiveMaster" EntitySet="ReceiveMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleWiseScreenPermission_Screens" Association="Self.FK_RoleWiseScreenPermission_Screens">
+      <End Role="Screens" EntitySet="Screens" />
+      <End Role="RoleWiseScreenPermission" EntitySet="RoleWiseScreenPermissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesDelivery_SalesMaster" Association="Self.FK_SalesDelivery_SalesMaster">
+      <End Role="SalesMaster" EntitySet="SalesMasters" />
+      <End Role="SalesDelivery" EntitySet="SalesDeliveries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesMaster_Salesorder" Association="Self.FK_SalesMaster_Salesorder">
+      <End Role="SalesOrder" EntitySet="SalesOrders" />
+      <End Role="SalesMaster" EntitySet="SalesMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TempSalesMaster_SalesOrder" Association="Self.FK_TempSalesMaster_SalesOrder">
+      <End Role="SalesOrder" EntitySet="SalesOrders" />
+      <End Role="TempSalesMaster" EntitySet="TempSalesMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockIn_Supplier" Association="Self.FK_StockIn_Supplier">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="StockIn" EntitySet="StockIns" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockIn_Warehouse" Association="Self.FK_StockIn_Warehouse">
+      <End Role="WareHouse" EntitySet="WareHouses" />
+      <End Role="StockIn" EntitySet="StockIns" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockOut_Supplier" Association="Self.FK_StockOut_Supplier">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="StockOut" EntitySet="StockOuts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockOut_Warehouse" Association="Self.FK_StockOut_Warehouse">
+      <End Role="WareHouse" EntitySet="WareHouses" />
+      <End Role="StockOut" EntitySet="StockOuts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TempSalesDetails_TempSalesMaster" Association="Self.FK_TempSalesDetails_TempSalesMaster">
+      <End Role="TempSalesMaster" EntitySet="TempSalesMasters" />
+      <End Role="TempSalesDetails" EntitySet="TempSalesDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TempSalesMaster_TempSalesDetails" Association="Self.FK_TempSalesMaster_TempSalesDetails">
+      <End Role="TempSalesMaster" EntitySet="TempSalesMasters" />
+      <End Role="TempSalesMaster1" EntitySet="TempSalesMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserInfo_UserInfo" Association="Self.FK_UserInfo_UserInfo">
+      <End Role="UserRole" EntitySet="UserRoles" />
+      <End Role="UserInfo" EntitySet="UserInfoes" />
+    </AssociationSet>
+    <FunctionImport Name="BalanceReconcilation">
+      <Parameter Name="ledgerId" Mode="In" Type="Int32" />
+      <Parameter Name="yearId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="CashBook" ReturnType="Collection(vatModel.CashBook_Result)">
+      <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="toDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="ClearData" />
+    <FunctionImport Name="CustomerDueSummary" ReturnType="Collection(vatModel.CustomerDueSummary_Result)" />
+    <FunctionImport Name="DailyReceiveAndPayment" ReturnType="Collection(vatModel.DailyReceiveAndPayment_Result)">
+      <Parameter Name="customerOrSupplier" Mode="In" Type="Int32" />
+      <Parameter Name="fromDate" Mode="In" Type="String" />
+      <Parameter Name="toDate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DailyTransaction" ReturnType="Collection(vatModel.DailyTransaction_Result)">
+      <Parameter Name="LedgerId" Mode="In" Type="Int32" />
+      <Parameter Name="customerOrSupplier" Mode="In" Type="Int32" />
+      <Parameter Name="yearId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="DueSummary">
+      <Parameter Name="FinancialYear" Mode="In" Type="Int32" />
+      <Parameter Name="ReportType" Mode="In" Type="Int32" />
+      <Parameter Name="yearId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetBalance" ReturnType="Collection(vatModel.GetBalance_Result)">
+      <Parameter Name="ledgerId" Mode="In" Type="Int32" />
+      <Parameter Name="yearId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetPartyPayment" ReturnType="Collection(vatModel.GetPartyPayment_Result)">
+      <Parameter Name="LedgerId" Mode="In" Type="Int32" />
+      <Parameter Name="customerOrSupplier" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="IncomeStatement" ReturnType="Collection(vatModel.IncomeStatement_Result)">
+      <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="toDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="LocalPayment" ReturnType="Collection(vatModel.LocalPayment_Result)">
+      <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="toDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="ProductWiseBestSales" ReturnType="Collection(vatModel.ProductWiseBestSales_Result)" />
+    <FunctionImport Name="ReceiveReport" ReturnType="Collection(vatModel.ReceiveReport_Result)">
+      <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="toDate" Mode="In" Type="DateTime" />
+      <Parameter Name="supplierId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="rptCustomerLedger" ReturnType="Collection(vatModel.rptCustomerLedger_Result)">
+      <Parameter Name="ledgerId" Mode="In" Type="Int32" />
+      <Parameter Name="type" Mode="In" Type="Int32" />
+      <Parameter Name="yearId" Mode="In" Type="Int32" />
+      <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="toDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="rptCustomerRecive" ReturnType="Collection(vatModel.rptCustomerRecive_Result)">
+      <Parameter Name="CustomerId" Mode="In" Type="Int32" />
+      <Parameter Name="invoiceId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="rptCustomerTransaction" ReturnType="Collection(vatModel.rptCustomerTransaction_Result)">
+      <Parameter Name="CustomerId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="rptIndividualLedger" ReturnType="Collection(vatModel.rptIndividualLedger_Result)">
+      <Parameter Name="CustomerId" Mode="In" Type="Int32" />
+      <Parameter Name="IsLedger" Mode="In" Type="Int32" />
+      <Parameter Name="IsSupplier" Mode="In" Type="Int32" />
+      <Parameter Name="invoiceId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="rptSalesInvoice" ReturnType="Collection(vatModel.rptSalesInvoice_Result)">
+      <Parameter Name="SalesInvoice" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="StockOutChallanList" ReturnType="Collection(vatModel.StockOutChallanList_Result)">
+      <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="toDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="StockOutInvoice" ReturnType="Collection(vatModel.StockOutInvoice_Result)">
+      <Parameter Name="InvoiceNo" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="SalesDetails" EntityType="vatModel.SalesDetail" />
+    <AssociationSet Name="FK_SalesDetails_Product" Association="vatModel.FK_SalesDetails_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="SalesDetail" EntitySet="SalesDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesDetails_SalesMaster" Association="vatModel.FK_SalesDetails_SalesMaster">
+      <End Role="SalesMaster" EntitySet="SalesMasters" />
+      <End Role="SalesDetail" EntitySet="SalesDetails" />
+    </AssociationSet>
+    <EntitySet Name="ReceiveDetails" EntityType="vatModel.ReceiveDetail" />
+    <AssociationSet Name="FK_ReceiveDetails_product" Association="vatModel.FK_ReceiveDetails_product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ReceiveDetail" EntitySet="ReceiveDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReceiveDetails_RecieveMaster" Association="vatModel.FK_ReceiveDetails_RecieveMaster">
+      <End Role="ReceiveMaster" EntitySet="ReceiveMasters" />
+      <End Role="ReceiveDetail" EntitySet="ReceiveDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReceiveDetails_Warehouse" Association="vatModel.FK_ReceiveDetails_Warehouse">
+      <End Role="WareHouse" EntitySet="WareHouses" />
+      <End Role="ReceiveDetail" EntitySet="ReceiveDetails" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="CashBook_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="DateTime" Name="PostingDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="VoucherTypeId" Nullable="true" />
+    <Property Type="String" Name="VoucherNo" Nullable="true" />
+    <Property Type="String" Name="VoucherTypeName" Nullable="true" />
+    <Property Type="String" Name="LedgerName" Nullable="true" />
+    <Property Type="String" Name="Extra1" Nullable="true" />
+    <Property Type="Decimal" Name="Credit" Nullable="true" Precision="18" Scale="5" />
+    <Property Type="Decimal" Name="Debit" Nullable="true" Precision="18" Scale="5" />
+  </ComplexType>
+  <ComplexType Name="CustomerDueSummary_Result">
+    <Property Type="String" Name="CustomerName" Nullable="false" />
+    <Property Type="Int32" Name="TotalInvoice" Nullable="true" />
+    <Property Type="Decimal" Name="Debit" Nullable="true" Precision="18" Scale="5" />
+    <Property Type="Decimal" Name="Balance" Nullable="true" Precision="18" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="DailyReceiveAndPayment_Result">
+    <Property Type="Decimal" Name="Debit" Nullable="true" Precision="38" Scale="5" />
+    <Property Type="Decimal" Name="Credit" Nullable="true" Precision="38" Scale="5" />
+    <Property Type="Decimal" Name="Balance" Nullable="true" Precision="38" Scale="5" />
+    <Property Type="Int32" Name="PartyBalanceId" Nullable="false" />
+    <Property Type="String" Name="InvoiceNo" Nullable="true" />
+    <Property Type="String" Name="VoucherNo" Nullable="true" />
+    <Property Type="DateTime" Name="PostingDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="LedgerId" Nullable="false" />
+    <Property Type="String" Name="LedgerName" Nullable="true" />
+    <Property Type="String" Name="extra1" Nullable="true" />
+    <Property Type="String" Name="Phone" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="DailyTransaction_Result">
+    <Property Type="Decimal" Name="Debit" Nullable="true" Precision="38" Scale="5" />
+    <Property Type="Decimal" Name="Credit" Nullable="true" Precision="38" Scale="5" />
+    <Property Type="Decimal" Name="Balance" Nullable="true" Precision="38" Scale="5" />
+    <Property Type="Int32" Name="PartyBalanceId" Nullable="false" />
+    <Property Type="String" Name="InvoiceNo" Nullable="true" />
+    <Property Type="String" Name="VoucherNo" Nullable="true" />
+    <Property Type="DateTime" Name="PostingDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="LedgerId" Nullable="false" />
+    <Property Type="String" Name="LedgerName" Nullable="true" />
+    <Property Type="String" Name="extra1" Nullable="true" />
+    <Property Type="String" Name="Phone" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetBalance_Result">
+    <Property Type="Int32" Name="LedgerId" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="Code" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="Address" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="Phone" Nullable="false" MaxLength="1" />
+    <Property Type="Decimal" Name="Debit" Nullable="true" Precision="38" Scale="5" />
+    <Property Type="Decimal" Name="Credit" Nullable="true" Precision="38" Scale="5" />
+    <Property Type="Decimal" Name="Balance" Nullable="true" Precision="38" Scale="5" />
+    <Property Type="String" Name="ContactPersonName" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="ToWords" Nullable="false" MaxLength="1" />
+  </ComplexType>
+  <ComplexType Name="GetPartyPayment_Result">
+    <Property Type="Decimal" Name="Debit" Nullable="true" Precision="38" Scale="5" />
+    <Property Type="Decimal" Name="Credit" Nullable="true" Precision="38" Scale="5" />
+    <Property Type="Decimal" Name="Balance" Nullable="true" Precision="38" Scale="5" />
+    <Property Type="Int32" Name="PartyBalanceId" Nullable="false" />
+    <Property Type="String" Name="InvoiceNo" Nullable="true" />
+    <Property Type="String" Name="VoucherNo" Nullable="true" />
+    <Property Type="DateTime" Name="PostingDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="LedgerId" Nullable="false" />
+    <Property Type="String" Name="LedgerName" Nullable="true" />
+    <Property Type="String" Name="extra1" Nullable="true" />
+    <Property Type="String" Name="Phone" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="IncomeStatement_Result">
+    <Property Type="DateTime" Name="PostingDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="Credit" Nullable="true" Precision="18" Scale="5" />
+    <Property Type="Decimal" Name="Debit" Nullable="true" Precision="18" Scale="5" />
+    <Property Type="String" Name="VoucherNo" Nullable="true" />
+    <Property Type="String" Name="AccountGroupName" Nullable="true" />
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="LedgerName" Nullable="true" />
+    <Property Type="Int32" Name="AccountLedgerId" Nullable="false" />
+    <Property Type="String" Name="Extra1" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="LocalPayment_Result">
+    <Property Type="Decimal" Name="TotalDue" Nullable="true" Precision="38" Scale="5" />
+    <Property Type="Int32" Name="LedgerId" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="ProductWiseBestSales_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="ProductName" Nullable="false" MaxLength="250" />
+    <Property Type="Decimal" Name="TotalAmount" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="String" Name="CustomerName" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="ReceiveReport_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="InvoiceNo" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="InvoiceNoPaper" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="SupplierID" Nullable="false" />
+    <Property Type="String" Name="RecieveFrom" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="InvoiceDate" Nullable="false" />
+    <Property Type="Decimal" Name="AdditionalCost" Nullable="false" Precision="18" Scale="5" />
+    <Property Type="Decimal" Name="BillDiscount" Nullable="false" Precision="18" Scale="5" />
+    <Property Type="Decimal" Name="GrandTotal" Nullable="false" Precision="18" Scale="5" />
+    <Property Type="Decimal" Name="TotalAmount" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="String" Name="MarketType" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="TransportType" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TransportNo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="AdditionalCostPurpose" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="Notes" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="24" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="24" />
+    <Property Type="DateTime" Name="UpdatedDate" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="IsActive" Nullable="false" />
+    <Property Type="Int32" Name="YearId" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="rptCustomerLedger_Result">
+    <Property Type="Decimal" Name="Debit" Nullable="true" Precision="18" Scale="5" />
+    <Property Type="Decimal" Name="Credit" Nullable="true" Precision="18" Scale="5" />
+    <Property Type="Decimal" Name="Balance" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="PartyBalanceId" Nullable="false" />
+    <Property Type="String" Name="InvoiceNo" Nullable="true" />
+    <Property Type="String" Name="VoucherNo" Nullable="true" />
+    <Property Type="DateTime" Name="PostingDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="LedgerId" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" />
+    <Property Type="String" Name="extra1" Nullable="true" />
+    <Property Type="String" Name="Address" Nullable="true" />
+    <Property Type="String" Name="Phone" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="rptCustomerRecive_Result">
+    <Property Type="DateTime" Name="PostingDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="Debit" Nullable="true" Precision="18" Scale="5" />
+    <Property Type="Decimal" Name="Credit" Nullable="true" Precision="18" Scale="5" />
+    <Property Type="Decimal" Name="Balance" Nullable="true" Precision="38" Scale="5" />
+  </ComplexType>
+  <ComplexType Name="rptCustomerTransaction_Result">
+    <Property Type="DateTime" Name="PostingDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="Debit" Nullable="true" Precision="18" Scale="5" />
+    <Property Type="Decimal" Name="Credit" Nullable="true" Precision="18" Scale="5" />
+    <Property Type="Decimal" Name="Balance" Nullable="true" Precision="38" Scale="5" />
+  </ComplexType>
+  <ComplexType Name="rptIndividualLedger_Result">
+    <Property Type="Int32" Name="LedgerId" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="false" />
+    <Property Type="String" Name="ContactPersonName" Nullable="true" />
+    <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Address" Nullable="true" />
+    <Property Type="String" Name="Phone" Nullable="true" />
+    <Property Type="Decimal" Name="Balance" Nullable="true" Precision="38" Scale="5" />
+    <Property Type="String" Name="ToWords" Nullable="true" MaxLength="1035" />
+  </ComplexType>
+  <ComplexType Name="rptSalesInvoice_Result">
+    <Property Type="Decimal" Name="AdditionalCost" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="String" Name="Coutha" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Discount" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="String" Name="DiscountPurpose" Nullable="true" MaxLength="4000" />
+    <Property Type="Decimal" Name="GrandTotal" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="DateTime" Name="PricingDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="SalesBy" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="SalesDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="SalesInvoice" Nullable="false" MaxLength="50" />
+    <Property Type="Decimal" Name="TotalAmount" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="String" Name="TransportNo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TransportType" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="GrandTotalInWord" Nullable="true" MaxLength="1035" />
+    <Property Type="String" Name="Coutha1" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DriverName" Nullable="true" MaxLength="500" />
+    <Property Type="Decimal" Name="RentAmount" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="String" Name="RentAmountInWord" Nullable="true" MaxLength="1035" />
+    <Property Type="Int32" Name="Id1" Nullable="false" />
+    <Property Type="Int32" Name="SalesMasterId" Nullable="false" />
+    <Property Type="String" Name="SalesInvoice1" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="ProductId" Nullable="false" />
+    <Property Type="Int32" Name="Qty" Nullable="false" />
+    <Property Type="Decimal" Name="SD" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="WarehouseId" Nullable="false" />
+    <Property Type="Decimal" Name="Tax" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Rate" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Amount" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="String" Name="Notes" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="24" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="24" />
+    <Property Type="String" Name="UpdatedDate" Nullable="true" MaxLength="24" />
+    <Property Type="Boolean" Name="IsActive" Nullable="true" />
+    <Property Type="Int32" Name="Id2" Nullable="false" />
+    <Property Type="String" Name="Code" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ProductName" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="ProductNameBangla" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="CategoryId" Nullable="true" />
+    <Property Type="String" Name="ProductType" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="ProductTypeId" Nullable="true" />
+    <Property Type="String" Name="Unit" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="TaxRate" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="SDRate" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="ProductCategory" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="HSCode" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CreatedBy1" Nullable="true" MaxLength="24" />
+    <Property Type="DateTime" Name="CreatedDate1" Nullable="true" Precision="23" />
+    <Property Type="String" Name="UpdateBy" Nullable="true" MaxLength="24" />
+    <Property Type="DateTime" Name="UpdateDate" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="IsActive1" Nullable="false" />
+    <Property Type="Int32" Name="Id3" Nullable="false" />
+    <Property Type="String" Name="Code1" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Name" Nullable="false" />
+    <Property Type="String" Name="Address" Nullable="true" />
+    <Property Type="String" Name="ContactPersonName" Nullable="true" />
+    <Property Type="String" Name="ContactPersonPhone" Nullable="true" />
+    <Property Type="String" Name="City" Nullable="true" />
+    <Property Type="String" Name="Phone" Nullable="true" />
+    <Property Type="String" Name="Email" Nullable="true" />
+    <Property Type="String" Name="Web" Nullable="true" />
+    <Property Type="Decimal" Name="Limit" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="Remarks" Nullable="true" />
+    <Property Type="String" Name="CreatedBy2" Nullable="true" MaxLength="24" />
+    <Property Type="DateTime" Name="CreatedDate2" Nullable="true" Precision="23" />
+    <Property Type="String" Name="UpdatedBy1" Nullable="true" MaxLength="24" />
+    <Property Type="DateTime" Name="UpdatedDate1" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="IsActive2" Nullable="false" />
+    <Property Type="Int32" Name="LedgerId" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="StockOutChallanList_Result">
+    <Property Type="String" Name="InvoiceNo" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="id" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="StockOutInvoice_Result">
+    <Property Type="String" Name="ProductName" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="Code" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="InvoiceNo" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="ProductionDate" Nullable="true" />
+    <Property Type="Decimal" Name="BaleQty" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="BaleWeight" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="Notes" Nullable="true" MaxLength="500" />
+    <Property Type="Decimal" Name="WeightInMon" Nullable="true" Precision="18" Scale="2" />
+  </ComplexType>
+  <EntityType Name="SalesDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SalesMasterId" Type="Int32" Nullable="false" />
+    <Property Name="SalesInvoice" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="Qty" Type="Int32" Nullable="false" />
+    <Property Name="SD" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="WarehouseId" Type="Int32" Nullable="false" />
+    <Property Name="Tax" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Rate" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Notes" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="UpdatedDate" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="Product" Relationship="vatModel.FK_SalesDetails_Product" FromRole="SalesDetail" ToRole="Product" />
+    <NavigationProperty Name="SalesMaster" Relationship="vatModel.FK_SalesDetails_SalesMaster" FromRole="SalesDetail" ToRole="SalesMaster" />
+  </EntityType>
+  <Association Name="FK_SalesDetails_Product">
+    <End Type="vatModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="vatModel.SalesDetail" Role="SalesDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SalesDetail">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesDetails_SalesMaster">
+    <End Type="vatModel.SalesMaster" Role="SalesMaster" Multiplicity="1" />
+    <End Type="vatModel.SalesDetail" Role="SalesDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SalesMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SalesDetail">
+        <PropertyRef Name="SalesMasterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ReceiveDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReceiveMasterId" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="WarehouseId" Type="Int32" />
+    <Property Name="Rate" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Qty" Type="Int32" Nullable="false" />
+    <Property Name="SD" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Tax" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="CreatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="vatModel.FK_ReceiveDetails_product" FromRole="ReceiveDetail" ToRole="Product" />
+    <NavigationProperty Name="ReceiveMaster" Relationship="vatModel.FK_ReceiveDetails_RecieveMaster" FromRole="ReceiveDetail" ToRole="ReceiveMaster" />
+    <NavigationProperty Name="WareHouse" Relationship="vatModel.FK_ReceiveDetails_Warehouse" FromRole="ReceiveDetail" ToRole="WareHouse" />
+  </EntityType>
+  <Association Name="FK_ReceiveDetails_product">
+    <End Type="vatModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="vatModel.ReceiveDetail" Role="ReceiveDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReceiveDetail">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReceiveDetails_RecieveMaster">
+    <End Type="vatModel.ReceiveMaster" Role="ReceiveMaster" Multiplicity="1" />
+    <End Type="vatModel.ReceiveDetail" Role="ReceiveDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReceiveMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReceiveDetail">
+        <PropertyRef Name="ReceiveMasterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReceiveDetails_Warehouse">
+    <End Type="vatModel.WareHouse" Role="WareHouse" Multiplicity="0..1" />
+    <End Type="vatModel.ReceiveDetail" Role="ReceiveDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WareHouse">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReceiveDetail">
+        <PropertyRef Name="WarehouseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

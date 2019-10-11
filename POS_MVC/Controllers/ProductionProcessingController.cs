@@ -1,16 +1,16 @@
-﻿using RiceMill_MVC.BLL;
+﻿using REX_MVC.BLL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using RiceMill_MVC.BAL;
-using RiceMill_MVC.Models;
-using RiceMill_MVC.ViewModel;
+using REX_MVC.BAL;
+using REX_MVC.Models;
+using REX_MVC.ViewModel;
 using System.Net;
-using RiceMill_MVC.Util;
+using REX_MVC.Util;
 
-namespace RiceMill_MVC.Controllers
+namespace REX_MVC.Controllers
 {
     public class ProductionProcessingController : Controller
     {
@@ -51,7 +51,7 @@ namespace RiceMill_MVC.Controllers
         public ActionResult GetInvoiceNumber()
         {
             string invoiceNumber =
-                new GlobalClass().GetMaxId("Id","StockOut");
+                new GlobalClass().GetMaxId("Id","","1","StockOut");
             return Json(invoiceNumber, JsonRequestBehavior.AllowGet);
         }
 
@@ -94,7 +94,7 @@ namespace RiceMill_MVC.Controllers
 
 
         [HttpPost]
-        public ActionResult SaveStockIn(string InvoiceNo, string Notes, List<StockIn> stockIns)
+        public ActionResult SaveStockIn(string InvoiceNo, string Notes, List<StockInRequest> stockIns)
         {
             StockIn result = new StockIn();
             StockIn FinalResult = new StockIn();
@@ -110,11 +110,11 @@ namespace RiceMill_MVC.Controllers
                     result.CreatedBy = CurrentSession.GetCurrentSession().UserName;
                     result.SupplierId = 0;
                     result.ProductId = item.ProductId;
-                    result.BaleWeight = item.BaleWeight;
+                    result.BaleWeight =0;
                     result.WarehouseId = item.WarehouseId;
-                    result.SupplierId = item.SupplierId;
-                    result.BaleQty = item.BaleQty;
-                    result.WeightInMon = item.WeightInMon;
+                    result.SupplierId = 1;
+                    result.BaleQty = item.Qty;
+                    result.WeightInMon =item.Qty;
                     FinalResult = serviceStockIn.Save(result,Notes);
                 }
             }

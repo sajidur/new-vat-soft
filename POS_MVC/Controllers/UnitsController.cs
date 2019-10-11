@@ -6,10 +6,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using RiceMill_MVC.Models;
-using RiceMill_MVC.BAL;
+using REX_MVC.Models;
+using REX_MVC.BAL;
 
-namespace RiceMill_MVC.Controllers
+namespace REX_MVC.Controllers
 {
     public class UnitsController : Controller
     {

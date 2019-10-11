@@ -1,10 +1,10 @@
-﻿using RiceMill_MVC.Models;
+﻿using REX_MVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace RiceMill_MVC.ViewModel
+namespace REX_MVC.ViewModel
 {
     public class GoodsReceiveResponse
     {
@@ -23,13 +23,11 @@ namespace RiceMill_MVC.ViewModel
         public int ReceiveMasterId { get; set; }
         public int ProductId { get; set; }
         public Nullable<int> WarehouseId { get; set; }
-        public decimal TotalBale { get; set; }
-        public int QtyInBale { get; set; }
-        public decimal WeightInKG { get; set; }
-        public decimal WeightType { get; set; }
-        public decimal WeightInMon { get; set; }
+        public decimal TaxRate { get; set; }
+        public int Qty { get; set; }
+        public decimal SDRate { get; set; }
+        public decimal Rate { get; set; }
         public decimal Amount { get; set; }
-        public decimal TotalAmount { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string UpdatedBy { get; set; }

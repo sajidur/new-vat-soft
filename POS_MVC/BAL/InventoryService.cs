@@ -1,12 +1,12 @@
-﻿using RiceMill_MVC.Models;
-using RiceMill_MVC.ViewModel;
+﻿using REX_MVC.Models;
+using REX_MVC.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
 
-namespace RiceMill_MVC.BAL
+namespace REX_MVC.BAL
 {
     public class InventoryService
     {

@@ -2,7 +2,7 @@
 using Microsoft.Owin.Builder;
 using Owin;
 
-namespace RiceMill_MVC
+namespace REX_MVC
 {
     public partial class Startup
     {

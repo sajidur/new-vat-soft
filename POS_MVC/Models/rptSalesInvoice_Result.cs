@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RiceMill_MVC.Models
+namespace REX_MVC.Models
 {
     using System;
     
@@ -35,10 +35,10 @@ namespace RiceMill_MVC.Models
         public int SalesMasterId { get; set; }
         public string SalesInvoice1 { get; set; }
         public int ProductId { get; set; }
-        public int BaleQty { get; set; }
-        public decimal BaleWeight { get; set; }
+        public int Qty { get; set; }
+        public decimal SD { get; set; }
         public int WarehouseId { get; set; }
-        public decimal TotalQtyInKG { get; set; }
+        public decimal Tax { get; set; }
         public decimal Rate { get; set; }
         public decimal Amount { get; set; }
         public string Notes { get; set; }

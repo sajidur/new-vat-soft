@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RiceMill_MVC.Report.Viewer {
+namespace REX_MVC.Report.Viewer {
     
     
     public partial class ReportViwerCR {

@@ -1,16 +1,16 @@
-﻿using RiceMill_MVC.BAL;
-using RiceMill_MVC.BLL;
-using RiceMill_MVC.Models;
-using RiceMill_MVC.ViewModel;
+﻿using REX_MVC.BAL;
+using REX_MVC.BLL;
+using REX_MVC.Models;
+using REX_MVC.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using RiceMill_MVC.Util;
+using REX_MVC.Util;
 
-namespace RiceMill_MVC.Controllers
+namespace REX_MVC.Controllers
 {
     public class PurchaseController : Controller
     {
@@ -56,7 +56,7 @@ namespace RiceMill_MVC.Controllers
 
 
         [HttpPost]
-        public ActionResult Save(string totalAmount, string PONo,int supplierId,string descriptions,int WarehouseId,DateTime dates, List<GoodsReceiveResponse> response,List<AdditionalCost> ledgerPosting,decimal Discount)
+        public ActionResult Save(string totalAmount, string PONo,int supplierId,string descriptions,int WarehouseId,DateTime dates, List<GoodsReceiveResponse> response,decimal Discount)
         {           
             string ID = "";
             ReceiveMaster master = new ReceiveMaster();
@@ -73,13 +73,11 @@ namespace RiceMill_MVC.Controllers
                 details.ReceiveMasterId = master.Id;
                 details.ProductId = item.ProductId;
                 details.WarehouseId = item.WarehouseId;
-                details.TotalBale = item.TotalBale;
-                details.QtyInBale = item.QtyInBale;
-                details.WeightInKG = item.WeightInKG;
-                details.WeightType = item.WeightType;
-                details.WeightInMon = item.WeightInMon;
+                details.SD = item.SDRate;
+                details.Tax = item.TaxRate;
                 details.Amount = item.Amount;
-                details.TotalAmount = item.TotalAmount;
+                details.Rate = item.Rate;
+                details.Qty = item.Qty;
                 details.IsActive = true;
                 details.CreatedBy = CurrentSession.GetCurrentSession().UserName;
                 details.CreatedDate = DateTime.Now;                
@@ -88,14 +86,7 @@ namespace RiceMill_MVC.Controllers
             }
             master.RecieveFrom = CurrentSession.GetCurrentSession().UserName;
             master.BillDiscount = Discount;
-            if (ledgerPosting!=null && ledgerPosting.Count>0)
-            {
-                master.AdditionalCost = ledgerPosting.Select(a => a.Debit).Sum(a => a.Value);
-            }
-            else
-            {
-                master.AdditionalCost = 0;
-            }
+           
             master.GrandTotal = master.TotalAmount + master.AdditionalCost - master.BillDiscount;
             master.IsActive = true;
             master.SupplierID = supplierId;
@@ -129,14 +120,12 @@ namespace RiceMill_MVC.Controllers
                 details.ReceiveMasterId = master.Id;
                 details.ProductId = item.ProductId;
                 details.WarehouseId = item.WarehouseId;
-                details.TotalBale = item.TotalBale;
-                details.QtyInBale = item.QtyInBale;
+                details.Qty = item.Qty;
+                details.Rate = item.Rate;
 
-                details.WeightInKG = item.WeightInKG;
-                details.WeightType = item.WeightType;
-                details.WeightInMon = item.WeightInMon;
+                details.SD = item.SDRate;
+                details.Tax = item.TaxRate;
                 details.Amount = item.Amount;
-                details.TotalAmount = item.TotalAmount;
 
                 details.IsActive = true;
                 details.CreatedBy = CurrentSession.GetCurrentSession().UserName;

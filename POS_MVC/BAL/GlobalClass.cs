@@ -5,9 +5,9 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using System.Collections.Generic;
-using RiceMill_MVC.BAL;
+using REX_MVC.BAL;
 using System.IO;
-namespace RiceMill_MVC.BLL
+namespace REX_MVC.BLL
 {
     public class GlobalClass
     {
@@ -88,7 +88,7 @@ namespace RiceMill_MVC.BLL
         public string GetMaxId(string coloumName, string rightStringLength, string initialValue, string tableName)
         {
             string maxId = "";
-            _selectQuery = "SELECT ISNULL(MAX(RIGHT(" + coloumName + ", " + rightStringLength + ")) + 1, " + initialValue + ") AS maxID " +
+            _selectQuery = "SELECT ISNULL(MAX(" + coloumName + "),1) + 1 AS maxID " +
                                " FROM  " + tableName + " ";
 
             SQLDALService dal = new SQLDALService();
@@ -96,7 +96,7 @@ namespace RiceMill_MVC.BLL
 
             if (dt != null && dt.Rows.Count > 0)
             {
-                maxId = dt.Rows[0][coloumName].ToString();
+                maxId = dt.Rows[0]["maxID"].ToString();
             }
 
             return maxId;
