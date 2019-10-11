@@ -460,28 +460,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ReceiveDetails">
-      <EntityTypeMapping TypeName="vatModel.ReceiveDetail">
-        <MappingFragment StoreEntitySet="ReceiveDetails">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="ReceiveMasterId" ColumnName="ReceiveMasterId" />
-          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-          <ScalarProperty Name="WarehouseId" ColumnName="WarehouseId" />
-          <ScalarProperty Name="TotalBale" ColumnName="TotalBale" />
-          <ScalarProperty Name="QtyInBale" ColumnName="QtyInBale" />
-          <ScalarProperty Name="WeightInKG" ColumnName="WeightInKG" />
-          <ScalarProperty Name="WeightType" ColumnName="WeightType" />
-          <ScalarProperty Name="WeightInMon" ColumnName="WeightInMon" />
-          <ScalarProperty Name="Amount" ColumnName="Amount" />
-          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ReceiveMasters">
       <EntityTypeMapping TypeName="vatModel.ReceiveMaster">
         <MappingFragment StoreEntitySet="ReceiveMaster">
@@ -553,28 +531,6 @@
           <ScalarProperty Name="TransportType" ColumnName="TransportType" />
           <ScalarProperty Name="TransportNo" ColumnName="TransportNo" />
           <ScalarProperty Name="ExpenseBy" ColumnName="ExpenseBy" />
-          <ScalarProperty Name="Notes" ColumnName="Notes" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="SalesDetails">
-      <EntityTypeMapping TypeName="vatModel.SalesDetail">
-        <MappingFragment StoreEntitySet="SalesDetails">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="SalesMasterId" ColumnName="SalesMasterId" />
-          <ScalarProperty Name="SalesInvoice" ColumnName="SalesInvoice" />
-          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-          <ScalarProperty Name="BaleQty" ColumnName="BaleQty" />
-          <ScalarProperty Name="BaleWeight" ColumnName="BaleWeight" />
-          <ScalarProperty Name="WarehouseId" ColumnName="WarehouseId" />
-          <ScalarProperty Name="TotalQtyInKG" ColumnName="TotalQtyInKG" />
-          <ScalarProperty Name="Rate" ColumnName="Rate" />
-          <ScalarProperty Name="Amount" ColumnName="Amount" />
           <ScalarProperty Name="Notes" ColumnName="Notes" />
           <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -749,17 +705,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="vatModel.sysdiagram">
-        <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Taxes">
       <EntityTypeMapping TypeName="vatModel.Tax">
         <MappingFragment StoreEntitySet="Tax">
@@ -902,27 +847,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ProductInfoes">
-      <EntityTypeMapping TypeName="vatModel.ProductInfo">
-        <MappingFragment StoreEntitySet="ProductInfo">
-          <ScalarProperty Name="SBarCode" ColumnName="SBarCode" />
-          <ScalarProperty Name="PBarCode" ColumnName="PBarCode" />
-          <ScalarProperty Name="Barcode1" ColumnName="Barcode1" />
-          <ScalarProperty Name="Barcode2" ColumnName="Barcode2" />
-          <ScalarProperty Name="CostPrice" ColumnName="CostPrice" />
-          <ScalarProperty Name="RetailPrice" ColumnName="RetailPrice" />
-          <ScalarProperty Name="WholeSalesPrice" ColumnName="WholeSalesPrice" />
-          <ScalarProperty Name="DesignName" ColumnName="DesignName" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="ColorName" ColumnName="ColorName" />
-          <ScalarProperty Name="DesignCode" ColumnName="DesignCode" />
-          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-          <ScalarProperty Name="Code" ColumnName="Code" />
-          <ScalarProperty Name="ProductInfo1" ColumnName="ProductInfo" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="BalanceReconcilation" FunctionName="vatModel.Store.BalanceReconcilation" />
     <FunctionImportMapping FunctionImportName="CashBook" FunctionName="vatModel.Store.CashBook">
       <ResultMapping>
@@ -984,24 +908,7 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="DueSummary" FunctionName="vatModel.Store.DueSummary">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="vatModel.DueSummary_Result">
-          <ScalarProperty Name="LedgerId" ColumnName="LedgerId" />
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="Phone" ColumnName="Phone" />
-          <ScalarProperty Name="ContactPersonPhone" ColumnName="ContactPersonPhone" />
-          <ScalarProperty Name="Ton" ColumnName="Ton" />
-          <ScalarProperty Name="TotalInvoice" ColumnName="TotalInvoice" />
-          <ScalarProperty Name="reportType" ColumnName="reportType" />
-          <ScalarProperty Name="Credit" ColumnName="Credit" />
-          <ScalarProperty Name="Debit" ColumnName="Debit" />
-          <ScalarProperty Name="Balance" ColumnName="Balance" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DueSummary" FunctionName="vatModel.Store.DueSummary" />
     <FunctionImportMapping FunctionImportName="GetBalance" FunctionName="vatModel.Store.GetBalance">
       <ResultMapping>
         <ComplexTypeMapping TypeName="vatModel.GetBalance_Result">
@@ -1172,10 +1079,10 @@
           <ScalarProperty Name="SalesMasterId" ColumnName="SalesMasterId" />
           <ScalarProperty Name="SalesInvoice1" ColumnName="SalesInvoice1" />
           <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-          <ScalarProperty Name="BaleQty" ColumnName="BaleQty" />
-          <ScalarProperty Name="BaleWeight" ColumnName="BaleWeight" />
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="SD" ColumnName="SD" />
           <ScalarProperty Name="WarehouseId" ColumnName="WarehouseId" />
-          <ScalarProperty Name="TotalQtyInKG" ColumnName="TotalQtyInKG" />
+          <ScalarProperty Name="Tax" ColumnName="Tax" />
           <ScalarProperty Name="Rate" ColumnName="Rate" />
           <ScalarProperty Name="Amount" ColumnName="Amount" />
           <ScalarProperty Name="Notes" ColumnName="Notes" />
@@ -1222,13 +1129,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="vatModel.Store.sp_alterdiagram" />
-    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="vatModel.Store.sp_creatediagram" />
-    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="vatModel.Store.sp_dropdiagram" />
-    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="vatModel.Store.sp_helpdiagramdefinition" />
-    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="vatModel.Store.sp_helpdiagrams" />
-    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="vatModel.Store.sp_renamediagram" />
-    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="vatModel.Store.sp_upgraddiagrams" />
     <FunctionImportMapping FunctionImportName="StockOutChallanList" FunctionName="vatModel.Store.StockOutChallanList">
       <ResultMapping>
         <ComplexTypeMapping TypeName="vatModel.StockOutChallanList_Result">
@@ -1251,5 +1151,47 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="SalesDetails">
+      <EntityTypeMapping TypeName="vatModel.SalesDetail">
+        <MappingFragment StoreEntitySet="SalesDetails">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="Tax" ColumnName="Tax" />
+          <ScalarProperty Name="WarehouseId" ColumnName="WarehouseId" />
+          <ScalarProperty Name="SD" ColumnName="SD" />
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="SalesInvoice" ColumnName="SalesInvoice" />
+          <ScalarProperty Name="SalesMasterId" ColumnName="SalesMasterId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReceiveDetails">
+      <EntityTypeMapping TypeName="vatModel.ReceiveDetail">
+        <MappingFragment StoreEntitySet="ReceiveDetails">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Tax" ColumnName="Tax" />
+          <ScalarProperty Name="SD" ColumnName="SD" />
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="WarehouseId" ColumnName="WarehouseId" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="ReceiveMasterId" ColumnName="ReceiveMasterId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

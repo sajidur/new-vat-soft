@@ -481,36 +481,12 @@
     <Property Name="IsActive" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Category" Relationship="Self.FK_Product_Category" FromRole="Product" ToRole="Category" />
     <NavigationProperty Name="Inventories" Relationship="Self.FK_Inventory_Product" FromRole="Product" ToRole="Inventory" />
-    <NavigationProperty Name="ReceiveDetails" Relationship="Self.FK_ReceiveDetails_product" FromRole="Product" ToRole="ReceiveDetails" />
-    <NavigationProperty Name="SalesDetails" Relationship="Self.FK_SalesDetails_Product" FromRole="Product" ToRole="SalesDetails" />
     <NavigationProperty Name="SalesOrders" Relationship="Self.FK_SalesOrder_product" FromRole="Product" ToRole="SalesOrder" />
     <NavigationProperty Name="StockIns" Relationship="Self.FK_StockIn_Product" FromRole="Product" ToRole="StockIn" />
     <NavigationProperty Name="StockOuts" Relationship="Self.FK_StockOut_Product" FromRole="Product" ToRole="StockOut" />
     <NavigationProperty Name="TempSalesDetails" Relationship="Self.FK_TempSalesDetails_Product" FromRole="Product" ToRole="TempSalesDetails" />
-  </EntityType>
-  <EntityType Name="ReceiveDetail">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ReceiveMasterId" Type="Int32" Nullable="false" />
-    <Property Name="ProductId" Type="Int32" Nullable="false" />
-    <Property Name="WarehouseId" Type="Int32" />
-    <Property Name="TotalBale" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-    <Property Name="QtyInBale" Type="Int32" Nullable="false" />
-    <Property Name="WeightInKG" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-    <Property Name="WeightType" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-    <Property Name="WeightInMon" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-    <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-    <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-    <Property Name="CreatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
-    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-    <Property Name="UpdatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
-    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-    <Property Name="IsActive" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="Product" Relationship="Self.FK_ReceiveDetails_product" FromRole="ReceiveDetails" ToRole="Product" />
-    <NavigationProperty Name="ReceiveMaster" Relationship="Self.FK_ReceiveDetails_RecieveMaster" FromRole="ReceiveDetails" ToRole="ReceiveMaster" />
-    <NavigationProperty Name="WareHouse" Relationship="Self.FK_ReceiveDetails_Warehouse" FromRole="ReceiveDetails" ToRole="WareHouse" />
+    <NavigationProperty Name="SalesDetails" Relationship="vatModel.FK_SalesDetails_Product" FromRole="Product" ToRole="SalesDetail" />
+    <NavigationProperty Name="ReceiveDetails" Relationship="vatModel.FK_ReceiveDetails_product" FromRole="Product" ToRole="ReceiveDetail" />
   </EntityType>
   <EntityType Name="ReceiveMaster">
     <Key>
@@ -537,8 +513,8 @@
     <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
     <Property Name="IsActive" Type="Boolean" Nullable="false" />
     <Property Name="YearId" Type="Int32" />
-    <NavigationProperty Name="ReceiveDetails" Relationship="Self.FK_ReceiveDetails_RecieveMaster" FromRole="ReceiveMaster" ToRole="ReceiveDetails" />
     <NavigationProperty Name="Supplier" Relationship="Self.FK_ReceiveMaster_Supplier" FromRole="ReceiveMaster" ToRole="Supplier" />
+    <NavigationProperty Name="ReceiveDetails" Relationship="vatModel.FK_ReceiveDetails_RecieveMaster" FromRole="ReceiveMaster" ToRole="ReceiveDetail" />
   </EntityType>
   <EntityType Name="RoleWiseScreenPermission">
     <Key>
@@ -595,29 +571,6 @@
     <NavigationProperty Name="Customer" Relationship="Self.FK_SalesDelivery_Customer" FromRole="SalesDelivery" ToRole="Customer" />
     <NavigationProperty Name="SalesMaster" Relationship="Self.FK_SalesDelivery_SalesMaster" FromRole="SalesDelivery" ToRole="SalesMaster" />
   </EntityType>
-  <EntityType Name="SalesDetail">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="SalesMasterId" Type="Int32" Nullable="false" />
-    <Property Name="SalesInvoice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="ProductId" Type="Int32" Nullable="false" />
-    <Property Name="BaleQty" Type="Int32" Nullable="false" />
-    <Property Name="BaleWeight" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-    <Property Name="WarehouseId" Type="Int32" Nullable="false" />
-    <Property Name="TotalQtyInKG" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-    <Property Name="Rate" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-    <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-    <Property Name="Notes" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="CreatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
-    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-    <Property Name="UpdatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
-    <Property Name="UpdatedDate" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
-    <Property Name="IsActive" Type="Boolean" />
-    <NavigationProperty Name="Product" Relationship="Self.FK_SalesDetails_Product" FromRole="SalesDetails" ToRole="Product" />
-    <NavigationProperty Name="SalesMaster" Relationship="Self.FK_SalesDetails_SalesMaster" FromRole="SalesDetails" ToRole="SalesMaster" />
-  </EntityType>
   <EntityType Name="SalesMaster">
     <Key>
       <PropertyRef Name="Id" />
@@ -648,8 +601,8 @@
     <Property Name="YearId" Type="Int32" />
     <NavigationProperty Name="Customer" Relationship="Self.FK_SalesMaster_Customer" FromRole="SalesMaster" ToRole="Customer" />
     <NavigationProperty Name="SalesDeliveries" Relationship="Self.FK_SalesDelivery_SalesMaster" FromRole="SalesMaster" ToRole="SalesDelivery" />
-    <NavigationProperty Name="SalesDetails" Relationship="Self.FK_SalesDetails_SalesMaster" FromRole="SalesMaster" ToRole="SalesDetails" />
     <NavigationProperty Name="SalesOrder" Relationship="Self.FK_SalesMaster_Salesorder" FromRole="SalesMaster" ToRole="SalesOrder" />
+    <NavigationProperty Name="SalesDetails" Relationship="vatModel.FK_SalesDetails_SalesMaster" FromRole="SalesMaster" ToRole="SalesDetail" />
   </EntityType>
   <EntityType Name="SalesOrder">
     <Key>
@@ -793,16 +746,6 @@
     <NavigationProperty Name="ReceiveMasters" Relationship="Self.FK_ReceiveMaster_Supplier" FromRole="Supplier" ToRole="ReceiveMaster" />
     <NavigationProperty Name="StockIns" Relationship="Self.FK_StockIn_Supplier" FromRole="Supplier" ToRole="StockIn" />
     <NavigationProperty Name="StockOuts" Relationship="Self.FK_StockOut_Supplier" FromRole="Supplier" ToRole="StockOut" />
-  </EntityType>
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="Tax">
     <Key>
@@ -954,36 +897,9 @@
     <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
     <Property Name="IsActive" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Inventories" Relationship="Self.FK_Inventory_WareHouse" FromRole="WareHouse" ToRole="Inventory" />
-    <NavigationProperty Name="ReceiveDetails" Relationship="Self.FK_ReceiveDetails_Warehouse" FromRole="WareHouse" ToRole="ReceiveDetails" />
     <NavigationProperty Name="StockIns" Relationship="Self.FK_StockIn_Warehouse" FromRole="WareHouse" ToRole="StockIn" />
     <NavigationProperty Name="StockOuts" Relationship="Self.FK_StockOut_Warehouse" FromRole="WareHouse" ToRole="StockOut" />
-  </EntityType>
-  <EntityType Name="ProductInfo">
-    <Key>
-      <PropertyRef Name="DesignName" />
-      <PropertyRef Name="Name" />
-      <PropertyRef Name="ColorName" />
-      <PropertyRef Name="DesignCode" />
-      <PropertyRef Name="ProductName" />
-      <PropertyRef Name="Code" />
-      <PropertyRef Name="ProductInfo1" />
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="SBarCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="PBarCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Barcode1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Barcode2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="CostPrice" Type="Decimal" Precision="18" Scale="2" />
-    <Property Name="RetailPrice" Type="Decimal" Precision="18" Scale="2" />
-    <Property Name="WholeSalesPrice" Type="Decimal" Precision="18" Scale="2" />
-    <Property Name="DesignName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="ColorName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="DesignCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="ProductName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Code" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="ProductInfo1" Type="String" MaxLength="1303" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ReceiveDetails" Relationship="vatModel.FK_ReceiveDetails_Warehouse" FromRole="WareHouse" ToRole="ReceiveDetail" />
   </EntityType>
   <Association Name="FK_AccountLedger_AccountGroup">
     <End Role="AccountGroup" Type="Self.AccountGroup" Multiplicity="0..1" />
@@ -1345,30 +1261,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ReceiveDetails_product">
-    <End Role="Product" Type="Self.Product" Multiplicity="1" />
-    <End Role="ReceiveDetails" Type="Self.ReceiveDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Product">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ReceiveDetails">
-        <PropertyRef Name="ProductId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SalesDetails_Product">
-    <End Role="Product" Type="Self.Product" Multiplicity="1" />
-    <End Role="SalesDetails" Type="Self.SalesDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Product">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="SalesDetails">
-        <PropertyRef Name="ProductId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_SalesOrder_product">
     <End Role="Product" Type="Self.Product" Multiplicity="1" />
     <End Role="SalesOrder" Type="Self.SalesOrder" Multiplicity="*" />
@@ -1417,30 +1309,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ReceiveDetails_RecieveMaster">
-    <End Role="ReceiveMaster" Type="Self.ReceiveMaster" Multiplicity="1" />
-    <End Role="ReceiveDetails" Type="Self.ReceiveDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ReceiveMaster">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ReceiveDetails">
-        <PropertyRef Name="ReceiveMasterId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ReceiveDetails_Warehouse">
-    <End Role="WareHouse" Type="Self.WareHouse" Multiplicity="0..1" />
-    <End Role="ReceiveDetails" Type="Self.ReceiveDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="WareHouse">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ReceiveDetails">
-        <PropertyRef Name="WarehouseId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_ReceiveMaster_Supplier">
     <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
     <End Role="ReceiveMaster" Type="Self.ReceiveMaster" Multiplicity="*" />
@@ -1473,18 +1341,6 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="SalesDelivery">
-        <PropertyRef Name="SalesMasterId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SalesDetails_SalesMaster">
-    <End Role="SalesMaster" Type="Self.SalesMaster" Multiplicity="1" />
-    <End Role="SalesDetails" Type="Self.SalesDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="SalesMaster">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="SalesDetails">
         <PropertyRef Name="SalesMasterId" />
       </Dependent>
     </ReferentialConstraint>
@@ -1622,12 +1478,10 @@
     <EntitySet Name="PartyPaymentHistories" EntityType="Self.PartyPaymentHistory" />
     <EntitySet Name="Pictures" EntityType="Self.Picture" />
     <EntitySet Name="Products" EntityType="Self.Product" />
-    <EntitySet Name="ReceiveDetails" EntityType="Self.ReceiveDetail" />
     <EntitySet Name="ReceiveMasters" EntityType="Self.ReceiveMaster" />
     <EntitySet Name="RoleWiseScreenPermissions" EntityType="Self.RoleWiseScreenPermission" />
     <EntitySet Name="SalaryPayments" EntityType="Self.SalaryPayment" />
     <EntitySet Name="SalesDeliveries" EntityType="Self.SalesDelivery" />
-    <EntitySet Name="SalesDetails" EntityType="Self.SalesDetail" />
     <EntitySet Name="SalesMasters" EntityType="Self.SalesMaster" />
     <EntitySet Name="SalesOrders" EntityType="Self.SalesOrder" />
     <EntitySet Name="SalesReturns" EntityType="Self.SalesReturn" />
@@ -1636,7 +1490,6 @@
     <EntitySet Name="StockIns" EntityType="Self.StockIn" />
     <EntitySet Name="StockOuts" EntityType="Self.StockOut" />
     <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="Taxes" EntityType="Self.Tax" />
     <EntitySet Name="TempSalesDetails" EntityType="Self.TempSalesDetail" />
     <EntitySet Name="TempSalesMasters" EntityType="Self.TempSalesMaster" />
@@ -1645,7 +1498,6 @@
     <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
     <EntitySet Name="VoucherTypes" EntityType="Self.VoucherType" />
     <EntitySet Name="WareHouses" EntityType="Self.WareHouse" />
-    <EntitySet Name="ProductInfoes" EntityType="Self.ProductInfo" />
     <AssociationSet Name="FK_AccountLedger_AccountGroup" Association="Self.FK_AccountLedger_AccountGroup">
       <End Role="AccountGroup" EntitySet="AccountGroups" />
       <End Role="AccountLedger" EntitySet="AccountLedgers" />
@@ -1766,14 +1618,6 @@
       <End Role="VoucherType" EntitySet="VoucherTypes" />
       <End Role="PartyBalance" EntitySet="PartyBalances" />
     </AssociationSet>
-    <AssociationSet Name="FK_ReceiveDetails_product" Association="Self.FK_ReceiveDetails_product">
-      <End Role="Product" EntitySet="Products" />
-      <End Role="ReceiveDetails" EntitySet="ReceiveDetails" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SalesDetails_Product" Association="Self.FK_SalesDetails_Product">
-      <End Role="Product" EntitySet="Products" />
-      <End Role="SalesDetails" EntitySet="SalesDetails" />
-    </AssociationSet>
     <AssociationSet Name="FK_SalesOrder_product" Association="Self.FK_SalesOrder_product">
       <End Role="Product" EntitySet="Products" />
       <End Role="SalesOrder" EntitySet="SalesOrders" />
@@ -1790,14 +1634,6 @@
       <End Role="Product" EntitySet="Products" />
       <End Role="TempSalesDetails" EntitySet="TempSalesDetails" />
     </AssociationSet>
-    <AssociationSet Name="FK_ReceiveDetails_RecieveMaster" Association="Self.FK_ReceiveDetails_RecieveMaster">
-      <End Role="ReceiveMaster" EntitySet="ReceiveMasters" />
-      <End Role="ReceiveDetails" EntitySet="ReceiveDetails" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ReceiveDetails_Warehouse" Association="Self.FK_ReceiveDetails_Warehouse">
-      <End Role="WareHouse" EntitySet="WareHouses" />
-      <End Role="ReceiveDetails" EntitySet="ReceiveDetails" />
-    </AssociationSet>
     <AssociationSet Name="FK_ReceiveMaster_Supplier" Association="Self.FK_ReceiveMaster_Supplier">
       <End Role="Supplier" EntitySet="Suppliers" />
       <End Role="ReceiveMaster" EntitySet="ReceiveMasters" />
@@ -1809,10 +1645,6 @@
     <AssociationSet Name="FK_SalesDelivery_SalesMaster" Association="Self.FK_SalesDelivery_SalesMaster">
       <End Role="SalesMaster" EntitySet="SalesMasters" />
       <End Role="SalesDelivery" EntitySet="SalesDeliveries" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SalesDetails_SalesMaster" Association="Self.FK_SalesDetails_SalesMaster">
-      <End Role="SalesMaster" EntitySet="SalesMasters" />
-      <End Role="SalesDetails" EntitySet="SalesDetails" />
     </AssociationSet>
     <AssociationSet Name="FK_SalesMaster_Salesorder" Association="Self.FK_SalesMaster_Salesorder">
       <End Role="SalesOrder" EntitySet="SalesOrders" />
@@ -1870,7 +1702,7 @@
       <Parameter Name="customerOrSupplier" Mode="In" Type="Int32" />
       <Parameter Name="yearId" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="DueSummary" ReturnType="Collection(vatModel.DueSummary_Result)">
+    <FunctionImport Name="DueSummary">
       <Parameter Name="FinancialYear" Mode="In" Type="Int32" />
       <Parameter Name="ReportType" Mode="In" Type="Int32" />
       <Parameter Name="yearId" Mode="In" Type="Int32" />
@@ -1920,36 +1752,6 @@
     <FunctionImport Name="rptSalesInvoice" ReturnType="Collection(vatModel.rptSalesInvoice_Result)">
       <Parameter Name="SalesInvoice" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="sp_alterdiagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-      <Parameter Name="version" Mode="In" Type="Int32" />
-      <Parameter Name="definition" Mode="In" Type="Binary" />
-    </FunctionImport>
-    <FunctionImport Name="sp_creatediagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-      <Parameter Name="version" Mode="In" Type="Int32" />
-      <Parameter Name="definition" Mode="In" Type="Binary" />
-    </FunctionImport>
-    <FunctionImport Name="sp_dropdiagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_helpdiagramdefinition">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_helpdiagrams">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_renamediagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-      <Parameter Name="new_diagramname" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="sp_upgraddiagrams" />
     <FunctionImport Name="StockOutChallanList" ReturnType="Collection(vatModel.StockOutChallanList_Result)">
       <Parameter Name="fromDate" Mode="In" Type="DateTime" />
       <Parameter Name="toDate" Mode="In" Type="DateTime" />
@@ -1957,6 +1759,28 @@
     <FunctionImport Name="StockOutInvoice" ReturnType="Collection(vatModel.StockOutInvoice_Result)">
       <Parameter Name="InvoiceNo" Mode="In" Type="String" />
     </FunctionImport>
+    <EntitySet Name="SalesDetails" EntityType="vatModel.SalesDetail" />
+    <AssociationSet Name="FK_SalesDetails_Product" Association="vatModel.FK_SalesDetails_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="SalesDetail" EntitySet="SalesDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesDetails_SalesMaster" Association="vatModel.FK_SalesDetails_SalesMaster">
+      <End Role="SalesMaster" EntitySet="SalesMasters" />
+      <End Role="SalesDetail" EntitySet="SalesDetails" />
+    </AssociationSet>
+    <EntitySet Name="ReceiveDetails" EntityType="vatModel.ReceiveDetail" />
+    <AssociationSet Name="FK_ReceiveDetails_product" Association="vatModel.FK_ReceiveDetails_product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ReceiveDetail" EntitySet="ReceiveDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReceiveDetails_RecieveMaster" Association="vatModel.FK_ReceiveDetails_RecieveMaster">
+      <End Role="ReceiveMaster" EntitySet="ReceiveMasters" />
+      <End Role="ReceiveDetail" EntitySet="ReceiveDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReceiveDetails_Warehouse" Association="vatModel.FK_ReceiveDetails_Warehouse">
+      <End Role="WareHouse" EntitySet="WareHouses" />
+      <End Role="ReceiveDetail" EntitySet="ReceiveDetails" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="CashBook_Result">
     <Property Type="Int32" Name="Id" Nullable="false" />
@@ -2000,20 +1824,6 @@
     <Property Type="String" Name="LedgerName" Nullable="true" />
     <Property Type="String" Name="extra1" Nullable="true" />
     <Property Type="String" Name="Phone" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="DueSummary_Result">
-    <Property Type="Int32" Name="LedgerId" Nullable="false" />
-    <Property Type="Int32" Name="id" Nullable="false" />
-    <Property Type="String" Name="Name" Nullable="true" />
-    <Property Type="String" Name="Address" Nullable="true" />
-    <Property Type="String" Name="Phone" Nullable="true" />
-    <Property Type="String" Name="ContactPersonPhone" Nullable="true" />
-    <Property Type="Decimal" Name="Ton" Nullable="true" Precision="38" Scale="6" />
-    <Property Type="Int32" Name="TotalInvoice" Nullable="true" />
-    <Property Type="String" Name="reportType" Nullable="false" MaxLength="20" />
-    <Property Type="Decimal" Name="Credit" Nullable="true" Precision="38" Scale="5" />
-    <Property Type="Decimal" Name="Debit" Nullable="true" Precision="38" Scale="5" />
-    <Property Type="Decimal" Name="Balance" Nullable="true" Precision="38" Scale="5" />
   </ComplexType>
   <ComplexType Name="GetBalance_Result">
     <Property Type="Int32" Name="LedgerId" Nullable="false" />
@@ -2143,10 +1953,10 @@
     <Property Type="Int32" Name="SalesMasterId" Nullable="false" />
     <Property Type="String" Name="SalesInvoice1" Nullable="false" MaxLength="50" />
     <Property Type="Int32" Name="ProductId" Nullable="false" />
-    <Property Type="Int32" Name="BaleQty" Nullable="false" />
-    <Property Type="Decimal" Name="BaleWeight" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="Qty" Nullable="false" />
+    <Property Type="Decimal" Name="SD" Nullable="false" Precision="18" Scale="2" />
     <Property Type="Int32" Name="WarehouseId" Nullable="false" />
-    <Property Type="Decimal" Name="TotalQtyInKG" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Tax" Nullable="false" Precision="18" Scale="2" />
     <Property Type="Decimal" Name="Rate" Nullable="false" Precision="18" Scale="2" />
     <Property Type="Decimal" Name="Amount" Nullable="false" Precision="18" Scale="2" />
     <Property Type="String" Name="Notes" Nullable="true" MaxLength="500" />
@@ -2205,4 +2015,109 @@
     <Property Type="String" Name="Notes" Nullable="true" MaxLength="500" />
     <Property Type="Decimal" Name="WeightInMon" Nullable="true" Precision="18" Scale="2" />
   </ComplexType>
+  <EntityType Name="SalesDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SalesMasterId" Type="Int32" Nullable="false" />
+    <Property Name="SalesInvoice" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="Qty" Type="Int32" Nullable="false" />
+    <Property Name="SD" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="WarehouseId" Type="Int32" Nullable="false" />
+    <Property Name="Tax" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Rate" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Notes" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="UpdatedDate" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="Product" Relationship="vatModel.FK_SalesDetails_Product" FromRole="SalesDetail" ToRole="Product" />
+    <NavigationProperty Name="SalesMaster" Relationship="vatModel.FK_SalesDetails_SalesMaster" FromRole="SalesDetail" ToRole="SalesMaster" />
+  </EntityType>
+  <Association Name="FK_SalesDetails_Product">
+    <End Type="vatModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="vatModel.SalesDetail" Role="SalesDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SalesDetail">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesDetails_SalesMaster">
+    <End Type="vatModel.SalesMaster" Role="SalesMaster" Multiplicity="1" />
+    <End Type="vatModel.SalesDetail" Role="SalesDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SalesMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SalesDetail">
+        <PropertyRef Name="SalesMasterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ReceiveDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReceiveMasterId" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="WarehouseId" Type="Int32" />
+    <Property Name="Rate" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Qty" Type="Int32" Nullable="false" />
+    <Property Name="SD" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Tax" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="CreatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="24" FixedLength="true" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="vatModel.FK_ReceiveDetails_product" FromRole="ReceiveDetail" ToRole="Product" />
+    <NavigationProperty Name="ReceiveMaster" Relationship="vatModel.FK_ReceiveDetails_RecieveMaster" FromRole="ReceiveDetail" ToRole="ReceiveMaster" />
+    <NavigationProperty Name="WareHouse" Relationship="vatModel.FK_ReceiveDetails_Warehouse" FromRole="ReceiveDetail" ToRole="WareHouse" />
+  </EntityType>
+  <Association Name="FK_ReceiveDetails_product">
+    <End Type="vatModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="vatModel.ReceiveDetail" Role="ReceiveDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReceiveDetail">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReceiveDetails_RecieveMaster">
+    <End Type="vatModel.ReceiveMaster" Role="ReceiveMaster" Multiplicity="1" />
+    <End Type="vatModel.ReceiveDetail" Role="ReceiveDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReceiveMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReceiveDetail">
+        <PropertyRef Name="ReceiveMasterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReceiveDetails_Warehouse">
+    <End Type="vatModel.WareHouse" Role="WareHouse" Multiplicity="0..1" />
+    <End Type="vatModel.ReceiveDetail" Role="ReceiveDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WareHouse">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReceiveDetail">
+        <PropertyRef Name="WarehouseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

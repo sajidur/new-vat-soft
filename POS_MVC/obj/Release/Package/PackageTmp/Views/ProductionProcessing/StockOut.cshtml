@@ -11,7 +11,7 @@
                             <fieldset>
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">
-                                        Invoice No/চালান নং:
+                                        Invoice No:
                                     </label>
                                     <div class="col-md-2">
                                         <input type="text" value="001" readonly id="txtPoNo" name="txtPoNo" class="form-control" style="width:200px"/>
@@ -26,7 +26,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">
-                                        Notes/মন্তব্য:
+                                        Notes:
                                     </label>
                                     <div class="col-md-4">
                                         <input type="text" id="txtDescriptions" name="txtDescriptions" class="form-control" style="width:200px"/>
@@ -70,7 +70,7 @@
                                     <th>Product</th>
                                     <th>Supplier</th>
                                     <th>WarehouseId</th>
-                                    <th>QtyInBale</th>
+                                    <th></th>
                                     <th>BalanceQty</th>
                                     <th>ProductionQty</th>
                                     <th>Action</th>
@@ -83,7 +83,7 @@
                                             <td> {{Product.ProductName}}</td>
                                             <td> {{Supplier.Name}}</td>
                                             <td> {{WareHouse.WareHouseName}}</td>
-                                            <td> {{QtyInBale}}</td>
+                                            <td></td>
                                             <td> {{BalanceQty}}</td>
                                             <td>
                                                 <input type="text" name="txtProductionQty" id="txtProductionQty" class="form-control" />
@@ -115,10 +115,10 @@
     <table class="table table-bordered table-striped table-hover" id="stockOutTableModal">
         <thead>
         <th></th>
-        <th>আইটেম</th>
-        <th>গোডাউন</th>
-        <th>বস্তা</th>
-        <th>কেজি/বস্তা</th>
+        <th>Item</th>
+        <th>Godown</th>
+        <th>Qty</th>
+        <th></th>
         <th>Action </th>
         </thead>
         <tbody>
@@ -128,7 +128,7 @@
                 <td> {{Product.ProductName}}</td>
                 <td> {{WareHouse.WareHouseName}}</td>
                 <td> {{BaleQty}}</td>
-                <td> {{BaleWeight}}</td>
+                <td></td>
                 <td>
                     <a class="btn btn-danger" onclick="OnDeleteStockOut('{{inventoryCountCount}}')"><i class="fa fa-trash-o"></i></a>
                 </td>

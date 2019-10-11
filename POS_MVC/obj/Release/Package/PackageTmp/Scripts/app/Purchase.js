@@ -66,7 +66,7 @@ $("#btnAdd").click(function () {
     var sd=TotalAmount/productA.SDRate
     var amount=parseFloat(TotalAmount)+ tax+sd;
    // TotalAmount += parseFloat(sd);
-    var object = { countAddedProductCount: countAddedProductCount, Id: Id, Item: item, ProductId: ProductId, WarehouseId: WarehouseId, Amount: rate, Quantity: Quantity, TaxRate: tax, SDRate: sd, TotalAmount: amount };
+    var object = { countAddedProductCount: countAddedProductCount, Id: Id, Item: item, ProductId: ProductId, WarehouseId: WarehouseId, Rate: rate, Qty: Quantity, TaxRate: tax, SDRate: sd, Amount: amount };
     details.push(object);
     var templateWithData = Mustache.to_html($("#templateProductModalAdd").html(), { ProductSearchAdd: details });
     $("#div-product-add").empty().html(templateWithData);
@@ -83,8 +83,8 @@ function CalculateSum()
     try {
 
         for (var i = 0; i < details.length; i++) {
-            TotalAmount += parseFloat(details[i].TotalAmount);
-            TotalQty += parseFloat(details[i].Quantity);
+            TotalAmount += parseFloat(details[i].Amount);
+            TotalQty += parseFloat(details[i].Qty);
         }
         $("#lblTotalAmount").html(TotalAmount.toFixed(2));
         $("#lblTotalQty").html(TotalQty.toFixed(2));
@@ -109,39 +109,6 @@ function OnDeleteProduct(productId)
    // GrandTotal();//update Grand Total
 }
 
-function GetDataFromDataTable(productId) {
-    var obj = new Object();
-    $('#productGroupTableModal tr').each(function (i) {
-        if (i > 0) {
-            var Id = $(this).find('td').eq(0).text();
-            if (productId==Id) {
-                var ItemInfo = $(this).find('td').eq(1).text();
-                var Barcode1 = $(this).find('td').eq(2).text();
-                var RetailPrice = $(this).find('td').eq(3).text();
-                var WholeSalesPrice = $(this).find('td').eq(4).text();
-                var Quantity = $(this).find('td').eq(5).find('input').val();
-                var taxRate = $(this).find('td').eq(6).find('input').val();
-                var SDRate = $(this).find('td').eq(7).find('input').val();
-              
-                obj.ItemId = Id;
-                obj.ItemInfo = ItemInfo;
-                obj.Barcode1 = Barcode1;
-                obj.CostPrice = 0;
-                obj.RetailPrice = RetailPrice;
-                obj.WholeSalesPrice = WholeSalesPrice;
-                obj.Qty = Quantity;
-                obj.TaxRate = taxRate;
-                obj.SDRate = SDRate;
-                details.push(obj);
-                var templateWithData = Mustache.to_html($("#templateProductModalAdd").html(), { ProductSearchAdd: details });
-                $("#div-product-add").empty().html(templateWithData);
-               // MakePagination('productTableModalAdded');
-            } 
-        }
-    });
-    return details;
-}
-
 function Save()
 {
     console.log($("#ddlWareHouse").val());
@@ -160,7 +127,7 @@ function Save()
         return;
     }
     //debugger;
-    $("#btnSave").prop("disabled", true);
+   // $("#btnSave").prop("disabled", true);
     var url = '/Purchase/Save';
     $.ajax({
         url: url,
@@ -172,9 +139,8 @@ function Save()
             descriptions: $("#txtDescriptions").val(),
             WarehouseId: godown,
             dates: $("#txtDates").val(),
-            Discount: $("#txtDiscount").val(),
-            response: details,
-            ledgerPosting: detailsExpense
+            Discount: 0,
+            response: details
         },
         success: function (data) {
             //debugger;
@@ -193,7 +159,8 @@ function Save()
             LoadInvoiceNo("txtPoNo");
             location.reload();
         },
-        error: function () {
+        error: function (err) {
+            console.log(err.message);
         }
     });
 }

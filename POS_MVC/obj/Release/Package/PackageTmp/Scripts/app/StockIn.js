@@ -8,14 +8,12 @@ $("#btnAdd").click(function () {
     var ProductId = $("#ddlItem option:selected").val();
     var WarehouseId = $("#ddlWareHouse option:selected").val();
     var WarehouseName = $("#ddlWareHouse option:selected").text();
-    var BaleQty = $("#txtBaleQty").val();
-    var BaleWeight = $("#txtBaleWeight").val();
+     var   SupplierId= $("#ddlSupplier option:selected").val();
+    var Qty = $("#txtProductionQty").val();
     var WarehouseId = $("#ddlWareHouse option:selected").val();
-    var WeightInMon = $("#txtWeightInMon").val();
     var object = {
         Item: item, ProductId: ProductId, WarehouseId: WarehouseId,
-        WarehouseName: WarehouseName, BaleQty: BaleQty, BaleWeight: BaleWeight,
-        WeightInMon: WeightInMon
+        WarehouseName: WarehouseName, Qty: Qty, SupplierId: SupplierId
     };
     detailsStockIn.push(object);
     var templateWithData = Mustache.to_html($("#templateProductModalAdded").html(), { ProductSearchAdded: detailsStockIn });
@@ -36,16 +34,10 @@ $("#txtBaleWeight").on("propertychange change keyup paste input", function () {
     Calculation();
 });
 function Calculation() {
-    var BaleQty = $("#txtBaleQty").val();
-    var QtyPerBale = $("#txtBaleWeight").val();
-    if (BaleQty == '') {
-        BaleQty = 0;
+    var Qty = $("#txtProductionQty").val();
+    if (Qty == '') {
+        Qty = 0;
     }
-    if (QtyPerBale == '') {
-        QtyPerBale = 0;
-    }
-    var totalInKG = QtyPerBale * BaleQty;
-    $("#txtWeightInMon").val(totalInKG);
 }
 
 function OnDeleteProduct(Id) {
@@ -97,7 +89,6 @@ function LoadInvoiceNo(controlId) {
 
 
 function Save() {
-    GetDataFromDatatable();
     var url = '/ProductionProcessing/SaveStockIn';
     $.ajax({
         url: url,
@@ -119,32 +110,6 @@ function Save() {
         }
     });
 
-}
-
-function GetDataFromDatatable() {
-    $('#inventoryGroupTableModal tr').each(function(i) {
-        if (i > 0) {
-            var ProductId = $(this).find('td').eq(0).text();
-            var BaleQty = $(this).find('td').eq(2).find('input').val();
-            var BaleWeight = $(this).find('td').eq(3).find('input').val();
-            var WeightInMon = $(this).find('td').eq(4).find('input').val();
-            var WarehouseId = $(this).find('td').eq(5).find('select').val();
-            var SupplierId = $("#ddlSupplier option:selected").val();
-            //var SupplierId = GetSupplierId(ProductId);
-
-            var object = {
-                ProductId: ProductId,
-                WarehouseId: WarehouseId,
-                BaleQty: BaleQty,
-                BaleWeight: BaleWeight,
-                WeightInMon: WeightInMon,
-                SupplierId: SupplierId
-            };
-
-            detailsStockIn.push(object);
-
-        }
-    });
 }
 
 function GetSupplierId(parameters) {

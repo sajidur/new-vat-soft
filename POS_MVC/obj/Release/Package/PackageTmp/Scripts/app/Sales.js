@@ -43,68 +43,32 @@ function LoadInventoryList() {
     });
 }
 
-function LoadSalesOrderList() {
-    var CustomerID = 0;
-    var fromDate = new Date().toISOString();
-    var toDate = new Date().toISOString();
-    var customerDropdown = document.getElementById("ddlCustomer");
-    if (customerDropdown.selectedIndex == -1) {
-        CustomerID = 0;
-    }
-    else {
-        var customerId = customerDropdown.options[customerDropdown.selectedIndex].value;
-        CustomerID = customerId;
-    }
-    var url = '/Sales/GetSaleOrdersFilter';
-    $.ajax({
-        url: url,
-        method: 'GET',
-        data: { 'CustomerID': CustomerID, 'fromDate': fromDate, 'toDate': toDate },
-        success: function (res) {
-            creditLimit = res.Limit;
-            balance=res.Balance;
-            console.log(res);
-            $("#txtCoutha").val(res.chouthaNo);
-            $("#lblBalance").text(" Balance:"+res.Balance+" and Credit Limit: "+res.Limit);
-            var templateWithData = Mustache.to_html($("#templateSalesOrderGroupModal").html(), { SalesOrderGroupSearch: res.salesOrders });
-            $("#div-salesOrderGroup").empty().html(templateWithData);
-            MakePagination('salesOrderGroupTableModal');
-        },
-        error: function (error, r) {
-            ShowNotification("3", "Something Wrong!!");
-        }
-    });
-
-   // LoadAllWareHouse("ddlWareHouse");
-}
-
 var count = 1;
 function LoadForAdd(InvId) {
     var countCount = count++;
     var Id = "0";
     var ProductName = "";
-    var BaleQty = '0';
+    var Qty = '0';
     var BaleWeight = '0';
     var Rate = '';
     var ProductId = '0';
+    var SDRate = 0;
+    var TaxRate = 0;
     $('#inventoryGroupTableModal tr').each(function (i) {
         if ($(this).find('td').eq(0).text() == InvId) {
             Id = $(this).find('td').eq(1).html();
             ProductName = $(this).find('td').eq(2).html();
             ProductId = Id;
-            BaleQty = $(this).find('td').eq(6).find('input').val();
-            BaleWeight = $(this).find('td').eq(3).text();
+            Qty = $(this).find('td').eq(6).find('input').val();
             Rate = $(this).find('td').eq(7).find('input').val();
+            SDRate = $(this).find('td').eq(8).html();
+            TaxRate = $(this).find('td').eq(9).html();
             WarehouseId = $(this).find('td').eq(9).text();
         }
     });
-    var TotalQtyInKG = BaleQty * BaleWeight;
-    var Amount = Rate * BaleQty;
+    var Amount = Rate * Qty;
     var SalesOrderId = '';
-    if (TotalQtyInKG <= 0) {
-        ShowNotification("3", "Qty empty!!");
-        return;
-    }
+
     if (Amount <= 0) {
         ShowNotification("3", "Amount empty!!");
         return;
@@ -117,106 +81,28 @@ function LoadForAdd(InvId) {
         ShowNotification("3", "Select godown!!");
         return;
     }
+    var sd=Amount / SDRate;
+    var tax=Amount/TaxRate;
+    var totalamount=Amount+sd+tax;
     var object = {
         countCount: countCount,
         Id: Id,
         ProductId:Id,
         ProductName: ProductName,
-        BaleQty: BaleQty,
-        BaleWeight: BaleWeight,
-        TotalQtyInKG: TotalQtyInKG, Rate: Rate,
-        Amount: Amount,
+        Qty: Qty,
+        Rate: Rate,
+        SD: sd,
+        Tax:tax,
+        Amount: totalamount,
         SalesOrderId: SalesOrderId,
         WarehouseId: WarehouseId
     };
-    console.log(object);
     detailsSales.push(object);
     var templateWithData = Mustache.to_html($("#templateSalesGroupModalGrid").html(), { SalesGroupSearchGrid: detailsSales });
     $("#div-sales-add").empty().html(templateWithData);
     Calculation();
     ShowNotification("1", "Item added!!");
-
 }
-
-function LoadForAddOrder(parameters) {
-    var countCount = count++;
-    var Id = '';
-    var ProductName = '';
-    var ProductId = '';
-    var OrderQty = '';
-    var BaleQty = '';
-    var BaleWeight = '';
-    var Rate = '';
-    var SalesOrderId = '';
-    var IsActive;       
-
-        $('#salesOrderGroupTableModal tr').each(function (i) {
-            if ($(this).find('td').eq(0).text() == parameters) {
-                Id = $(this).find('td').eq(1).text();
-                ProductName = $(this).find('td').eq(2).text();
-                OrderQty = $(this).find('td').eq(3).text();
-                BaleQty = $(this).find('td').eq(6).find('input').val();
-                BaleWeight = $(this).find('td').eq(4).text();
-                Rate = $(this).find('td').eq(7).find('input').val();
-                SalesOrderId = $(this).find('td').eq(0).text();
-                ProductId = $(this).find('td').eq(11).text();
-                if ($(this).find('td').eq(8).find('input').is(":checked"))
-                {
-                    IsActive = true;
-                    console.log(IsActive);
-                } else {
-                    IsActive = false;
-                    console.log(IsActive);
-                }
-                
-                WarehouseId = 1;
-            }
-        });
-        
-        if (parseFloat(OrderQty) == parseFloat(BaleQty)) {
-            IsActive = false;
-            //console.log(OrderQty);
-            //console.log(BaleQty);
-            console.log(IsActive);
-        } else if (IsActive == true) {
-            IsActive = false;
-            console.log(IsActive);
-        } else {
-            IsActive = true;
-            console.log(IsActive);
-        }
-        var TotalQtyInKG = BaleQty * BaleWeight;
-        var Amount = Rate * BaleQty;
-        var object = {
-            countCount: countCount,
-            Id: Id,
-            ProductId:ProductId,
-            ProductName: ProductName,
-            BaleQty: BaleQty,
-            BaleWeight: BaleWeight,
-            TotalQtyInKG: TotalQtyInKG,
-            Rate: Rate,
-            Amount: Amount,
-            SalesOrderId: SalesOrderId,
-            IsActive: IsActive,
-            WarehouseId: WarehouseId
-        };
-      
-        var object2 = {
-            BaleQty: BaleQty
-        };
-        console.log(object);
-        orderDeliveryQty.push(object);
-        orderElements.push(object);
-        detailsSales.push(object);
-        detailSalesInMaster.push(object);
-        var templateWithData = Mustache.to_html($("#templateSalesGroupModalGrid").html(), { SalesGroupSearchGrid: detailSalesInMaster });
-        $("#div-sales-add").empty().html(templateWithData);
-        Calculation();
-        ShowNotification("1", "Item added!!");
-
-    }
-
     function Calculation() {
 
         var totalAmount = 0;
@@ -252,7 +138,7 @@ function LoadForAddOrder(parameters) {
     function Save(e) {
         GetDataFromDatatable();
         var IsActive;
-        if (detailSalesInMaster.length <= 0) {
+        if (detailsSales.length <= 0) {
             ShowNotification("3", "No Item added!!");
             return;
         }
@@ -274,11 +160,8 @@ function LoadForAddOrder(parameters) {
                 method: 'POST',
                 data: {
                     salesMasters: detailsSalesForPost,
-                    salesDetail: detailSalesInMaster,
-                    salesOrders: orderElements,
-                    lstDeliveryQunatities: orderDeliveryQty,
+                    salesDetail: detailsSales,
                     Discount: $("#txtDiscount").val(),
-                    isSendSMS: false,
                     DriverName: $("#txtDriverName").val(),
                     RentAmount: $("#txtRentAmount").val()
 
@@ -306,17 +189,9 @@ function LoadForAddOrder(parameters) {
             if (i > 0) {
                 var SalesInvoice = $("#txtPoNo").val();
                 var CustomerID = $("#ddlCustomer option:selected").val();
-                var TotalAmount = $(this).find('td').eq(7).text();
+                var TotalAmount = $("#lblTotalAmountA").html();
                 var Notes = $("#txtDescriptions").val();
                 var Coutha = $("#txtCoutha").val();
-                var ProductId = $(this).find('td').eq(1).text();
-                var BaleQty = $(this).find('td').eq(3).text();
-                var BaleWeight = $(this).find('td').eq(4).text();
-                var TotalQtyInKG = $(this).find('td').eq(5).text();
-                var Rate = $(this).find('td').eq(6).text();
-                var Amount = $(this).find('td').eq(7).text();
-                var SalesOrderId = $(this).find('td').eq(8).text();
-                var WarehouseId = $(this).find('td').eq(10).text();
                 var SalesDate = $("#txtDate").val();
 
                 if (WarehouseId <= 0) {
@@ -330,22 +205,10 @@ function LoadForAddOrder(parameters) {
                     SalesDate:SalesDate,
                     Notes: Notes,
                     Coutha:Coutha,
-                    SalesOrderId: SalesOrderId,
                     DiscountPurpose: $("#txtDiscountNotes").val(),
                     TransportType: $("#txtDelivery").val(),
                     TransportNo: $("#txtDriverMob").val()
                 };
-
-                var object2 = {
-                    ProductId: ProductId,
-                    BaleQty: BaleQty,
-                    BaleWeight: BaleWeight,
-                    TotalQtyInKG: TotalQtyInKG,
-                    Rate: Rate,
-                    Amount: Amount,
-                    WarehouseId: WarehouseId
-                };
-                detailSalesInMaster.push(object2);
                 detailsSalesForPost.push(object);
             }
         });
